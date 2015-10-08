@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 class AuthMiddleware {
@@ -14,7 +15,7 @@ class AuthMiddleware {
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check())
+        if (!Session::has('account'))
         {
             return redirect('login');
         }

@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-use Request;
-use Illuminate\Support\Facades\Auth;
+use App\PasswordHash;
+use Session;
 
 class User extends Model{
 	protected $table = 'm_users';
@@ -9,7 +9,6 @@ class User extends Model{
 	
 	public function __construct()
 	{
-		$this->input = Request::all();;
 	}
 	function GetUser()
 	{
@@ -21,17 +20,10 @@ class User extends Model{
 	/*
 	*用户登录功能
 	*/
-	function login()
+	function get_login($account)
 	{
-		$user_login = isset($this->input['account'])?$this->input['account']:'';
-		$password = isset($this->input['password'])?$this->input['password']:'';
-		if (Auth::attempt(['user_login' => $user_login, 'password' => $password]))
-		{
-			return redirect()->intended('dashboard');
-		}
-		$res['msg']='登录失败';
-		$res['success'] = false;
-		return $res;
+		$users = $this->where('user_login',$account)->select('id','user_login','user_pass')->get()->toArray();
+		return $users;
 	}
 	/*
 	*用户登出功能

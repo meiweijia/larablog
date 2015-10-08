@@ -16,11 +16,11 @@
 
 $app->get("/",'MainController@GetIndex');
 
-
+//ID获取文章
 $app->get("/post/{id}.html",'PostController@getpost');
 
 $app->get("/test",function(){
-    return view('yf.post');
+    //return Hash::check('kshz137','$2y$10$IkEZKueOdkx.5C50B5RP3ONEOIdiHgv9OIng6JinNBoYrNtuCNPc')?1:2;
 });
 
 $app->get("/home",function(){
@@ -32,20 +32,14 @@ $app->get("/home",function(){
 */
 $app->group(['prefix' => 'admin','namespace'=>'App\Http\Controllers','middleware' => 'auth'], function($app) {
     $app->get("/",'AdminController@GetIndex');
-    $app->get("/{view}.html",function($view){
+    $app->get("{view}.html",function($view){
         return view('admin.'.$view);
     });
 });
-//登录
+//登录视图
 $app->get("/login",'AdminController@login_view');
-$app->post("/login",'AdminController@login');
 
-$app->get("/welcome.html",'AdminController@welcome');
-$app->get("/article-list.html",'AdminController@article_list');
-$app->get("/article-add.html",'AdminController@article_add');
-$app->get("/rticle-zhang.html",'AdminController@rticle_zhang');
-$app->get("/picture-list.html",'AdminController@picture_list');
-$app->get("/system-base.html",'AdminController@system_base');
+
 
 
 $app->get("/Post/GetPost/",'PostController@GetListPost');
@@ -54,6 +48,6 @@ $app->get("/Post/GetPost/",'PostController@GetListPost');
 
 
 $app->group(['prefix' => 'User','namespace'=>'App\Http\Controllers'], function($app) {
-    $app->post("/login",'UserController@login');
+    $app->post("/login",'UserController@get_login');
     $app->get("/logout",'UserController@logout');
 });

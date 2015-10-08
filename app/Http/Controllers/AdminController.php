@@ -20,7 +20,7 @@ class AdminController extends Controller {
 	}
 	public function login(Request $request)
 	{
-		print_r($request->only('user_login', 'user_pass'));
+		//print_r($request->only('user_login', 'user_pass'));
 		if (Auth::attempt($request->only('user_login', 'user_pass'))) {
 			return '认证成功';
 			return redirect()->intended('dashboard');
