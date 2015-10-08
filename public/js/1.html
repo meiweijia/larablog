@@ -1,0 +1,28 @@
+<html>
+<head>
+
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="pagination-with-styles.js"></script>
+</head>
+<body>
+<div id="pagination"></div>
+<script>
+$('#pagination').pagination({
+    dataSource: 'https://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?',
+    locator: 'items',
+    total: 120,
+    pageSize: 20,
+    ajax: {
+        beforeSend: function(){
+            dataContainer.html('Loading data from flickr.com ...');
+        }
+    },
+    callback: function(data, pagination){
+        // template method of yourself
+        var html = template(data);
+        dataContainer.html(html);
+    }
+})
+</script>
+</body>
+</html>
