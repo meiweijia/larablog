@@ -122,12 +122,13 @@ function article_save_submit()
 	if(post_title=='')
 	{
 		layer.alert('文章标题不能不为空');
+		return;
 	}
 	if(post_content=='')
 	{
 		layer.alert('文章内容不能不为空');
+		return;
 	}
-	return;
 	var post_data = $('#form-article-add').serialize();
 	var post_password = null;
 	post_data += '&can_comment='+can_comment + '&post_status=1'+'&post_password='+post_password;
