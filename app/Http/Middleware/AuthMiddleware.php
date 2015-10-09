@@ -2,9 +2,15 @@
 
 use Closure;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
 class AuthMiddleware {
+	/**
+	 * The Guard implementation.
+	 *
+	 * @var Guard
+	 */
+
 
     /**
      * Run the request filter.
@@ -15,11 +21,27 @@ class AuthMiddleware {
      */
     public function handle($request, Closure $next)
     {
+		// if (!Auth::check())
+		// {
+			// if ($request->ajax())
+			// {
+				// return response('Unauthorized.', 401);
+			// }
+			// else
+			// {
+				// return redirect('login');
+			// }
+		// }
+		// return $next($request);
+		
+
         if (!Session::has('account'))
         {
             return redirect('login');
         }
         return $next($request);
+		
+
     }
 
 }

@@ -92,15 +92,15 @@ function login(){ //函数 login();
 		type: "post", //以post方式与后台沟通 
 		url : "User/login", //与此php页面沟通
 		dataType:'json',//从php返回的值以 JSON方式 解释 
-		data: 'user_login='+account+'&user_pass='+password+'&_token='+_token, //发给php的数据有两项，分别是上面传来的u和p
+		data: 'user_login='+account+'&password='+password+'&_token='+_token, //发给php的数据有两项，分别是上面传来的u和p
 		success: function(json){//如果调用php成功 
-			if(json==1)
+			if(json.success)
 			{
 				window.location = '/admin';
 			}
 			else
 			{
-				Huimodal_alert('帐号或密码错误',2000);
+				Huimodal_alert(json.msg,2000);
 			}
 		},
 		error:function(v)

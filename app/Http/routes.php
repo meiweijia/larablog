@@ -16,11 +16,20 @@
 
 $app->get("/",'MainController@GetIndex');
 
-//ID获取文章
+//ID鑾峰彇鏂囩珷
 $app->get("/post/{id}.html",'PostController@getpost');
 
 $app->get("/test",function(){
-    //return Hash::check('kshz137','$2y$10$IkEZKueOdkx.5C50B5RP3ONEOIdiHgv9OIng6JinNBoYrNtuCNPc')?1:2;
+	return bcrypt('kshz137');
+    return Hash::check('kshz137','$2y$10$IkEZKueOdkx.5C50B5RP3ONEOIdiHgv9OIng6JinNBoYrNtuCNPcq2')?1:2;
+});
+
+$app->get('/test2', function() use ($app) {
+	if (Auth::check())
+	{
+		return '1';
+	}
+	return '2';
 });
 
 $app->get("/home",function(){
@@ -28,19 +37,24 @@ $app->get("/home",function(){
 });
 
 /*
-后台路由
+鍚庡彴璺敱
 */
 $app->group(['prefix' => 'admin','namespace'=>'App\Http\Controllers','middleware' => 'auth'], function($app) {
+	/*
+	鍚庡彴涓婚〉
+	*/
     $app->get("/",'AdminController@GetIndex');
+	/*
+	鍔犺浇瑙嗗浘
+	*/
     $app->get("{view}.html",function($view){
         return view('admin.'.$view);
     });
 });
-//登录视图
+
+//鐧诲綍瑙嗗浘
 $app->get("/login",'AdminController@login_view');
-
-
-
+//$app->get("/login",'AdminController@login');
 
 $app->get("/Post/GetPost/",'PostController@GetListPost');
 

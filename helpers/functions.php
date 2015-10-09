@@ -184,10 +184,10 @@ function test()
 }
 
 /*
-*主页地址
+*获取完整主页URL
 */
 function home_url()
 {
-	return 'http://'.$_SERVER['SERVER_NAME'].'/';
+	return 'http://'.$_SERVER['HTTP_HOST'].'/';
 }
 ?>
