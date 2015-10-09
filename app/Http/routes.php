@@ -19,6 +19,8 @@ $app->get("/",'MainController@GetIndex');
 //ID获取文章
 $app->get("/post/{id}.html",'PostController@getpost');
 
+$app->post("/post/update",'PostController@update');
+
 $app->get("/test",function(){
 	return bcrypt('kshz137');
     return Hash::check('kshz137','$2y$10$IkEZKueOdkx.5C50B5RP3ONEOIdiHgv9OIng6JinNBoYrNtuCNPcq2')?1:2;

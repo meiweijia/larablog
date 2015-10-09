@@ -24,10 +24,21 @@ class Post extends Model{
 	
 	function GetListPost()
 	{
-		$res = $this->whereRaw('post_status = "publish" AND post_type = "post"')
-		->select('post_title','id','post_content','post_date')
-		->orderBy('post_date_gmt','desc')
+		$res = $this->whereRaw('post_status = 1 AND post_type = "post"')
+		->select('post_title','id','post_content','created_at')
+		->orderBy('created_at','desc')
 		->paginate(5);//分页
 		return $res;
+	}
+	function update_post($data=array())
+	{
+		if($data['id']=='')
+		{
+			return $this->insert($data);
+		}
+		else
+		{
+			return $this->where('id',$data['id'])->update($data);
+		}
 	}
 }

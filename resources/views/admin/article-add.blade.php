@@ -25,22 +25,18 @@
 <body>
 <div class="pd-20">
 	<form action="" method="post" class="form form-horizontal" id="form-article-add">
+		<input id="_token" type="hidden" name="_token" value="{{ csrf_token() }}" />
+		<input id="post_id" type="hidden" name="id" value="" />
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>文章标题：</label>
 			<div class="formControls col-10">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-2">简略标题：</label>
-			<div class="formControls col-10">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="" placeholder="" id="post_title" name="post_title">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>分类栏目：</label>
 			<div class="formControls col-2"> <span class="select-box">
-				<select name="" class="select">
+				<select name="column" class="select">
 					<option value="0">全部栏目</option>
 					<option value="1">新闻资讯</option>
 					<option value="11">├行业动态</option>
@@ -48,69 +44,37 @@
 					<option value="13">├行业新闻</option>
 				</select>
 				</span> </div>
-			<label class="form-label col-2"><span class="c-red">*</span>文章类型：</label>
-			<div class="formControls col-2"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
-				</select>
-				</span> </div>
-			<label class="form-label col-2">排序值：</label>
-			<div class="formControls col-2">
-				<input type="text" class="input-text" value="0" placeholder="" id="" name="">
-			</div>
+				<label class="form-label col-2">文章作者：</label>
+				<div class="formControls col-2">
+					<input type="text" class="input-text" value="" placeholder="" id="" name="post_author">
+				</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2">关键词：</label>
 			<div class="formControls col-10">
-				<input type="text" class="input-text" value="0" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="0" placeholder="" id="" name="key_words">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2">文章摘要：</label>
 			<div class="formControls col-10">
-				<textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)"></textarea>
+				<textarea name="post_excerpt" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,200)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-2">文章作者：</label>
-			<div class="formControls col-2">
-				<input type="text" class="input-text" value="0" placeholder="" id="" name="">
-			</div>
-			<label class="form-label col-2">文章来源：</label>
-			<div class="formControls col-2">
-				<input type="text" class="input-text" value="0" placeholder="" id="" name="">
-			</div>
+			
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2">允许评论：</label>
 			<div class="formControls col-2 skin-minimal">
 				<div class="check-box">
-					<input type="checkbox" id="checkbox-pinglun">
+					<input type="checkbox" id="checkbox-pinglun" name="can_comment">
 					<label for="checkbox-pinglun">&nbsp;</label>
 				</div>
 			</div>
-			<label class="form-label col-2">评论开始日期：</label>
-			<div class="formControls col-2">
-				<input type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate">
-			</div>
-			<label class="form-label col-2">评论结束日期：</label>
-			<div class="formControls col-2">
-				<input type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'datemin\')}'})" id="datemax" class="input-text Wdate">
-			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-2">使用独立模版：</label>
-			<div class="formControls col-10 skin-minimal">
-				<div class="check-box">
-					<input type="checkbox" id="checkbox-moban">
-					<label for="checkbox-moban">&nbsp;</label>
-				</div>
-				<button onClick="mobanxuanze()" class="btn btn-default radius ml-10">选择模版</button>
-			</div>
-		</div>
+
 		<div class="row cl">
 			<label class="form-label col-2">缩略图：</label>
 			<div class="formControls col-10">
@@ -122,14 +86,14 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-2">文章内容：</label>
+			<label class="form-label col-2"><span class="c-red">*</span>文章内容：</label>
 			<div class="formControls col-10"> 
 				<script id="editor" type="text/plain" style="width:100%;height:400px;"></script> 
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-10 col-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 发布文章</button>
 				<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
@@ -148,6 +112,40 @@
 <script type="text/javascript" src="/js/H-ui.js"></script> 
 <script type="text/javascript" src="/js/H-ui.admin.js"></script> 
 <script type="text/javascript">
+var ue = UE.getEditor('editor');
+
+function article_save_submit()
+{
+	var can_comment = $("#checkbox-pinglun").is(':checked')?1:0;
+	var post_content = ue.getContent();
+	var post_title = $("#post_title").val();
+	if(post_title=='')
+	{
+		layer.alert('文章标题不能不为空');
+	}
+	if(post_content=='')
+	{
+		layer.alert('文章内容不能不为空');
+	}
+	return;
+	var post_data = $('#form-article-add').serialize();
+	var post_password = null;
+	post_data += '&can_comment='+can_comment + '&post_status=1'+'&post_password='+post_password;
+	$.ajax({
+		cache: true,
+		type: "POST",
+		url: '/post/update',//提交的URL
+		data: post_data, // 要提交的表单,必须使用name属性
+		async: false,                    
+		success: function (data) {
+			Huimodal_alert('操作成功！',900);
+			setTimeout(function(){layer_close()},900);
+		},
+		error: function (v) {
+			Huimodal_alert(v.statusText+'：'+ v.status,2000);
+		}
+	});
+}
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -253,10 +251,6 @@ $(function(){
             uploader.upload();
         }
     });
-
-	
-	
-	var ue = UE.getEditor('editor');
 	
 });
 
