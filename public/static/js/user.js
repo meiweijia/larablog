@@ -260,7 +260,7 @@ return {
 							$('#temp-postitem').render( data.items )
 						).after( paging(data.max, paged, '#posts/'+status+'/') )
 						
-						thumb_lazyload()
+						//thumb_lazyload()
 					}else{
 						loading(_main, _msg['1201'])
 					}
@@ -316,15 +316,15 @@ return {
 			el.html('<div class="user-loading">'+msg+'</div>')
 		}
 
-		function thumb_lazyload(){
-			require(['lazyload'], function(){
-				$('.user-main .thumb').lazyload({
-			        data_attribute: 'src',
-			        placeholder: jsui.uri + '/img/thumbnail.png',
-			        threshold: 400
-			    });
-		    });
-		}
+		// function thumb_lazyload(){
+			// require(['lazyload'], function(){
+				// $('.user-main .thumb').lazyload({
+			        // data_attribute: 'src',
+			        // placeholder: jsui.uri + '/img/thumbnail.png',
+			        // threshold: 400
+			    // });
+		    // });
+		// }
 
 
 		function paging(max, current, plink, step) {

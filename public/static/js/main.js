@@ -38,7 +38,6 @@ if ($('.avatar:eq(2)').data('src') || $('.thumb:first').data('src') || $('.widge
 
         $('.thumb').lazyload({
             data_attribute: 'src',
-            placeholder: jsui.uri + '/img/thumbnail.png',
             threshold: 400
         })
 
