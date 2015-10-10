@@ -16,20 +16,29 @@ class Post extends Model{
 	function getpost($id)
 	{
 		$post = $this
-		->select('post_title','id','post_content')
+		->select('post_title','id','post_content','created_at')
 		->find($id);
-		Cache::forever('post'.$id, $post);
+		//Cache::put('post'.$id, $post,10);
 		return $post;
 	}
 	
-	function GetListPost()
+	function GetListPost($input = array())
 	{
-		$res = $this->whereRaw('post_status = 1 AND post_type = "post"')
-		->select('post_title','id','post_content','created_at')
+		$res=$this;
+		if(isset($input['s']))
+		{
+			$res = $this->where('post_title', 'like', '%'.$input['s'].'%' )
+				->orWhere('post_content', 'like', '%'.$input['s'].'%');
+		}
+		$res = $res->whereRaw('post_status = 1 AND post_type = "post"')
+		->select('id','post_title','post_content','created_at')
 		->orderBy('created_at','desc')
 		->paginate(5);//分页
 		return $res;
 	}
+	/*
+	 * 更新或者添加文章没有ID是为新增，有ID时为更新
+	 * */
 	function update_post($data=array())
 	{
 		if($data['id']=='')

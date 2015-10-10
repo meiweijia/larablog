@@ -15,10 +15,11 @@
 //});
 
 $app->get("/",'MainController@GetIndex');
+$app->get("/about",'MainController@GetAbout');
 
-//ID获取文章
+//ID获取文章{考虑写到路由群组里面，并且还要权限验证 By:mei 20151011}
 $app->get("/post/{id}.html",'PostController@getpost');
-
+//更新文章
 $app->post("/post/update",'PostController@update');
 
 $app->get("/test",function(){

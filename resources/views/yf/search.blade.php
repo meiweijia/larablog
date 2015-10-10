@@ -3,28 +3,11 @@
 <?php echo '夜风 - 梅渭甲的个人博客'; ?>
 @stop
 @section('body')
-<body class="home blog">
+<body class="search search-results">
 @stop
 @section('post')
-	<!--轮换图片-->
-	<div id="homeslider" class="carousel slide" data-ride="carousel"><ol class="carousel-indicators"><li data-target="#homeslider" data-slide-to="0" class="active"></li><li data-target="#homeslider" data-slide-to="1"></li><li data-target="#homeslider" data-slide-to="2"></li></ol>
-		<div class="carousel-inner" role="listbox">
-			
-			<div class="item active"><a target="_blank" href="/"><img src="static/img/820x200/3.jpg" alt=""></a></div>
-			<div class="item"><a target="_blank" href="/"><img src="static/img/820x200/2.jpg" alt=""></a></div>
-			<div class="item"><a target="_blank" href="/"><img src="static/img/820x200/5.jpg" alt=""></a></div>
-		</div>
-		<a class="left carousel-control" href="#homeslider" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-		<a class="right carousel-control" href="#homeslider" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
-	</div>
-	<!--顶置-->
-	<!--article class="excerpt-see excerpt-see-index">
-		<h2><a class="red" href="http://www.daqianduan.com/job">【前端招聘】</a> <a href="http://www.daqianduan.com/6130.html" title="唱吧-北京最淘科技有限公司招聘前端开发工程/架构师_大前端">唱吧-北京最淘科技有限公司招聘前端开发工程/架构师</a></h2>
-		<p class="note">唱吧是一款娱乐且K歌效果出众的App。第一版于2012年5月31日正式登陆苹果App Store。 上线短短5天，跃升至App中国区总榜第1名，至今一直保持在总榜的前列，每天有超过百万活跃用户为此着迷。 目前iPhone及Android版本...</p>
-	</article-->
-	
 	<div class="title">
-		<h3>最新发布</h3>
+		<h3><?php echo '“'.$_REQUEST['s'].'”的搜索结果'; ?></h3>
 		<!-- <ul class="more">
 			<li><a target="_blank" href="http://www.daqianduan.com/theme/xiu">XIU主题</a></li>
 			<li><a target="_blank" href="http://www.daqianduan.com/theme/d8">D8主题</a></li>
@@ -59,4 +42,37 @@
 		//getPageHtml($cur_page,$count_page);
 		echo '<div class="pagination"><ul>'.pageft($total,5).'</ul></div>';
 	?>
+	<script>
+		function highlight(idVal, keyword) {
+			var textbox = document.getElementById(idVal);
+			if ("" == keyword) return;
+			var temp = textbox.innerHTML;
+			console.log(temp);
+			var htmlReg = new RegExp("\<.*?\>", "i");
+			var arr = new Array();
+			for (var i = 0; true; i++) {
+				var tag = htmlReg.exec(temp);
+				if (tag) {
+					arr[i] = tag;
+				} else {
+					break;
+				}
+				temp = temp.replace(tag, "{[(" + i + ")]}");
+			}
+			words = decodeURIComponent(keyword.replace(/\,/g, ' ')).split(/\s+/);
+			for (w = 0; w < words.length; w++) {
+				var r = new RegExp("(" + words[w].replace(/[(){}.+*?^$|\\\[\]]/g, "\\$&") + ")", "ig");
+				temp = temp.replace(r, "<b style='color:Red;'>$1</b>");
+			}
+			for (var i = 0; i < arr.length; i++) {
+				temp = temp.replace("{[(" + i + ")]}", arr[i]);
+			}
+			textbox.innerHTML = temp;
+		};
+		$('#navto-search').hide();
+		var word = '<?php echo $_REQUEST['s']; ?>';
+		setTimeout(function () {
+			highlight('content',word)
+		},200);
+	</script>
 @stop

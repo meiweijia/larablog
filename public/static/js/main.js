@@ -4,8 +4,6 @@ if( !window.console ){
     }
 }
 
-
-
 /* 
  * jsui
  * ====================================================
@@ -41,17 +39,17 @@ if ($('.avatar:eq(2)').data('src') || $('.thumb:first').data('src') || $('.widge
             threshold: 400
         })
 
-        $('.widget_ui_posts .thumb').lazyload({
-            data_attribute: 'src',
-            placeholder: jsui.uri + '/img/thumbnail.png',
-            threshold: 400
-        })
-
-        $('.wp-smiley').lazyload({
-            data_attribute: 'src',
+        // $('.widget_ui_posts .thumb').lazyload({
+            // data_attribute: 'src',
             // placeholder: jsui.uri + '/img/thumbnail.png',
-            threshold: 400
-        })
+            // threshold: 400
+        // })
+
+        // $('.wp-smiley').lazyload({
+            // data_attribute: 'src',
+            // // placeholder: jsui.uri + '/img/thumbnail.png',
+            // threshold: 400
+        // })
     })
 }
 

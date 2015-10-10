@@ -9,17 +9,20 @@
 <meta name="baidu-site-verification" content="6U3ObRnSUJ" />
 <meta http-equiv="Cache-Control" content="no-siteapp">
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-<title><?php echo '夜风 - 梅渭甲的个人博客'; ?></title>
-<link rel='stylesheet' id='da-bootstrap-css'  href='http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.css' type='text/css' media='all' />
-<link rel='stylesheet' id='da-fontawesome-css'  href='http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css' type='text/css' media='all' />
+<title>@yield('title')</title>
+<link rel='stylesheet' id='da-bootstrap-css'  href='/static/css/bootstrap.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='da-fontawesome-css'  href='/static/css/font-awesome.min.css' type='text/css' media='all' />
 <link rel='stylesheet' id='da-main-css'  href='/css/yf-main.css' type='text/css' media='all' />
-	<meta name="keywords" content="梅氏起源,家族,梅世科,梅文贵,梅丽娥,梅文献,梅渭甲,梅浩,梅氏族谱,七甲坪,wordpress,PHP" />
-	<meta name="description" content="一个关于梅渭甲的博客，主要内容包括：梅氏起源、梅氏概括、梅氏族谱、梅氏名人，家族，一些开发者的相关博文，大部分内容都是站长所在地的梅氏相关信息。" />
+<script type='text/javascript' src='/lib/jquery/1.9.1/jquery.min.js'></script>
+<meta name="keywords" content="梅氏起源,家族,梅世科,梅文贵,梅丽娥,梅文献,梅渭甲,梅浩,梅氏族谱,七甲坪,wordpress,PHP" />
+<meta name="description" content="一个关于梅渭甲的博客，主要内容包括：梅氏起源、梅氏概括、梅氏族谱、梅氏名人，家族，一些开发者的相关博文，大部分内容都是站长所在地的梅氏相关信息。" />
 <link rel="shortcut icon" href="/favicon.ico">
 <!--link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.daqianduan.com/static/img/icon-144x144.png"-->
 <!--[if lt IE 9]><script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script><![endif]-->
 <!-- <script language="javascript">if(top !== self){location.href = "about:blank";}</script> -->
 <style type="text/css">
+.pjax_loading {position: fixed;top: 45%;left: 45%;display: none;z-index: 999999;width: 124px;height: 124px;background: url('images/pjax_loading.gif') 50% 50% no-repeat;}
+.pjax_loading1 {position: fixed;top: 0;left: 0;z-index: 999999;display: none;width: 100%;height: 100%;background-color: #4c4c4c;opacity: .2}
 .widget_ui_ads,.d_banner,.banner-post,.banner-related {display:none!important;display:none}</style>
 </head>
 @yield('body')
@@ -39,8 +42,8 @@
 				<li class="navto-news"><a href="javascript:alert('建设中');">下拉菜单3</a></li>
 				<li class="navto-resource"><a href="javascript:alert('建设中');">下拉菜单4</a></li>
 			</ul>
-		<li class="navto-see"><a href="javascript:alert('建设中');">关于我</a></li>
-		<li class="navto-search"><a href="javascript:(0);" class="search-show active"><i class="fa fa-search"></i></a></li>
+		<li class="navto-see"><a href="/about">关于</a></li>
+		<li id="navto-search" class="navto-search"><a href="javascript:(0);" class="search-show active"><i class="fa fa-search"></i></a></li>
 	</ul>
 
 	{{--顶部菜单--}}
@@ -73,7 +76,7 @@
 
 <section class="container">
 	<div class="content-wrap">
-		<div class="content">
+		<div id="content" class="content">
 			@yield('post')
 		</div>
 	</div>
@@ -119,7 +122,6 @@
 </aside>
 
 </section>
-
 <footer class="footer">
 <div class="container">
 	<p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="梅渭甲个人博客">夜风</a> All rights reserved |
@@ -129,7 +131,6 @@
 	  </p>
 </div>
 </footer>
-
 <script>
 window.jsui={
     www: '<?php echo home_url(); ?>',
@@ -137,6 +138,22 @@ window.jsui={
     ver: '5.1.2',
 };
 </script>
+<script type='text/javascript' src='/js/pjax.js'></script>
+<script type='text/javascript' src='/js/nprogress.js'></script>
+<link rel='stylesheet' href='/css/nprogress.css'/>
 <script type='text/javascript' src='/js/loader.js'></script>
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+	var duoshuoQuery = {short_name:"meiweijia"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- 多说公共JS代码 end -->
 </body>
 </html>

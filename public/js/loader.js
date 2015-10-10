@@ -42,23 +42,22 @@ require.config({
 	paths: {
 		// 'jquery'        : 'libs/jquery.min',
 		// 'bootstrap'     : 'libs/bootstrap.min',
-		'jquery'        : 'http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min',
+		//'jquery'        : 'http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min',
 		'bootstrap'     : 'http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min',
-		
 		'jquery.cookie' : 'libs/jquery.cookie.min',
 		'jquery.form' : 'libs/jquery.form',
 		'jsrender'      : 'libs/jsrender.min',
 		'router'        : 'libs/router.min',
 		'lazyload'      : 'libs/lazyload.min',
-		'prettyprint'      : 'libs/prettyprint',
+		'prettyprint'   : 'libs/prettyprint',
 		'main'          : 'main',
 		'comment'       : 'comment',
 		'theme'         : 'theme',
-		'user'          : 'user'
-
+		'user'          : 'user',
+		'mei'			: 'mei',
 	}
 })
 
-require(['jquery'], function (){
-	require(['main'])
-})
+require(['main'],function(){
+	//require(['mei']);
+});

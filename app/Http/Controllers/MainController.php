@@ -9,11 +9,13 @@ use Cache;
 
 class MainController extends Controller {
 
-    public function GetIndex()
+    public function GetIndex(Request $request)
     {
+		$input = $request->only('s');
 		$post_obj = new Post();
-		$post = $post_obj->GetListPost();
-		return view('yf.index')->with('posts', $post);
+		$post = $post_obj->GetListPost($input);
+		$view = isset($input['s'])?'yf.search':'yf.index';
+		return view($view)->with('posts', $post);
     }
 	
 	public function GetListPost()
@@ -21,5 +23,11 @@ class MainController extends Controller {
 		$post_obj = new Post();
 		$post = $post_obj->GetListPost();
 		return $post;
+	}
+
+	public function GetAbout(Request $request)
+	{
+		//这里考虑写一些配置信息，直接到后台配置。而不是直接些源码
+		return view('yf.about')->with('about', '');
 	}
 }
