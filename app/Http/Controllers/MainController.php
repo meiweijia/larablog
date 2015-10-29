@@ -14,7 +14,7 @@ class MainController extends Controller {
 		$input = $request->only('s');
 		$post_obj = new Post();
 		$post = $post_obj->GetListPost($input);
-		$view = isset($input['s'])?'yf.search':'yf.index';
+		$view = isset($input['s'])?'yf.search':'mei.index';
 		return view($view)->with('posts', $post);
     }
 	
@@ -28,6 +28,6 @@ class MainController extends Controller {
 	public function GetAbout(Request $request)
 	{
 		//这里考虑写一些配置信息，直接到后台配置。而不是直接些源码
-		return view('yf.about')->with('about', '');
+		return view('mei.about')->with('about', '');
 	}
 }

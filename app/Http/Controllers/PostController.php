@@ -21,7 +21,7 @@ class PostController extends Controller {
 			$post_obj = new Post();
 			$post = $post_obj->getpost($id);
 		}
-		return view('yf.post')->with('post', $post);
+		return view('mei.post')->with('post', $post);
 	}
 	
     public function GetListPost(Request $request)
