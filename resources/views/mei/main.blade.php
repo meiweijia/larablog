@@ -35,7 +35,7 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/"><i class="fa fa-home fa-sm"></i> 首页</a></li>
-					<li><a href="about"><i class="fa fa-male fa-sm"></i> 关于</a></li>
+					<li><a href="/about"><i class="fa fa-male fa-sm"></i> 关于</a></li>
 				</ul>
 				<!--<div class="navbar-form  navbar-right">
                     <a href="#" class="navber-link">登录</a>
