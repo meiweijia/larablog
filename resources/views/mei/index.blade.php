@@ -14,12 +14,13 @@
                             foreach ($posts as $post) {
                             $img_url = getImgs($post->post_content, 0);
                             $web_url = getcwd();
-                            $img_def_url = '/img/thumbnail.png';
+                            $img_def_url = 'img/thumbnail.png';
                             $img_path = $web_url . $img_url;
                             $img_url = is_file($img_path) ? $img_url : $img_def_url;
                             $short_title = mb_substr(strip_tags($post->post_title), 0, 40, 'UTF-8');
                             $content = mb_substr(strip_tags($post->post_content), 0, 100, 'UTF-8');
                             $post_date = substr($post->created_at, 0, 10);
+                            $img_url = '//7xiwox.com1.z0.glb.clouddn.com/'.$img_url;
                             echo "<li class='post'>
                          <div class='short excerpt oh'>
                             <div class='ohs'>

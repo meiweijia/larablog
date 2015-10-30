@@ -3,13 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>@yield('title')</title>
-	<link rel="stylesheet" href="/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="/css/main.css" />
-	<link rel="stylesheet" href="/css/nprogress.css">
-	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+	<link rel="dns-prefetch" href="//7xiwox.com1.z0.glb.clouddn.com">
+	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/main.css" />
+	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/nprogress.css">
+	<link rel="stylesheet" type="text/css" href="http://7xiwox.com1.z0.glb.clouddn.com/css/font-awesome.min.css" />
 	<!--<link rel="stylesheet" href="css/style.css" />-->
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://7xiwox.com1.z0.glb.clouddn.com/js/jquery.min.js"></script>
+	<script type="text/javascript" src="http://7xiwox.com1.z0.glb.clouddn.com/js/bootstrap.min.js"></script>
 	<script>
 //		$(document).ready(function(){NProgress.start();});
 //		$(window).load(function(){NProgress.done();});
@@ -20,7 +21,7 @@
 <body>
 <div class="container">
 	<a href="/" class="/" style="float: left;margin: 20px 10px 10px 10px;">
-		<img src="/img/logo.png" />
+		<img src="http://7xiwox.com1.z0.glb.clouddn.com/img/logo.png" />
 	</a>
 	<nav class="nav navbar-default" role="navigation">
 		<div class="container-fluid">
@@ -101,9 +102,9 @@
 			</p>
 	</footer>
 </div>
-<script type='text/javascript' src='/js/nprogress.js'></script>
-<script type='text/javascript' src='/js/pjax.js'></script>
-<script type='text/javascript' src='/js/mei.js'></script>
+<script type='text/javascript' src='http://7xiwox.com1.z0.glb.clouddn.com/js/nprogress.js'></script>
+<script type='text/javascript' src='http://7xiwox.com1.z0.glb.clouddn.com/js/pjax.js'></script>
+<script type='text/javascript' src='http://7xiwox.com1.z0.glb.clouddn.com/js/mei.js'></script>
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
 	var duoshuoQuery = {short_name:"meiweijia"};
