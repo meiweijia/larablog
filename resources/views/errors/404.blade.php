@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Ê×Ò³</title>
+    <title>å¾ˆæŠ±æ­‰ï¼Œæ‚¨è¦è®¿é—®çš„é¡µé¢ä¸å­˜åœ¨</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
@@ -99,6 +99,20 @@
             color:#72ADD4;
         }
     </style>
+    <script language="javascript" type="text/javascript">
+        var i = 9;
+        var intervalid;
+        intervalid = setInterval("fun()", 1000);
+
+        function fun() {
+            if (i == 0) {
+                window.location.href = "/";
+                clearInterval(intervalid);
+            }
+            document.getElementById("mes").innerHTML = i;
+            i--;
+        }
+    </script>
 </head>
 
 <body>
@@ -108,27 +122,22 @@
         <div class="error-spacer"></div>
         <div role="main" class="main">
             <img src="img/404_image.jpg" style="margin: 0 auto;text-align: center;" />
-            <h2>ºÜ±§Ç¸£¬ÄúÒª·ÃÎÊµÄÒ³Ãæ²»´æÔÚ£¡>> <a href="/">·µ»ØÊ×Ò³</a></h2>
+            <h2>å¾ˆæŠ±æ­‰ï¼Œæ‚¨è¦è®¿é—®çš„é¡µé¢ä¸å­˜åœ¨ï¼<span id="mes">10</span>ç§’å<a href="/">è¿”å›é¦–é¡µ</a></h2>
             <hr>
-            <h3>ÎÂÜ°ÌáÊ¾£º</h3>
+            <h3>æ¸©é¦¨æç¤ºï¼š</h3>
             <p>
-                1. ¼ì²éµØÖ·ÊÇ·ñÊäÈëÕıÈ·£¡
+                1. æ£€æŸ¥åœ°å€æ˜¯å¦è¾“å…¥æ­£ç¡®ï¼
             </p>
             <p>
-                2. ÉÔºóÖØÊÔ£¡
+                2. ç¨åé‡è¯•ï¼
             </p>
         </div>
     </div>
     <footer class="footer" style="text-align: center;    border-top: 2px solid #eee;">
-        <p>? 2014-2015 <a style="color:#45BCF9" href="/" title="Ã·Î¼¼×¸öÈË²©¿Í">Ò¹·ç</a> All rights reserved | »ùÓÚ
-            <a style="color:rgb(251, 128, 105)" href="http://lumen.laravel.com" title="ÎªËÙ¶È¶øÉúµÄ Laravel ¿ò¼Ü" target="_blank"> lumen</a>
-            <a target="_blank" href="/sitemap.xml"> | ÍøÕ¾µØÍ¼</a> |
-            <script type="text/javascript">
-                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                document.write(unescape("%3Cspan id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));
-            </script>
-            <script src=" https://s95.cnzz.com/z_stat.php?id=1254960549" type="text/javascript"></script>
-            <script src="https://c.cnzz.com/core.php?web_id=1254960549&amp;t=z" charset="utf-8" type="text/javascript"></script>
+        <p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="æ¢…æ¸­ç”²ä¸ªäººåšå®¢">å¤œé£</a> All rights reserved |
+            å‰ç«¯åŸºäº<a href='http://getbootstrap.com/' target="_blank"> bootstrap </a>|
+            åç«¯åŸºäº<a style="color:rgb(251, 128, 105)" href='http://lumen.laravel.com' title="ä¸ºé€Ÿåº¦è€Œç”Ÿçš„ Laravel æ¡†æ¶" target="_blank"> lumen </a>|
+            <a target="_blank" href="/sitemap.xml">ç½‘ç«™åœ°å›¾</a>
         </p>
     </footer>
 </div>

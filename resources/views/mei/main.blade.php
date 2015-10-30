@@ -95,7 +95,7 @@
 	</div>
 	<footer class="footer" style="text-align: center;    border-top: 2px solid #eee;">
 			<p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="梅渭甲个人博客">夜风</a> All rights reserved |
-				前端基于<a href='http://lumen.laravel.com' target="_blank"> bootstrap </a>|
+				前端基于<a href='http://getbootstrap.com/' target="_blank"> bootstrap </a>|
 				后端基于<a style="color:rgb(251, 128, 105)" href='http://lumen.laravel.com' title="为速度而生的 Laravel 框架" target="_blank"> lumen </a>|
 				<a target="_blank" href="/sitemap.xml">网站地图</a>
 			</p>
