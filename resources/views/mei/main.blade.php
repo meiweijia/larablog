@@ -95,9 +95,9 @@
 	</div>
 	<footer class="footer" style="text-align: center;    border-top: 2px solid #eee;">
 			<p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="梅渭甲个人博客">夜风</a> All rights reserved |
-				基于<a style="color:rgb(251, 128, 105)" href='http://lumen.laravel.com' title="为速度而生的 Laravel 框架" target="_blank"> lumen</a>
-				<a target="_blank" href="/sitemap.xml"> | 网站地图</a> |
-				<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));</script>
+				前端基于<a href='http://lumen.laravel.com' target="_blank"> bootstrap </a>|
+				后端基于<a style="color:rgb(251, 128, 105)" href='http://lumen.laravel.com' title="为速度而生的 Laravel 框架" target="_blank"> lumen </a>|
+				<a target="_blank" href="/sitemap.xml">网站地图</a>
 			</p>
 	</footer>
 </div>

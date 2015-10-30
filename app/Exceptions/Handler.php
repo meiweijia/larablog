@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 
@@ -39,6 +40,34 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if( !env('APP_DEBUG') and $this->isHttpException($e)) {
+            return $this->renderHttpException($request,$e);
+        }
         return parent::render($request, $e);
     }
+
+    /**
+     * 自定义错误，如果view/errors/ 下存在错误模板，就显示错误模板。
+     * @param $request
+     * @param HttpException $e
+     * @return \Laravel\Lumen\Http\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    protected function renderHttpException($request,HttpException $e)
+    {
+        $status = $e->getStatusCode();
+
+        if (view()->exists("errors.{$status}"))
+        {
+            return response(view("errors.{$status}", []), $status);
+        }
+        else
+        {
+            return parent::render($request, $e);
+        }
+    }
+    protected function isHttpException(Exception $e)
+    {
+        return $e instanceof HttpException;
+    }
+
 }
