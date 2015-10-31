@@ -2,10 +2,8 @@
 @section('title')
     <?php echo '夜风 - 梅渭甲的个人博客'; ?>
 @stop
-@section('body')
-    <body class="home blog">
-    @stop
-    @section('post')
+
+@section('post')
         <div class="page-title">
             <h3 class="f16"><span>最新发布</span></h3>
         </div>
