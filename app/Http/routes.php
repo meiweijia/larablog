@@ -9,10 +9,12 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+use App\Models\Sitemap;
 
-//$app->get('/', function () use ($app) {
-//    return DB::table('m_users')->get();
-//});
+$app->get('/sitemap', function () use ($app) {
+    $map = new Sitemap();
+	return $map->create_xml();
+});
 
 $app->get("/",'MainController@GetIndex');
 $app->get("/about",'MainController@GetAbout');
