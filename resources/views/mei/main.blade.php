@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>@yield('title')</title>
+	<meta name="keywords" content="梅氏起源,家族,梅世科,梅文贵,梅丽娥,梅文献,梅渭甲,梅浩,梅氏族谱,七甲坪,lumen,laravel,pjax,ajax,javascript,asp.net,PHP">
+	<meta name="description" content="一个关于梅渭甲的博客，主要内容包括：梅氏相关信息，日常记录，开发笔记，以及本博客开发过程。">
 	<link rel="dns-prefetch" href="//7xiwox.com1.z0.glb.clouddn.com">
 	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/main.css" />
