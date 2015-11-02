@@ -25,28 +25,28 @@
                             <div class="related">
                                 <ul>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://img.blhere.com/uploads/2015/10/1771860315.jpg"
+                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>
                                         </div>
                                     </li>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://img.blhere.com/uploads/2015/10/1771860315.jpg"
+                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>
                                         </div>
                                     </li>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://img.blhere.com/uploads/2015/10/1771860315.jpg"
+                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>
                                         </div>
                                     </li>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://img.blhere.com/uploads/2015/10/1771860315.jpg"
+                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>

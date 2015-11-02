@@ -64,8 +64,8 @@
 					<h3 class="panel-title">Contact</h3>
 				</div>
 				<div class="panel-body contact">
-					<span class="feed"><a href="/feed" title="订阅" target="_blank"><i class="fa fa-feed fa-3x"></i></a></span>
-					<span class="qq"><a href="/" title="QQ" target="_blank"><i class="fa fa-qq fa-3x"></i></a></span>
+					{{--<span class="feed"><a href="/feed" title="订阅" target="_blank"><i class="fa fa-feed fa-3x"></i></a></span>--}}
+					<span class="qq"><a href="http://wpa.qq.com/msgrd?v=3&uin=542395819&site=qq&menu=yes" title="QQ" target="_blank"><i class="fa fa-qq fa-3x"></i></a></span>
 					<span class="weibo"><a href="http://weibo.com/mayh12" title="新浪微博" target="_blank"><i class="fa fa-weibo fa-3x"></i></a></span>
 					<span class="twitter"><a href="http://twitter.com/meiweijia" target="_blank"><i class="fa fa-twitter fa-3x"></i></a></span>
 					{{--<span class="mobile"><a href="/" title="手机"><i class="fa fa-mobile fa-3x" target="_blank"></i></a></span>--}}

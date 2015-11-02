@@ -16,7 +16,7 @@
                             $img_path = $web_url . $img_url;
                             $img_url = is_file($img_path) ? $img_url : $img_def_url;
                             $short_title = mb_substr(strip_tags($post->post_title), 0, 40, 'UTF-8');
-                            $content = mb_substr(strip_tags($post->post_content), 0, 100, 'UTF-8');
+                            $content = mb_substr(strip_tags($post->post_content), 0, 100, 'UTF-8').'...';
                             $post_date = substr($post->created_at, 0, 10);
                             $img_url = '//7xiwox.com1.z0.glb.clouddn.com/'.$img_url;
                             echo "<li class='post'>
@@ -35,7 +35,7 @@
 											<a href='/post/{$post->id}.html#comments' class='comment-link' title='{$post->post_title}'><i class='fa fa-comment-o fa-1'></i><span class='ds-thread-count' data-thread-key='$post->id' data-count-type='comments'></span></a>
 										</span>-->
                         </div>
-                        <img src='{$img_url}' style='float:right;width:240px;height: 180px;' />
+                        <div style='float:right;width:240px;height: 180px;'><img src='{$img_url}' style='max-width: 100%;max-height: 100%;width: auto;height: auto;' /></div>
                         <p class='fl'>
                         {$content}
                             <!--<a class='read-more label label-important' href='/post/{$post->id}.html'>阅读全文</a>-->
