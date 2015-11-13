@@ -23,7 +23,7 @@
             echo "<li class='post'>
                          <div class='short excerpt oh'>
                             <div class='ohs'>
-                            <div class='hidden-xs ' style='float:right;width:240px;height: 180px;margin-bottom: 20px;'><img src='{$img_url}' style='max-width: 100%;max-height: 100%;width: auto;height: auto;' /></div>
+                            <div class='hidden-xs ' style='float:right;width:240px;height: 180px;margin-bottom: 20px;    line-height: 180px;text-align: center;'><img src='{$img_url}' style='max-width: 100%;max-height: 100%;width: auto;height: auto;' /></div>
                         <header>
                             <a class='label label-important' href='/fenlei'>资源共享<i class='label-arrow'></i></a>
                             <h2><a href='/post/{$post->id}.html' title='{$post->post_title}'>{$post->post_title}</a></h2>
