@@ -391,6 +391,7 @@ a.badge:focus {
     font-size: 15px;
     line-height: 28px;
     margin: 15px 0;
+    height: 85px;
 }
 
 .homepage p {
