@@ -1,7 +1,7 @@
 body {
     background: url(../img/bg.png);
     /*background-repeat:no-repeat;*/
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
 
 .container {
@@ -53,6 +53,62 @@ header h2 a:hover {
 
 .skill dd {
     text-indent: 2em;
+}
+
+/*相册*/
+.shopbox {
+    float: left;
+    width: 187px;
+    height: 187px;
+    padding: 10px;
+}
+
+.shopbox .thumbnail {
+    margin: 0;
+    width: 180px;
+    height: 180px;
+    margin-bottom: 8px;
+    background: #fff
+}
+
+.shopbox .thumbnail-1 {
+    margin: 0;
+    width: 170px;
+    height: 140px;
+    line-height: 150px;
+    text-align: center;
+}
+
+.shopbox .thumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border: none;
+    margin-bottom: 4px
+}
+
+.shopbox .thumbnail h2 {
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px
+}
+
+.shopbox .thumbnail p {
+    font-size: 15px;
+    margin: 7px 0;
+}
+.shopbox .thumbnail a:link, .shopbox .thumbnail a:visited {
+    width: 170px;
+    height: 140px;
+    color: #555;
+    display: block;
+}
+
+.shopbox .thumbnail:hover h2 {
+    color: #f0586c;
+    cursor: pointer;
 }
 
 .panel-title {
@@ -645,15 +701,61 @@ a.btn {
     margin: 0 0 50px 0
 }
 
-.post-content{
+.post-content {
     text-indent: 2em;
 }
+
 /** related post thumbnail **/
-#related-posts{border-radius:5px;background:#fff;clear:both;}
-.caption{color:#0C0C0B;font-size: 14px;font-weight:bold;padding-top: 10px;margin-bottom: 10px;margin-left:10px;}
-.related {white-space:normal;margin:0 auto;overflow: hidden;}
-.related li{float:left;width:25%;height:180px;list-style:none;padding:4px;_padding:2px;border-right:1px solid #f0f0f0;text-align:center;}
-.related li img{box-shadow:none;height:120px;width:160px;border:0;padding:0 5px;}
-.related a{text-overflow: ellipsis;-o-text-overflow: ellipsis;}
-.related a:hover{white-space: normal;text-decoration:none;}
-.related li:hover{background:#F6F6F6;}
+#related-posts {
+    border-radius: 5px;
+    background: #fff;
+    clear: both;
+}
+
+.caption {
+    color: #0C0C0B;
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.related {
+    white-space: normal;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.related li {
+    float: left;
+    width: 25%;
+    height: 180px;
+    list-style: none;
+    padding: 4px;
+    _padding: 2px;
+    border-right: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.related li img {
+    box-shadow: none;
+    height: 120px;
+    width: 160px;
+    border: 0;
+    padding: 0 5px;
+}
+
+.related a {
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+.related a:hover {
+    white-space: normal;
+    text-decoration: none;
+}
+
+.related li:hover {
+    background: #F6F6F6;
+}

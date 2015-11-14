@@ -52,4 +52,5 @@
     <nav style="text-align: center">
         <?php echo $posts->render();  ?>
     </nav>
+    <script>setNavActive('home');</script>
 @stop

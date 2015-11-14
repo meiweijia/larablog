@@ -30,4 +30,14 @@ class MainController extends Controller {
 		//这里考虑写一些配置信息，直接到后台配置。而不是直接些源码
 		return view('mei.about')->with('about', '');
 	}
+
+	public function GetAlbum(Request $request)
+	{
+		return view('mei.album')->with('album', '');
+	}
+
+	public function GetPhoList($id)
+	{
+		return view('mei.pholist')->with('id', $id);
+	}
 }

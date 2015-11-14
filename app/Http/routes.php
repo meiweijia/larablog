@@ -18,6 +18,8 @@ $app->get('/sitemap', function () use ($app) {
 
 $app->get("/",'MainController@GetIndex');
 $app->get("/about",'MainController@GetAbout');
+$app->get("/album",'MainController@GetAlbum');
+$app->get("/album/{id}",'MainController@GetPhoList');
 
 //ID获取文章{考虑写到路由群组里面，并且还要权限验证 By:mei 20151011}
 $app->get("/post/{id}.html",'PostController@getpost');

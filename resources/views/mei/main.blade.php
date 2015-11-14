@@ -7,15 +7,21 @@
 	<meta name="description" content="一个关于梅渭甲的博客，主要内容包括：梅氏相关信息，日常记录，开发笔记，以及本博客开发过程。">
 	<link rel="dns-prefetch" href="//7xiwox.com1.z0.glb.clouddn.com">
 	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/main.css" />
+	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="http://7xiwox.com1.z0.glb.clouddn.com/css/nprogress.css">
 	<link rel="stylesheet" type="text/css" href="http://7xiwox.com1.z0.glb.clouddn.com/css/font-awesome.min.css" />
 	<!--<link rel="stylesheet" href="css/style.css" />-->
 	<script type="text/javascript" src="http://7xiwox.com1.z0.glb.clouddn.com/js/jquery.min.js"></script>
 	<script type="text/javascript" src="http://7xiwox.com1.z0.glb.clouddn.com/js/bootstrap.min.js"></script>
 	<script>
-//		$(document).ready(function(){NProgress.start();});
-//		$(window).load(function(){NProgress.done();});
+		function setNavActive(com){
+			var navs = $('#navbar-nav li');
+			var length = navs.length;
+			for(var i=0;i<length;i++)
+			{
+				$(navs[i]).attr("id") == com?$(navs[i]).attr('class', 'active'):$(navs[i]).attr('class', '');
+			}
+		}
 	</script>
 
 </head>
@@ -36,9 +42,10 @@
 
 			</div>
 			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="/"><i class="fa fa-home fa-sm"></i> 首页</a></li>
-					<li><a href="/about"><i class="fa fa-male fa-sm"></i> 关于</a></li>
+				<ul id="navbar-nav" class="nav navbar-nav">
+					<li id="home"><a href="/"><i class="fa fa-home fa-sm"></i> 首页</a></li>
+					<li id="album"><a href="/album"><i class="fa fa-picture-o fa-sm"></i> 相册</a></li>
+					<li id="about"><a href="/about"><i class="fa fa-male fa-sm"></i> 关于</a></li>
 				</ul>
 				<!--<div class="navbar-form  navbar-right">
                     <a href="#" class="navber-link">登录</a>
@@ -105,7 +112,9 @@
 </div>
 <script type='text/javascript' src='http://7xiwox.com1.z0.glb.clouddn.com/js/nprogress.js'></script>
 <script type='text/javascript' src='http://7xiwox.com1.z0.glb.clouddn.com/js/pjax.js'></script>
-<script type='text/javascript' src='http://7xiwox.com1.z0.glb.clouddn.com/js/mei.js'></script>
+{{--<script type='text/javascript' src='http://7xiwox.com1.z0.glb.clouddn.com/js/mei.js'></script>--}}
+
+
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
 	var duoshuoQuery = {short_name:"meiweijia"};

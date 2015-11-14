@@ -3,6 +3,7 @@
 <?php echo '夜风 - 梅渭甲的个人博客'; ?>
 @stop
 @section('post')
+	<?php echo "<script>document.title= '关于 - 梅渭甲的个人博客';</script>";?>
 	<br>
 	<br>
 	<h1 label="标题居左" style="font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;">
@@ -61,9 +62,7 @@
 	<p>
 		&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:#45B6F7" href="https://github.com/kubill/lumen" target="_blank" title="源码在这">源码在这</a> 欢迎指正错误和贡献代码。<br/>
 	</p>
-	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp;github还不怎么会用。
-	</p>
 	<br>
 	<br>
+	<script>setNavActive('about');</script>
 @stop
