@@ -18,10 +18,10 @@ $app->get('/sitemap', function () use ($app) {
 
 $app->get("/",'MainController@GetIndex');
 $app->get("/about",'MainController@GetAbout');
-$app->get("/album",'MainController@GetAlbum');
-$app->get("/album/{id}",'MainController@GetPhoList');
+$app->get("/album",'AlbumController@GetAlbumList');
+$app->get("/album/{id}",'AlbumController@GetPhoList');
 
-//ID获取文章{考虑写到路由群组里面，并且还要权限验证 By:mei 20151011}
+//TODO:ID获取文章{考虑写到路由群组里面，并且还要权限验证 By:mei 20151011}
 $app->get("/post/{id}.html",'PostController@getpost');
 //更新文章
 $app->post("/post/update",'PostController@update');

@@ -31,13 +31,4 @@ class MainController extends Controller {
 		return view('mei.about')->with('about', '');
 	}
 
-	public function GetAlbum(Request $request)
-	{
-		return view('mei.album')->with('album', '');
-	}
-
-	public function GetPhoList($id)
-	{
-		return view('mei.pholist')->with('id', $id);
-	}
 }
