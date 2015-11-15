@@ -41,7 +41,7 @@
     <script>
         ;
         !function () {
-            layer.use('extend/layer.ext.js', function () {
+            layer.use('/layer/extend/layer.ext.js', function () {
                 //初始加载即调用，所以需放在ext回调里
                 layer.ext = function () {
                     layer.photosPage({

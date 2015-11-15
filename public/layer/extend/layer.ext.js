@@ -9,7 +9,7 @@
 
  **/
  
-layer.use('skin/layer.ext.css', function(){
+layer.use('/layer/skin/layer.ext.css', function(){
     layer.ext && layer.ext();
 });
 
