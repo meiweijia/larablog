@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller {
 	
@@ -27,6 +29,20 @@ class AdminController extends Controller {
 		}else{
 			return '认证失败';
 		}
+	}
+
+	/**
+	 * 返回所有文章
+	 */
+	function GetAllPost(Request $request)
+	{
+
+		DB::connection()->enableQueryLog();
+		$postSrv = new Post();
+		$res = $postSrv->GetAllPost($request->all());
+		$res['success'] = $res['data']?true:false;
+		$res['sql'] = DB::getQueryLog();
+		return json_encode($res, JSON_UNESCAPED_UNICODE);
 	}
 
     public function GetIndex()

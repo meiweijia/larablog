@@ -57,6 +57,10 @@ $app->group(['prefix' => 'admin','namespace'=>'App\Http\Controllers','middleware
     $app->get("{view}.html",function($view){
         return view('admin.'.$view);
     });
+	/**
+	 * 获取后台相关数据
+	 */
+	$app->get("/post-list",'AdminController@GetAllPost');
 });
 
 //登录视图

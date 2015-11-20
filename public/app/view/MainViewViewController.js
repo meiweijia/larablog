@@ -14,88 +14,91 @@
  */
 
 Ext.define('MyApp.view.MainViewViewController',
-    {
-        extend: 'Ext.app.ViewController',
-        alias: 'controller.mainview',
-        onTreepanelItemClick: function (dataview, record, item, index, e, eOpts) {
-            var me = this;
-            if (!record.data.leaf) {
-                return;
-            }
-            var new_tab = Ext.create(record.data.view_class,
-                {
-                    title: record.data.text,
-                    app_id: record.data.id
-                }
-            );
-            var con_panel = me.lookupReference('content_panel');
-            var item_arr = [];
-            con_panel.items.each(function (item) {
-                    item_arr.push(item.reference);
-                }
-            );
-            if (item_arr.indexOf(new_tab.reference) == -1) {
-                con_panel.add(new_tab);
-                con_panel.setActiveTab(new_tab);
-            }
-            else {
-                con_panel.setActiveTab(item_arr.indexOf(new_tab.reference));
-            }
+{
+	extend : 'Ext.app.ViewController',
+	alias : 'controller.mainview',
+	onTreepanelItemClick : function (dataview, record, item, index, e, eOpts)
+	{
+		var me = this;
+		if (!record.data.leaf)
+		{
+			return;
+		}
+		var new_tab = Ext.create(record.data.view_class,
+			{
+				title : record.data.text
+			}
+			);
+		var con_panel = me.lookupReference('content_panel');
+		var item_arr = [];
+		con_panel.items.each(function (item)
+		{
+			item_arr.push(item.reference);
+		}
+		);
+		if (item_arr.indexOf(new_tab.reference) == -1)
+		{
+			con_panel.add(new_tab);
+			con_panel.setActiveTab(new_tab);
+		}
+		else
+		{
+			con_panel.setActiveTab(item_arr.indexOf(new_tab.reference));
+		}
 
-        },
-        onMainViewAfterRender: function (component, eOpts) {
-            var updateClock = function () {
-                var date = new Date();
-                var days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-                var clock = Ext.util.Format.date(date, 'Y年n月j日');
-                clock += ' ' + days[date.getDay()] + ' ';
-                clock += Ext.util.Format.date(date, 'H时i分');
-                Ext.ComponentQuery.query('#clockTbtext')[0].setText(clock);
-            };
-            updateClock();
-            var runner = Ext.create('Ext.util.TaskRunner');
-            var clockTask = (
-            {
-                run: function () {
-                    updateClock();
-                },
-                interval: 1000 * 60
-            }
-            );
-            Ext.TaskManager.start(clockTask);
-        },
-        onMycombobox1Change: function () {
-            alert(2);
-        },
-        onMycombobox1Afterrender: function (component, eOpts) {
-            Ext.util.CSS.swapStyleSheet('theme', '/ext-5.1/5.1.0-apidocs/extjs-build/build/packages/ext-theme-gray/');
-            return;
-            var cp = new Ext.state.CookieProvider();
-            Ext.state.Manager.setProvider(cp);
-            var themes = cp.get("themes");
-            if (themes) {
-                component.setValue(themes);
-                Ext.util.CSS.swapStyleSheet('theme', '../../extjs4.2/resources/css/' + themes);
-            }
-        },
-        onMainViewportLeftPanelExpand: function (panel, eOpts) {
-            //菜单展开事件、
-        },
-        OnappTreepanelAfterrender: function (view, eOpts) {
-            var myStore = Ext.create('Ext.data.TreeStore',
-                {
-                    proxy: {
-                        type: 'ajax',
-                        url: window.location.href + 'fn/menu.php',
-                        reader: {
-                            type: 'json',
-                            rootProperty: 'data'
-                        }
-                    }
-                }
-            );
-            myStore.load();
-            view.bindStore(myStore);
-        }
-    }
+	},
+	onMainViewAfterRender : function (component, eOpts)
+	{
+		var updateClock = function ()
+		{
+			var date = new Date();
+			var days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+			var clock = Ext.util.Format.date(date, 'Y年n月j日');
+			clock += ' ' + days[date.getDay()] + ' ';
+			clock += Ext.util.Format.date(date, 'H时i分');
+			Ext.ComponentQuery.query('#clockTbtext')[0].setText(clock);
+		};
+		updateClock();
+		var runner = Ext.create('Ext.util.TaskRunner');
+		var clockTask = (
+		{
+			run : function ()
+			{
+				updateClock();
+			},
+			interval : 1000 * 60
+		}
+		);
+		Ext.TaskManager.start(clockTask);
+	},
+	onMycombobox1Change : function ()
+	{
+	},
+	onMycombobox1Afterrender : function (component, eOpts)
+	{
+
+	},
+	onMainViewportLeftPanelExpand : function (panel, eOpts)
+	{
+	},
+	OnappTreepanelAfterrender : function (view,eOpts)
+	{
+		//var myStore = Ext.create('Ext.data.TreeStore',
+		//{
+		//	proxy :
+		//	{
+		//		type : 'ajax',
+		//		url : window.location.href + 'fn/menu.php',
+		//		reader :
+		//		{
+		//			type : 'json',
+		//			rootProperty : 'children'
+		//		}
+		//	}
+		//}
+		//);
+		//myStore.load();
+		//view.bindStore(myStore);
+	}
+}
 );

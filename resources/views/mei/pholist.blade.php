@@ -11,13 +11,13 @@
             <li class="active"><?php echo $album_name;?></li>
         </ol>
         <h3 class="text-center"><?php echo $album_name;?></h3>
+
         <div id="photo-list">
             <?php
-            foreach($result['photo'] as $photo)
-            {
+            foreach ($result['photo'] as $photo) {
                 $bast_path = storage_path();
-                $img_url = home_url().$photo->path;
-                $data = substr($photo->created_at,0,10);
+                $img_url = home_url() . $photo->path;
+                $data = substr($photo->created_at, 0, 10);
                 echo "
                 <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
                 <div class='thumbnail'>
@@ -38,20 +38,24 @@
     </div>
     <script type='text/javascript' src="/layer/layer.min.js"></script>
     <script>setNavActive('album');</script>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));</script>
     <script>
-        ;
-        !function () {
-            layer.use('/layer/extend/layer.ext.js', function () {
-                //初始加载即调用，所以需放在ext回调里
-                layer.ext = function () {
-                    layer.photosPage({
-                        html: '<div style="padding:20px;">这里传入自定义的html<p>相册支持左右方向键，支持Esc关闭</p><p>另外还可以通过异步返回json实现相册。更多用法详见官网。</p><p id="change"></p></div>',
-                        title: '快捷模式-获取页面元素包含的所有图片',
-                        id: 100, //相册id，可选
-                        parent: '#photo-list'
-                    });
-                };
-            });
-        }();
+        $.getScript("/layer/layer.min.js")
+                .done(function () {
+                    $.getScript("/layer/extend/layer.ext.js")
+                            .done(function () {
+                                //初始加载即调用，所以需放在ext回调里
+                                layer.photosPage({
+                                    html: '<div style="padding:20px;">这里传入自定义的html<p>相册支持左右方向键，支持Esc关闭</p><p>另外还可以通过异步返回json实现相册。更多用法详见官网。</p><p id="change"></p></div>',
+                                    title: '快捷模式-获取页面元素包含的所有图片',
+                                    id: 100, //相册id，可选
+                                    parent: '#photo-list'
+                                });
+                            })
+
+                })
+                .fail(function () {
+                    alert('加载失败!');
+                });
     </script>
 @stop

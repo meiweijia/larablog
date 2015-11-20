@@ -19,7 +19,7 @@
             $content = mb_ereg_replace('　　', "\n　　", (strip_tags($post->post_content))); ;
             $content = strlen($content) > 100 ? mb_substr($content, 0, 100, 'UTF-8').'...' : $content;
             $post_date = substr($post->created_at, 0, 10);
-            $img_url = '//7xiwox.com1.z0.glb.clouddn.com/' . $img_url;
+            $img_url = '//static.meibk.com/' . $img_url;
             echo "<li class='post'>
                          <div class='short excerpt oh'>
                             <div class='ohs'>
