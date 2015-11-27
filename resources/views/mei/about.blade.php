@@ -1,6 +1,6 @@
 @extends('mei.main')
 @section('title')
-<?php echo '夜风 - 梅渭甲的个人博客'; ?>
+<?php echo '关于 - 梅渭甲的个人博客'; ?>
 @stop
 @section('post')
 	<?php echo "<script>document.title= '关于 - 梅渭甲的个人博客';</script>";?>

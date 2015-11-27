@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>后台登陆</title>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="http://7xiwox.com1.z0.glb.clouddn.com/css/font-awesome.min.css" />
-	<link href="css/signin.css" rel="stylesheet">
-	<script type="text/javascript" src="http://7xiwox.com1.z0.glb.clouddn.com/js/jquery.min.js"></script>
+<link href="http://static.meibk.com/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="http://static.meibk.com/css/font-awesome.min.css" />
+	<link href="/css/signin.css" rel="stylesheet">
+	<script type="text/javascript" src="http://static.meibk.com/js/jquery.min.js"></script>
 
 </head>
 
 <body>
 
 <div class="signin">
-	<div class="signin-head"><a href="/" title="回到首页"><img src="img/junyong02.jpg" alt="" class="img-circle"></a></div>
+	<div class="signin-head"><a href="/" title="回到首页"><img src="http://static.meibk.com/img/junyong02.jpg" alt="" class="img-circle"></a></div>
 	<div class="form-signin" role="form">
 
 		<input id="_token" type="hidden" name="_token" value="{{ csrf_token() }}" />

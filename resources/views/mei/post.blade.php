@@ -26,28 +26,28 @@
                             <div class="related">
                                 <ul>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
+                                                    src="http://static.meibk.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>
                                         </div>
                                     </li>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
+                                                    src="http://static.meibk.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>
                                         </div>
                                     </li>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
+                                                    src="http://static.meibk.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>
                                         </div>
                                     </li>
                                     <li><a href="/post/553.html" title="测试"><img
-                                                    src="http://7xiwox.com1.z0.glb.clouddn.com/img/nolook.png"
+                                                    src="http://static.meibk.com/img/nolook.png"
                                                     alt="测试" width="120" height="120"></a>
 
                                         <div><a href="/post/553.html">测试</a>
@@ -67,6 +67,6 @@
         <h3>评论</h3>
     </div>
     <!-- 多说评论框 start -->
-    <?php echo "<div class='ds-thread' data-thread-key='{$post->id}' data-title='{$post->post_title}' data-url='".home_url()."post/{$post->id}.htmlx'></div>"; ?>
+    <?php echo "<div class='ds-thread' data-thread-key='{$post->id}' data-title='{$post->post_title}' data-url='".home_url()."post/{$post->id}.html'></div>"; ?>
             <!-- 多说评论框 end -->
 @stop

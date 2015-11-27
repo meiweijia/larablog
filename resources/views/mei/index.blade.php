@@ -4,6 +4,13 @@
 @stop
 
 @section('post')
+<?php 
+$page = isset($_GET['page'])?$_GET['page']:0;
+if($page>1)
+{
+	echo "<script>document.title= '夜风 - 梅渭甲的个人博客 - 第{$page}页';</script>";
+}
+?>
     <div class="page-title">
         <h3 class="f16"><span>最新发布</span></h3>
     </div>
@@ -23,9 +30,9 @@
             echo "<li class='post'>
                          <div class='short excerpt oh'>
                             <div class='ohs'>
-                            <div class='hidden-xs ' style='float:right;width:240px;height: 180px;margin-bottom: 20px;    line-height: 180px;text-align: center;'><img src='{$img_url}' style='max-width: 100%;max-height: 100%;width: auto;height: auto;' /></div>
+                            <div class='hidden-xs ' style='float:right;width:240px;height: 180px;margin-bottom: 20px;    line-height: 180px;text-align: center;'><img src='{$img_url}' alt='缩略图' style='max-width: 100%;max-height: 100%;width: auto;height: auto;' /></div>
                         <header>
-                            <a class='label label-important' href='/fenlei'>资源共享<i class='label-arrow'></i></a>
+                            <a class='label label-important' href='javascript:(0)'>资源共享<i class='label-arrow'></i></a>
                             <h2><a href='/post/{$post->id}.html' title='{$post->post_title}'>{$post->post_title}</a></h2>
                         </header>
                         <div class='posted'>

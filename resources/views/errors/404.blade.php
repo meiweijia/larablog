@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>很抱歉，您要访问的页面不存在</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//static.meibk.com/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//static.meibk.com/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="//static.meibk.com/css/font-awesome.min.css" />
     <!--<link rel="stylesheet" href="css/style.css" />-->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//static.meibk.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="//static.meibk.com/js/bootstrap.min.js"></script>
     <style type="text/css">
 
         article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
@@ -121,7 +121,7 @@
     <div class="wrapper">
         <div class="error-spacer"></div>
         <div role="main" class="main">
-            <img src="img/404_image.jpg" style="margin: 0 auto;text-align: center;" />
+            <img src="//static.meibk.com/img/404_image.jpg" style="margin: 0 auto;text-align: center;" />
             <h2>很抱歉，您要访问的页面不存在！<span id="mes">10</span>秒后<a href="/">返回首页</a></h2>
             <hr>
             <h3>温馨提示：</h3>

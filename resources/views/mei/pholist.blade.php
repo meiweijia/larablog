@@ -38,7 +38,6 @@
     </div>
     <script type='text/javascript' src="/layer/layer.min.js"></script>
     <script>setNavActive('album');</script>
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));</script>
     <script>
         $.getScript("/layer/layer.min.js")
                 .done(function () {
