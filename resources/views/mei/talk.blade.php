@@ -1,0 +1,71 @@
+@extends('mei.main')
+@section('title')
+    <?php $album_name = 'asdf';?>
+    <?php echo "{$album_name} - 梅渭甲的个人博客"; ?>
+@stop
+@section('keywords')
+    <meta name="keywords" content="{{$album_name}}">
+@stop
+@section('description')
+    <meta name="description" content="{{$album_name}}里的图片">
+@stop
+@section('post')
+    <div class="page-title">
+        <h3 class="f16"><span>最新发布</span></h3>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a href="#" style="float: left">
+                <img style="width:64px;height: 64px" src="/img/tx.png" alt="..." class="img-thumbnail">
+            </a>
+            <dl style="float: left;margin-top: 21px;margin-bottom: 0px;">
+                <dd>夜风</dd>
+                <dd>2015-13-31</dd>
+            </dl>
+            <div style="margin-left: 160px">
+                1、出自子姓，为商汤后裔。据《通志·氏族略》和《唐书·宰相世系表》等所载，殷商时，君王太丁封其弟于梅（今安徽省亳州东南），为伯爵，世称梅伯。至商纣时，梅国国君梅伯为纣王所醢，后世子孙以封邑为氏。
+            </div>
+            <hr>
+            <a href="javascript:(0)"><i class="fa fa-thumbs-o-up fa-1x">赞</i></a>
+            <a href="javascript:(0)"><i id="comment_a" class="fa fa-comments-o fa-1x no_hide">评论</i></a>
+            <div id="comment" style="display: none;">
+                <textarea class="form-control" rows="3" id="saytext"></textarea>
+                <p class="no_hide">
+                    <button type="button" class="btn btn-success" style="float: right">提交</button>
+                    <span class="emotion">表情</span>
+                </p>
+            </div>
+            <dl>
+                <span>呵呵你好</span>
+            </dl>
+        </div>
+    </div>
+    <script>
+        setNavActive('album');
+        $("#comment_a").click(function () {
+            $("#comment").is(":hidden") ? $("#comment").show(200) : $("#comment").hide(200);
+        });
+//        $("#comment").click(function (e) {
+//            e.stopPropagation();
+//        });
+//        $(document).on('click', function (e) {
+//            console.log($("#saytext").val());
+//            var e = e ? e : window.event;
+//            var tar = e.srcElement || e.target;
+//            if (tar.id != "comment_a" && $("#saytext").val() == '') {
+//                $("#comment").hide(200);
+//            }
+//        });
+        $(function(){
+            $('.emotion').qqFace({
+                id : 'facebox', //表情盒子的ID
+                assign:'saytext', //给那个控件赋值
+                path:'face/'	//表情存放的路径
+            });
+            $(".sub_btn").click(function(){
+                var str = $("#saytext").val();
+                $("#saytext").val = (replace_em(str));
+            });
+        });
+    </script>
+@stop
