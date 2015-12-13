@@ -4,18 +4,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>后台登陆</title>
-
+<title>后台登陆`</title>
 <link href="http://static.meibk.com/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="http://static.meibk.com/css/font-awesome.min.css" />
 	<link href="/css/signin.css" rel="stylesheet">
 	<script type="text/javascript" src="http://static.meibk.com/js/jquery.min.js"></script>
-
 </head>
 
 <body>
 
-<div class="signin">
+<div class="signin" id="loginWraper">
 	<div class="signin-head"><a href="/" title="回到首页"><img src="http://static.meibk.com/img/junyong02.jpg" alt="" class="img-circle"></a></div>
 	<div class="form-signin" role="form">
 
