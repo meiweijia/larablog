@@ -12,7 +12,6 @@
 *
 * Do NOT hand edit this file.
 */
-
     Ext.define('MyApp.view.qd.blogViewController', {
         extend: 'Ext.app.ViewController',
         alias: 'controller.mypanel',
@@ -24,9 +23,9 @@
                         {name: 'id', type: 'string'},
                         {name: 'post_title', type: 'string'},
                         {name: 'created_at', type: 'string'},
-                        {name: 'post_content',type:'string'},
-                        {name: 'post_author',type:'string'},
-                        {name: 'post_column',type:'string'},
+                        {name: 'post_content', type: 'string'},
+                        {name: 'post_author', type: 'string'},
+                        {name: 'post_column', type: 'string'},
                     ],
                     proxy: {
                         type: 'ajax',
@@ -61,48 +60,44 @@
             var grid = me.lookupReference('gridpanel');
             var sel = grid.getSelectionModel().getSelection();
             var length = sel.length;
-            if(length == 1)
-            {
+            if (length == 1) {
                 Ext.create('MyApp.view.qd.edit',
-                {
-                edit: true,
-                record:sel[0],
-                listeners: {
-                beforeclose: {
-                fn: function (win, eOpts) {
-                var grid = me.lookupReference('gridpanel');
-                grid.store.load();
-                }
-                }
-                }
-                }).show();
-            }else
-            {
+                    {
+                        edit: true,
+                        record: sel[0],
+                        listeners: {
+                            beforeclose: {
+                                fn: function (win, eOpts) {
+                                    var grid = me.lookupReference('gridpanel');
+                                    grid.store.load();
+                                }
+                            }
+                        }
+                    }).show();
+            } else {
 
             }
         },
-        onGridPanelItemdblclick: function (){
+        onGridPanelItemdblclick: function () {
             var me = this;
             var grid = me.lookupReference('gridpanel');
             var sel = grid.getSelectionModel().getSelection();
             var length = sel.length;
-            if(length == 1)
-            {
-            Ext.create('MyApp.view.qd.edit',
-            {
-            edit: true,
-            record:sel[0],
-            listeners: {
-            beforeclose: {
-            fn: function (win, eOpts) {
-            var grid = me.lookupReference('gridpanel');
-            grid.store.load();
-            }
-            }
-            }
-            }).show();
-            }else
-            {
+            if (length == 1) {
+                Ext.create('MyApp.view.qd.edit',
+                    {
+                        edit: true,
+                        record: sel[0],
+                        listeners: {
+                            beforeclose: {
+                                fn: function (win, eOpts) {
+                                    var grid = me.lookupReference('gridpanel');
+                                    grid.store.load();
+                                }
+                            }
+                        }
+                    }).show();
+            } else {
 
             }
         },
@@ -110,19 +105,19 @@
             var me = this;
             if (win.edit) {
                 win.down('form').items.each(
-                    function(item,index,length){
-                        if(item.xtype=='ueditor')
-                        {
+                    function (item, index, length) {
+                        if (item.xtype == 'ueditor') {
                             var value = win.record.get('post_content');
-                            setTimeout(function(){item.setValue(value);},100);
+                            setTimeout(function () {
+                                item.setValue(value);
+                            }, 200);
                         }
-                        if(typeof(item.getName)=='function'){
-                            if(item.getName()!='_token')
-                            {
+                        if (typeof(item.getName) == 'function') {
+                            if (item.getName() != '_token') {
                                 item.setValue(win.record.get(item.getName()));
                             }
                         }
-                });
+                    });
             }
         }
     });

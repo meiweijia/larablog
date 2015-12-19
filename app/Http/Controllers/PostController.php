@@ -47,6 +47,7 @@ class PostController extends Controller
 		//$post_data['post_type'] = $input['post_type'];
 		$postSrv = new Post();
 		$res['success'] = $postSrv->update_post($post_data);
+		$res['msg'] = '发布成功！';
 		return $res;
 
 	}

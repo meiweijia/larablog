@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>后台登陆`</title>
+<title>后台登陆</title>
 <link href="http://static.meibk.com/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="http://static.meibk.com/css/font-awesome.min.css" />
 	<link href="/css/signin.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 		<input id="password" type="password" class="form-control" placeholder="密码" required />
 		<button id="submit" class="btn btn-lg btn-warning btn-block" type="submit">登录</button>
 		<label class="checkbox">
-			<input type="checkbox" value="remember-me"> 记住我 <span id="info" style="float: right;color: red"></span>
+			<input id="remember" type="checkbox" value="remember-me"> 记住我 <span id="info" style="float: right;color: red"></span>
 		</label>
 	</div>
 	<div class="signin-foot"><a href="/"><i class="fa fa-home fa-sm"></i> 返回首页</a></div>
@@ -35,11 +35,12 @@
 		var account = $("#account").val();//取框中的用户名
 		var password = $("#password").val();//取框中的密码
 		var _token = $("#_token").val();
+		var remember = $('#remember').is(':checked')?'1':'0';
 		$.ajax({
 			type: "post", //以post方式与后台沟通
 			url : "User/login", //与此php页面沟通
 			dataType:'json',//从php返回的值以 JSON方式 解释
-			data: 'user_login='+account+'&password='+password+'&_token='+_token, //发给php的数据有两项，分别是上面传来的u和p
+			data: 'user_login='+account+'&password='+password+'&_token='+_token+'&remember='+remember, //发给php的数据有两项，分别是上面传来的u和p
 			success: function(json){//如果调用php成功
 				if(json.success)
 				{

@@ -73,7 +73,7 @@ Ext.define('MyApp.view.MainView',
                 xtype: 'tabpanel',
                 reference: 'content_panel',
                 region: 'center',
-                overflowX: 'auto',
+                //overflowX: 'auto',
                 defaults: {
                     minWidth: 900,
                     closable: true

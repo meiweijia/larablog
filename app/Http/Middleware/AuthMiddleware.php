@@ -21,25 +21,25 @@ class AuthMiddleware {
      */
     public function handle($request, Closure $next)
     {
-		// if (!Auth::check())
-		// {
-			// if ($request->ajax())
-			// {
-				// return response('Unauthorized.', 401);
-			// }
-			// else
-			// {
-				// return redirect('login');
-			// }
-		// }
-		// return $next($request);
+		 if (!Auth::check())
+		 {
+			 if ($request->ajax())
+			 {
+				 return response('Unauthorized.', 401);
+			 }
+			 else
+			 {
+				 return redirect('login');
+			 }
+		 }
+		 return $next($request);
 		
 
-        if (!Session::has('account'))
+        /*if (!Session::has('account'))
         {
             return redirect('login');
         }
-        return $next($request);
+        return $next($request);*/
 		
 
     }

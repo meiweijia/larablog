@@ -23,7 +23,6 @@ $app->get("/album",'AlbumController@GetAlbumList');
 $app->get("/album/{id}",'AlbumController@GetPhoList');
 $app->get("/talk",'MainController@GetTalk');
 
-//TODO:ID获取文章{考虑写到路由群组里面，并且还要权限验证 By:mei 20151011}
 $app->get("/post/{id}.html",'PostController@getpost');
 //更新文章
 $app->post("/post/update",'PostController@update');
@@ -78,5 +77,8 @@ $app->get("/Post/GetPost/",'PostController@GetListPost');
  */
 $app->group(['prefix' => 'User','namespace'=>'App\Http\Controllers'], function($app) {
     $app->post("/login",'UserController@get_login');
-    $app->get("/logout",'UserController@logout');
+    $app->get("/logout",function() use($app){
+		Auth::logout();
+		header('location:'.home_url().'login');
+	});
 });

@@ -33,13 +33,9 @@ toolbars: [
 'underline', //下划线
 'strikethrough', //删除线
 '|',
-'superscript', //上标
-'subscript', //下标
-'|',
+
 'forecolor', //字体颜色
 'backcolor', //背景色
-'|',
-'formatmatch', //格式刷
 'removeformat', //清除格式
 '|',
 'insertorderedlist', //有序列表
