@@ -1,91 +1,120 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2015/11/1
- * Time: 14:07
- */
+<?php namespace App\Models;
 
-namespace App\Models;
+use App\Models\Post;
+use App\Models\Album;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
-
-class Sitemap
+class SiteMap
 {
-    function create_xml()
+    /**
+     * Return the content of the Site Map
+     */
+    public function getSiteMap()
     {
-        $content = '<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-';
-        $data_array = array(
-            array(
-                'loc' => 'http://www.phpernote.com/',
-                'priority' => '1.0',
-                'lastmod' => '2012-06-03T04:20:32-08:00',
-                'changefreq' => 'always'
-            ),
-            array(
-                'loc' => 'http://www.phpernote.com/php/',
-                'priority' => '0.5',
-                'lastmod' => '2012-06-03T04:20:32-08:00',
-                'changefreq' => 'daily'
-            ),
-            array(
-                'loc' => 'http://www.phpernote.com/php/',
-                'priority' => '0.5',
-                'lastmod' => '2012-06-03T04:20:32-08:00',
-                'changefreq' => 'daily'
-            )
-        );
-        foreach ($data_array as $data) {
-            $content .= $this->create_item($data);
-        }
-        $content .= '</urlset>';
-        //return $content;
-        $fp = fopen('sitemap.xml', 'w+');
-        fwrite($fp, $content);
-        fclose($fp);
-    }
+//        if (Cache::has('site-map')) {
+//            return Cache::get('site-map');
+//        }
 
-    function create_item($data)
-    {
-        $item = "<url>\n";
-        $item .= "<loc>" . $data['loc'] . "</loc>\n";
-        $item .= "<priority>" . $data['priority'] . "</priority>\n";
-        $item .= "<lastmod>" . $data['lastmod'] . "</lastmod>\n";
-        $item .= "<changefreq>" . $data['changefreq'] . "</changefreq>\n";
-        $item .= "</url>\n";
-        return $item;
+        $siteMap = $this->buildSiteMap();
+        //Cache::add('site-map', $siteMap, 120);
+        return $siteMap;
     }
 
     /**
-     * 指定位置插入字符串
-     * @param $str  原字符串
-     * @param $i    插入位置
-     * @param $substr 插入字符串
-     * @return string 处理后的字符串
+     * Build the Site Map
      */
-    function insertToStr($str, $i, $substr)
+    protected function buildSiteMap()
     {
-        //指定插入位置前的字符串
-        $startstr = "";
-        for ($j = 0; $j < $i; $j++) {
-            $startstr .= $str[$j];
+        $postsInfo = $this->getPostsInfo();
+        $dates = array_values($postsInfo);
+        sort($dates);
+        $lastmod = last($dates);
+        $url = trim(url(), '/') . '/';
+
+        $xml = [];
+        $xml[] = '<?xml version="1.0" encoding="UTF-8"?' . '>';
+        $xml[] = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        //首页
+        $xml[] = '  <url>';
+        $xml[] = "    <loc>$url</loc>";
+        $xml[] = "    <lastmod>$lastmod</lastmod>";
+        $xml[] = '    <changefreq>Daily</changefreq>';
+        $xml[] = '    <priority>1</priority>';
+        $xml[] = '  </url>';
+        //分页
+        $pages = $this->getPostsCount();
+        $yu = $pages % 5;
+        $count = intval($pages / 5);
+        $count += $yu === 1 ? 1 : 0;
+        for ($i = 2; $i <= $count; $i++) {
+            $xml[] = '  <url>';
+            $xml[] = "    <loc>{$url}?page={$i}</loc>";
+            $xml[] = "    <lastmod>$lastmod</lastmod>";
+            $xml[] = '    <changefreq>Daily</changefreq>';
+            $xml[] = '    <priority>1</priority>';
+            $xml[] = '  </url>';
         }
-
-        //指定插入位置后的字符串
-        $laststr = "";
-        for ($j = $i; $j < strlen($str); $j++) {
-            $laststr .= $str[$j];
+        //相册
+        $xml[] = '  <url>';
+        $xml[] = "    <loc>{$url}album</loc>";
+        $xml[] = "    <lastmod>$lastmod</lastmod>";
+        $xml[] = '    <changefreq>Daily</changefreq>';
+        $xml[] = '    <priority>0.8</priority>';
+        $xml[] = '  </url>';
+        //关于
+        $xml[] = '  <url>';
+        $xml[] = "    <loc>{$url}about</loc>";
+        $xml[] = "    <lastmod>$lastmod</lastmod>";
+        $xml[] = '    <changefreq>Daily</changefreq>';
+        $xml[] = '    <priority>0.8</priority>';
+        $xml[] = '  </url>';
+        //文章
+        foreach ($postsInfo as $slug => $lastmod) {
+            $xml[] = '  <url>';
+            $xml[] = "    <loc>{$url}post/$slug.html</loc>";
+            $xml[] = "    <lastmod>$lastmod</lastmod>";
+            $xml[] = '    <priority>0.6</priority>';
+            $xml[] = "  </url>";
         }
+        //相册列表
+        $albumsInfo = $this->getAlbumsInfo();
+        foreach ($albumsInfo as $slug => $lastmod) {
+            $xml[] = '  <url>';
+            $xml[] = "    <loc>{$url}album/$slug</loc>";
+            $xml[] = "    <lastmod>$lastmod</lastmod>";
+            $xml[] = '    <priority>0.6</priority>';
+            $xml[] = "  </url>";
+        }
+        $xml[] = '</urlset>';
+        return join("\n", $xml);
+    }
 
-        //将插入位置前，要插入的，插入位置后三个字符串拼接起来
-        $str = $startstr . $substr . $laststr;
+    /**
+     * Return all the posts as $url => $date
+     */
+    protected function getPostsInfo()
+    {
+        return Post::where('created_at', '<=', Carbon::now())
+            ->where('post_status', 1)
+            ->orderBy('created_at', 'desc')
+            ->lists('updated_at', 'id')
+            ->all();
+    }
 
-        //返回结果
-        return $str;
+    protected function getPostsCount()
+    {
+        return Post::where('created_at', '<=', Carbon::now())
+            ->where('post_status', 1)
+            ->orderBy('created_at', 'desc')
+            ->count();
+    }
+
+    protected function getAlbumsInfo()
+    {
+        return Album::where('created_at', '<=', Carbon::now())
+            ->orderBy('created_at', 'desc')
+            ->lists('updated_at', 'id')
+            ->all();
     }
 }

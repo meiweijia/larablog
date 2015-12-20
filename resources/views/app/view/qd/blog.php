@@ -69,7 +69,10 @@
                             xtype: 'button',
                             reference: 'delBtn',
                             glyph: 0xf1f8,
-                            text: '删除'
+                            text: '删除',
+                            listeners: {
+                                click: 'OndelBtnClick'
+                            }
                         }
                     ]
                 },
@@ -125,13 +128,13 @@
                             text: '文章状态',
                             renderer: function (v) {
                                 switch (v) {
-                                    case 0:
+                                    case '0':
                                         v = '草稿';
                                         break;
-                                    case 1:
+                                    case '1':
                                         v = '已发布';
                                         break;
-                                    case 2:
+                                    case '2':
                                         v = '私密';
                                         break;
                                     default:
@@ -194,6 +197,7 @@
                                                 post_content: content
                                             },
                                             success: function (form, action) {
+                                                win.close();
                                                 Ext.Msg.alert('提示', action.result.msg);
                                             },
                                             failure: function (form, action) {

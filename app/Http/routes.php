@@ -11,10 +11,6 @@
 */
 use App\Models\Sitemap;
 
-$app->get('/sitemap', function () use ($app) {
-    $map = new Sitemap();
-	return $map->create_xml();
-});
 
 $app->get("/",'MainController@GetIndex');
 $app->get("/s={word}",'MainController@Search');
@@ -22,6 +18,7 @@ $app->get("/about",'MainController@GetAbout');
 $app->get("/album",'AlbumController@GetAlbumList');
 $app->get("/album/{id}",'AlbumController@GetPhoList');
 $app->get("/talk",'MainController@GetTalk');
+$app->get("/sitemap.xml",'MainController@GetSiteMap');
 
 $app->get("/post/{id}.html",'PostController@getpost');
 //更新文章

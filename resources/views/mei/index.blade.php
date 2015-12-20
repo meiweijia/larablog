@@ -19,7 +19,7 @@ if($page>1)
         foreach ($posts as $post) {
             $img_url = getImgs($post->post_content, 0);
             $web_url = getcwd();
-            $img_def_url = 'img/thumbnail.png';
+            $img_def_url = 'img/thumbnail/'.rand(1,5).'.png';
             $img_path = $web_url . $img_url;
             $img_url = is_file($img_path) ? $img_url : $img_def_url;
             $short_title = mb_substr(strip_tags($post->post_title), 0, 40, 'UTF-8');
