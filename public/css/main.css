@@ -38,7 +38,7 @@ span.emotion:hover{background-position:2px -28px}
 /*导航条颜色*/
 .navbar-default .navbar-nav > li > a:focus,
 .navbar-default .navbar-nav > li > a:hover {
-    color: #27B7C5;
+    color: #48BDF9;
     background-color: transparent;
 }
 

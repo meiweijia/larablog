@@ -7,7 +7,7 @@
     @yield('description')
     <link rel="dns-prefetch" href="//static.meibk.com">
     <link rel="stylesheet" href="http://static.meibk.com/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://static.meibk.com/css/main.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="http://static.meibk.com/css/nprogress.css">
     <link rel="stylesheet" type="text/css" href="http://static.meibk.com/css/font-awesome.min.css"/>
     <!--<link rel="stylesheet" href="css/style.css" />-->
@@ -43,8 +43,9 @@
             <div class="collapse navbar-collapse">
                 <ul id="navbar-nav" class="nav navbar-nav">
                     <li id="home"><a href="/"><i class="fa fa-home fa-sm"></i> 首页</a></li>
+                    <li id="talk"><a href="/talk"><i class="fa fa-twitter fa-sm"></i> 微语</a></li>
                     <li id="album"><a href="/album"><i class="fa fa-picture-o fa-sm"></i> 相册</a></li>
-                    <li id="about"><a href="/about"><i class="fa fa-male fa-sm"></i> 关于</a></li>
+                    <li id="about"><a href="/about"><i class="fa fa-info fa-sm"></i> 关于</a></li>
                 </ul>
                 <!--<div class="navbar-form  navbar-right">
                     <a href="#" class="navber-link">登录</a>

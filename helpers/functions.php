@@ -190,4 +190,18 @@ function home_url()
 {
 	return 'http://'.$_SERVER['HTTP_HOST'].'/';
 }
+function changestring($content,$url)
+{
+    preg_match_all("/<img(.*)src=\"([^\"]+)\"[^>]+>/",$content,$matches);
+    if(!empty($matches)){
+        $imgurl = $matches[2];
+        foreach($imgurl as $val){
+            preg_match("/^.*\/ueditor\/php/",$val,$res);
+            $content = isset($res[0])?str_replace($res[0],$url,$content):$content;
+        }
+    }else{
+        return FALSE;
+    }
+    return $content;
+}
 ?>
