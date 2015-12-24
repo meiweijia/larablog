@@ -20,6 +20,10 @@ class Post extends Model
 		$post = $this
 			->select('post_title', 'id', 'post_content', 'created_at', 'post_keywords', 'post_description')
 			->find($id);
+		if(!$post)
+		{
+			return null;
+		}
 		$post->post_keywords = $post->post_keywords == '' ? $post->post_title : $post->post_keywords;
 		$content = mb_ereg_replace(' ', "\n", (strip_tags($post->post_content)));
 		$content = strlen($content) > 30 ? mb_substr($content, 0, 30, 'UTF-8') . '...' : $content;

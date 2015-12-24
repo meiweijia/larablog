@@ -22,7 +22,7 @@ class PostController extends Controller
 			$post_obj = new Post();
 			$post = $post_obj->getpost($id);
 		}
-		return view('mei.post')->with('post', $post);
+		return $post ? view('mei.post')->with('post', $post) : abort(404);
 	}
 
 	public function GetListPost(Request $request)
