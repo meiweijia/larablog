@@ -9,8 +9,6 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-use App\Models\Sitemap;
-
 
 $app->get("/",'MainController@GetIndex');
 $app->get("/s={word}",'MainController@Search');
