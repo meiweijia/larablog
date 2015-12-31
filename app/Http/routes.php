@@ -20,8 +20,13 @@ $app->get("/sitemap.xml",'MainController@GetSiteMap');
 
 $app->get("/post/{id}.html",'PostController@getpost');
 $app->get("/comment/{pid}",'CommentController@getComment');
-//更新文章
-$app->post("/post/update",'PostController@update');
+
+
+
+$app->group(['prefix' => 'callApi','namespace'=>'App\Http\Controllers','middleware' => 'auth'], function($app){
+	$app->get("/{class}/{method}",'MainController@callApi');
+	$app->post("/{class}/{method}",'MainController@callApi');
+});
 
 /*
 后台路由
@@ -31,21 +36,22 @@ $app->group(['prefix' => 'admin','namespace'=>'App\Http\Controllers','middleware
 	后台主页
 	*/
     $app->get("/",'AdminController@GetIndex');
-	/*
-	加载视图
-	*/
-    $app->get("app/view/{view}.js",function($view){
-        return view('admin.app.view.'.$view);
-    });
 	/**
 	 * 获取后台相关数据
 	 */
 	$app->get("/post-list",'AdminController@GetAllPost');
 	/**
-	 * 文章相关
+	 * 文章更新相关
 	 */
 	$app->post("/post/update",'PostController@update');
 	$app->get("/post/update",'PostController@update');
+	/**
+	 * 栏目
+	 */
+	$app->get("/sort-list",'AdminController@GetAllSort');
+	$app->post("/sort/update",'SortController@update');
+	$app->get("/sort/update",'SortController@update');
+
 });
 
 /**
@@ -81,7 +87,5 @@ $app->group(['prefix' => 'User','namespace'=>'App\Http\Controllers'], function($
 $app->get("/test1","MainController@GetTest");
 $app->get("/test","CommentController@GetTest");
 $app->get('/test2', function() {
-
-	$txt = sprintf("%s%s%s%s",'asdf','asdf','asdf','asdf');
-	echo $txt;
+	print_r('App\\Models\\');
 });

@@ -17,7 +17,7 @@
                 <p class="posted meta text-center">
                     <span class="date_time">发布时间：<?php echo substr($post->created_at, 0, 10);?></span>
                     <span class="postedby">作者：夜风</span>
-                    <span class="postview">分类：<a href="javascript:;" rel="category tag">HTML/CSS</a></span>
+                    <span class="postview">分类：<a href="javascript:;" rel="category tag">{{$post->sort}}</a></span>
                 </p>
                 <hr>
                 <div class="post-content"><?php echo changestring($post->post_content, 'http://static.meibk.com/ueditor/php'); ?></div>

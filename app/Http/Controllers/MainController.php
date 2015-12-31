@@ -8,9 +8,39 @@ use App\Http\Controllers\Controller;
 use Cache;
 use App\Models\SiteMap;
 use App\Models\Test;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
+
+    function callApi(Request $request,$class,$method)
+    {
+
+        DB::connection()->enableQueryLog();
+        $input = $request->all();
+        $result['success'] = false;
+        $class_sub = 'App\Models\\';
+        $class = $class_sub.$class;
+        if(!class_exists($class))
+        {
+            $result['msg'] = '类'.$class.'不存在';
+            return json_encode($result, JSON_UNESCAPED_UNICODE);
+        }
+        if(!method_exists($class,$method))
+        {
+            $result['msg'] = '方法'.$method.'不存在';
+            return json_encode($result, JSON_UNESCAPED_UNICODE);
+        }
+        $classSrv = new $class;
+        try{
+            $result = $classSrv->$method($input);
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
+        $result['sql'] = DB::getQueryLog();
+        return json_encode($result, JSON_UNESCAPED_UNICODE);
+    }
 
     public function GetIndex(Request $request)
     {

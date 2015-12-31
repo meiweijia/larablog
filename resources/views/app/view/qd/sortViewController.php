@@ -15,5 +15,100 @@
 
 Ext.define('MyApp.view.qd.sortViewController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.mypanel3'
+    alias: 'controller.mycontroller',
+    OnaddBtnClick: function (btn, e, eOpts) {
+        var me = this;
+        Ext.create('MyApp.view.qd.sort_edit',
+            {
+                listeners: {
+                    beforeclose: {
+                        fn: function (win, eOpts) {
+                            var grid = me.lookupReference('gridpanel');
+                            grid.store.load();
+                        }
+                    }
+                }
+            }).show();
+    },
+    OneditBtnClick: function (btn, e, eOpts) {
+        var me = this;
+        var grid = me.lookupReference('gridpanel');
+        var sel = grid.getSelectionModel().getSelection();
+        var length = sel.length;
+        if (length == 1) {
+            Ext.create('MyApp.view.qd.sort_edit',
+                {
+                    edit: true,
+                    record: sel[0],
+                    listeners: {
+                        beforeclose: {
+                            fn: function (win, eOpts) {
+                                var grid = me.lookupReference('gridpanel');
+                                grid.store.load();
+                            }
+                        }
+                    }
+                }).show();
+        } else {
+
+        }
+    },
+    onGridPanelItemdblclick: function () {
+        var me = this;
+        var grid = me.lookupReference('gridpanel');
+        var sel = grid.getSelectionModel().getSelection();
+        var length = sel.length;
+        if (length == 1) {
+            Ext.create('MyApp.view.qd.sort_edit',
+                {
+                    edit: true,
+                    record: sel[0],
+                    listeners: {
+                        beforeclose: {
+                            fn: function (win, eOpts) {
+                                var grid = me.lookupReference('gridpanel');
+                                grid.store.load();
+                            }
+                        }
+                    }
+                }).show();
+        } else {
+
+        }
+    },
+    OneditWinShow: function (win, eOpts) {
+        var me = this;
+        if (win.edit) {
+            win.down('form').items.each(
+                function (item, index, length) {
+                    if (typeof(item.getName) == 'function') {
+                        if (item.getName() != '_token') {
+                            item.setValue(win.record.get(item.getName()));
+                        }
+                    }
+                });
+        }
+    },
+    OndelBtnClick:function(btn, e, eOpts)
+    {
+        var me = this;
+        var grid = me.lookupReference('gridpanel');
+        var sel = grid.getSelectionModel().getSelection();
+        var id = sel[0].get('id');
+        Ext.Ajax.request({
+            url: 'callApi/Sort/del_sort',
+            method:'GET',
+            params: {
+                id: id
+            },
+            success: function(response){
+                var res = Ext.JSON.decode(response.responseText);
+                console.log(res);
+                grid.store.load();
+            },
+            failure: function(response, opts) {
+                console.log('server-side failure with status code ' + response.status);
+            }
+        });
+    }
 });

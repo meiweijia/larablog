@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Cache;
+use App\Models\Sort;
 
 class Post extends Model
 {
@@ -17,12 +18,14 @@ class Post extends Model
 
     function getpost($id)
     {
+        $sortSrv = new Sort();
         $post = $this
-            ->select('post_title', 'id', 'post_content', 'created_at', 'post_keywords', 'post_description')
+            ->select('post_title', 'id', 'post_content','sort_id', 'created_at', 'post_keywords', 'post_description')
             ->find($id);
-	if(!$post){
-		return null;
-	}
+        if (!$post) {
+            return null;
+        }
+        $post->sort = $sortSrv->get_sort_name($post->sort_id);
         $post->post_keywords = $post->post_keywords == '' ? $post->post_title : $post->post_keywords;
         $content = mb_ereg_replace(' ', "\n", (strip_tags($post->post_content)));
         $content = strlen($content) > 30 ? mb_substr($content, 0, 30, 'UTF-8') . '...' : $content;
@@ -30,22 +33,28 @@ class Post extends Model
         $imgarr = getImgs($post->post_content);
         if (count($imgarr) > 0) {
         }
-        Cache::put('post'.$id, $post,30);
+        Cache::put('post' . $id, $post, 30);
         return $post;
     }
 
     function GetListPost($input = '')
     {
+        $sortSrv = new Sort();
         $res = $this;
-	$agent = new Agent();
+        $agent = new Agent();
         if ($input != '') {
             $res = $this->where('post_title', 'like', '%' . $input . '%')
                 ->orWhere('post_content', 'like', '%' . $input . '%');
         }
         $res = $res->whereRaw('post_status = 1 AND post_type = "post"')
-            ->select('id', 'post_title', 'post_content', 'created_at')
+            ->select('id', 'post_title', 'post_content','sort_id', 'created_at')
             ->orderBy('created_at', 'desc');
-	$res = $agent->isPhone()?$res->simplePaginate(5):$res->paginate(5);
+        $res = $agent->isPhone() ? $res->simplePaginate(5) : $res->paginate(5);
+        foreach($res as $k=>$v)
+        {
+            $sortName=$sortSrv->get_sort_name($v->sort_id);
+            $res[$k]->sort = $sortName==''?'默认分类':$sortName;
+        }
         $res->words = $input;
         return $res;
     }

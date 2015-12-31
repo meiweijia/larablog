@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         <header>
-                        <a class='label label-important' href='javascript:(0)'>资源共享<i class='label-arrow'></i></a>
+                        <a class='label label-important' href='javascript:(0)'>{$post->sort}<i class='label-arrow'></i></a>
                             <h2 class='title'><a href='/post/{$post->id}.html' title='{$post->post_title}'>{$post->post_title}</a></h2>
                         </header>
                         <div class='posted'>
