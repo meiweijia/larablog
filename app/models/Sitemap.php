@@ -12,12 +12,11 @@ class SiteMap
      */
     public function getSiteMap()
     {
-//        if (Cache::has('site-map')) {
-//            return Cache::get('site-map');
-//        }
-
+        if (Cache::has('site-map')) {
+            return Cache::get('site-map');
+        }
         $siteMap = $this->buildSiteMap();
-        //Cache::add('site-map', $siteMap, 120);
+        Cache::add('site-map', $siteMap, 120);
         return $siteMap;
     }
 

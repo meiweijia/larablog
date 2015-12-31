@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Cache;
-
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -16,14 +16,46 @@ class PostController extends Controller
     */
 	public function getpost($id)
 	{
-		if (Cache::has('post' . $id)) {
-			$post = Cache::get('post' . $id);
-		} else {
-			$post_obj = new Post();
-			$post = $post_obj->getpost($id);
+//		if (Cache::has('post' . $id)) {
+//			$post = Cache::get('post' . $id);
+//		} else {
+//			$post_obj = new Post();
+//			$post = $post_obj->getpost($id);
+//		}
+		$post_obj = new Post();
+		$post = $post_obj->getpost($id);
+		if($post)
+		{
+			$commentSrv = new Comment();
+			$post->comment = $this->getComment(0);
+			return view('mei.post')->with('post', $post);
+		}else{
+			return  abort(404);
 		}
-		return $post ? view('mei.post')->with('post', $post) : abort(404);
 	}
+
+	public function getComment($topic_id)
+	{
+		$commentSrv = new Comment();
+		$comments = $commentSrv->getComment($topic_id);
+		$res = array();
+		$ret = array();
+		$first = 0;
+		foreach($comments as $k=>$comment)
+		{
+			if($comment['parent_id'] == 0 )
+			{
+				$res[] = $comment;
+				$first++;
+			}
+			if($comment['parent_id'] != 0)
+			{
+				$res[$first-1]['child'][] = $comment;
+			}
+		}
+		return $res;
+	}
+
 
 	public function GetListPost(Request $request)
 	{

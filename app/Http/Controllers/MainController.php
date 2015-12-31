@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cache;
 use App\Models\SiteMap;
+use App\Models\Test;
 
 class MainController extends Controller
 {
@@ -15,6 +16,11 @@ class MainController extends Controller
     {
         $post_obj = new Post();
         $post = $post_obj->GetListPost();
+        $postArr = $post->toArray();
+        if(count($postArr['data'])== 0)
+        {
+            abort(404);
+        }
         return view('mei.index')->with('posts', $post);
     }
 
@@ -50,5 +56,37 @@ class MainController extends Controller
         $map = $siteMap->getSiteMap();
         return response($map)
             ->header('Content-type', 'text/xml');
+    }
+
+    function checkNum($number)
+    {
+        if($number>1)
+        {
+            throw new Exception("Value must be 1 or below");
+        }
+        return true;
+    }
+    public function GetTest(Request $request)
+    {
+        $result['success'] = false;
+        $test = new Test();
+        $method = $request->only('fn');
+        if(!isset($method['fn']))
+        {
+            $result['msg'] = '缺少参数fn';
+        }
+        $method = $method['fn'];
+        if(!method_exists($test,$method))
+        {
+            $result['msg'] = '方法'.$method.'不存在';
+            return $result;
+        }
+        try{
+            $res = $test->$method('9z/');
+        }
+        catch(\Exception $e){
+            return $e->getMessage();
+        }
+        return $res;
     }
 }

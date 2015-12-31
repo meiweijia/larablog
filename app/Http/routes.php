@@ -19,6 +19,7 @@ $app->get("/talk",'MainController@GetTalk');
 $app->get("/sitemap.xml",'MainController@GetSiteMap');
 
 $app->get("/post/{id}.html",'PostController@getpost');
+$app->get("/comment/{pid}",'CommentController@getComment');
 //更新文章
 $app->post("/post/update",'PostController@update');
 
@@ -76,4 +77,11 @@ $app->group(['prefix' => 'User','namespace'=>'App\Http\Controllers'], function($
 		Auth::logout();
 		header('location:'.home_url().'login');
 	});
+});
+$app->get("/test1","MainController@GetTest");
+$app->get("/test","CommentController@GetTest");
+$app->get('/test2', function() {
+
+	$txt = sprintf("%s%s%s%s",'asdf','asdf','asdf','asdf');
+	echo $txt;
 });

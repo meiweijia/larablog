@@ -11,7 +11,7 @@
 * This file will be auto-generated each and everytime you save your project.
 *
 * Do NOT hand edit this file.
-*/<script>
+*/
     Ext.define('MyApp.view.qd.blogViewController', {
         extend: 'Ext.app.ViewController',
         alias: 'controller.mypanel',

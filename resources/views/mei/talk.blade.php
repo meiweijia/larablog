@@ -53,7 +53,6 @@
             <a href="javascript:(0)"><i id="comment_a" class="fa fa-comments-o fa-1x no_hide">评论</i></a-->
         </div>
     </div>
-    <script type="text/javascript" src="/js/qqFace.js"></script>
     <?php
     if (\Illuminate\Support\Facades\Auth::check()) {
         ?>
@@ -66,7 +65,7 @@
     <script>
         setNavActive('talk');
         $("#comment_a").click(function () {
-            $("#comment").is(":hidden") ? $("#comment").show(200) : $("#comment").hide(200);
+//            $("#comment").is(":hidden") ? $("#comment").show(200) : $("#comment").hide(200);
         });
         //        $("#comment").click(function (e) {
         //            e.stopPropagation();
