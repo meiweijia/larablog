@@ -58,7 +58,7 @@
                 </div>
                 <a class='read-more label label-important' href='/post/{$post->id}.html'>阅读全文</a>
 
-            </li>";
+            </li>";sadf
         }
         ?>
 
