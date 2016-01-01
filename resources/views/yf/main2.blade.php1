@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="dns-prefetch" href="//cdn.bootcss.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-title" content="DUX主题演示">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>@yield('title')</title>
+    <meta name='robots' content='noindex,follow'/>
+    <script type="text/javascript">
+        window._wpemojiSettings = {
+            "baseUrl": "http:\/\/s.w.org\/images\/core\/emoji\/72x72\/",
+            "ext": ".png",
+            "source": {"concatemoji": "http:\/\/demo.themebetter.com\/dux\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}
+        };
+        !function (a, b, c) {
+            function d(a) {
+                var c = b.createElement("canvas"), d = c.getContext && c.getContext("2d");
+                return d && d.fillText ? (d.textBaseline = "top", d.font = "600 32px Arial", "flag" === a ? (d.fillText(String.fromCharCode(55356, 56812, 55356, 56807), 0, 0), c.toDataURL().length > 3e3) : (d.fillText(String.fromCharCode(55357, 56835), 0, 0), 0 !== d.getImageData(16, 16, 1, 1).data[0])) : !1
+            }
+
+            function e(a) {
+                var c = b.createElement("script");
+                c.src = a, c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c)
+            }
+
+            var f, g;
+            c.supports = {simple: d("simple"), flag: d("flag")}, c.DOMReady = !1, c.readyCallback = function () {
+                c.DOMReady = !0
+            }, c.supports.simple && c.supports.flag || (g = function () {
+                c.readyCallback()
+            }, b.addEventListener ? (b.addEventListener("DOMContentLoaded", g, !1), a.addEventListener("load", g, !1)) : (a.attachEvent("onload", g), b.attachEvent("onreadystatechange", function () {
+                "complete" === b.readyState && c.readyCallback()
+            })), f = c.source || {}, f.concatemoji ? e(f.concatemoji) : f.wpemoji && f.twemoji && (e(f.twemoji), e(f.wpemoji)))
+        }(window, document, window._wpemojiSettings);
+    </script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel='stylesheet' id='_bootstrap-css' href='//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='_fontawesome-css' href='//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='_main-css' href='/css/main.css' type='text/css' media='all'/>
+    <script type='text/javascript' src='//cdn.bootcss.com/jquery/1.9.1/jquery.min.js'></script>
+    <meta name="keywords" content="梅氏起源,家族,梅世科,梅文贵,梅丽娥,梅文献,梅渭甲,梅浩,梅氏族谱,七甲坪,wordpress,PHP"/>
+    <meta name="description" content="一个关于梅渭甲的博客，主要内容包括：梅氏起源、梅氏概括、梅氏族谱、梅氏名人，家族，一些开发者的相关博文，大部分内容都是站长所在地的梅氏相关信息。"/>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!--[if lt IE 9]>
+    <script src="http://demo.themebetter.com/dux/wp-content/themes/dux/js/libs/html5.min.js"></script><![endif]-->
+</head>
+<body class="home blog nav_fixed site-layout-2">
+<header class="header">
+    <div class="container">
+        <h1 class="logo"><a href="/" title="DUX主题演示-又一个大前端WordPress主题演示站点"><img src="/img/logo.png">DUX主题演示</a></h1>
+
+        <div class="brand">上善若水
+            <br>水善利万物而不争
+        </div>
+        <ul class="site-nav site-navbar">
+            {{--@yield('nava');--}}
+            <li id="menu-item-home"
+                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6">
+                <a href="/"><i class="fa fa-home"></i> 首页</a></li>
+            <li id="menu-item-about" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7"><a
+                        href="/about"><i class="fa fa-user"></i> 关于</a></li>
+            <li id="menu-item-118"
+                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-118"><a><i
+                            class="fa fa-file-text-o"></i> 独立页面</a>
+                <ul class="sub-menu">
+                    <li id="menu-item-123"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-123"><a
+                                href="/sample-page">友情链接</a></li>
+                </ul>
+            </li>
+            <li class="navto-search"><a href="javascript:;" class="search-show active"><i class="fa fa-search"></i></a>
+            </li>
+        </ul>
+        <div class="topbar">
+            <ul class="site-nav topmenu">
+                <li id="menu-item-115" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-115"><a
+                            href="javascript:;" class="signin-loader">Hi, 请登录</a></li>
+                {{--<li class="menusns">--}}
+                    {{--<a href="javascript:;">关注本站 <i class="fa fa-angle-down"></i></a>--}}
+                    {{--<ul class="sub-menu">--}}
+                        {{--<li><a class="sns-wechat" href="javascript:;" title="关注”阿里百秀“"--}}
+                               {{--data-src="http://www.daqianduan.com/wp-content/uploads/2015/01/weixin-qrcode.jpg"><i--}}
+                                        {{--class="fa fa-wechat"></i> 微信</a></li>--}}
+                        {{--<li><a target="_blank" rel="external nofollow" href="http://weibo.com/daqianduan"><i--}}
+                                        {{--class="fa fa-weibo"></i> 微博</a></li>--}}
+                        {{--<li><a target="_blank" rel="external nofollow" href="http://t.qq.com/daqianduan"><i--}}
+                                        {{--class="fa fa-tencent-weibo"></i> 腾讯微博</a></li>--}}
+                        {{--<li><a target="_blank" href="http://demo.themebetter.com/dux/feed/"><i class="fa fa-rss"></i>--}}
+                                {{--RSS订阅</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+            </ul>
+            {{--<a href="javascript:;" class="signin-loader">Hi, 请登录</a>--}}
+        </div>
+        <i class="fa fa-bars m-icon-nav"></i>
+    </div>
+</header>
+<div class="site-search">
+    <div class="container">
+        <form method="get" class="site-search-form" action="/"><input
+                    class="search-input" name="s" type="text" placeholder="输入关键字" value="">
+            <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+<section class="container">
+    <div class="content-wrap">
+        <div class="content">
+            @yield('post')
+        </div>
+    </div>
+    <aside class="sidebar">
+
+        <div class="widget widget-tops">
+            <ul class="widget-nav">
+                <li class="active">网站公告</li>
+                <li>会员中心</li>
+            </ul>
+            <ul class="widget-navcontent">
+                <li class="item item-01 active">
+                    <ul>
+                        <li>
+                            <time>06-30</time>
+                            <a target="_blank" href="http://demo.themebetter.com/dux/106.html">大前端和阿里百秀背后的团队</a></li>
+                        <li>
+                            <time>06-30</time>
+                            <a target="_blank" href="http://demo.themebetter.com/dux/104.html">你是否希望大前端做服务器合租代管服务？</a>
+                        </li>
+                        <li>
+                            <time>06-30</time>
+                            <a target="_blank" href="http://demo.themebetter.com/dux/101.html">大前端D8主题等其他主题支持wordpress
+                                3.8版本</a></li>
+                    </ul>
+                </li>
+                <li class="item item-02">
+                    <h4>需要登录才能进入会员中心</h4>
+
+                    <p>
+                        <a href="javascript:;" class="btn btn-primary signin-loader">立即登录</a>
+                        <a href="javascript:;" class="btn btn-default signup-loader">现在注册</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="widget widget_ui_fronts"><h3>后端开发</h3>
+            <ul class="ebox">
+                {{--<li class="ebox-i ebox-01">--}}
+                {{--<h4>lumen</h4>--}}
+                {{--<p>为速度而生的 Laravel 框架</p>--}}
+                {{--<a class="btn btn-default btn-sm" target="_blank" href="http://lumen.laravel-china.org"></a>--}}
+                {{--</li>--}}
+                <li class="ebox-i ebox-05 ebox-100">
+                    <h4 style="color:rgb(251, 128, 105)">Laravel</h4>
+
+                    <p>
+                        <a style="color:rgb(251, 128, 105)" target="_blank" href="http://www.laravel.com/"
+                           title="The PHP Framework For Web Artisans">laravel官网</a> |
+                        <a style="color:rgb(251, 128, 105)" target="_blank" href="http://www.laravel-china.org"
+                           title="简洁、优雅的PHP框架">laravel中文网</a> |
+                        <a style="color:rgb(251, 128, 105)" target="_blank" href="http://lumen.laravel-china.org/"
+                           title="为速度而生的 Laravel 框架">Lumen</a> |
+                        <a target="_blank" href="http://phphub.org/" title="中文开发者社区">PHPHub</a>
+                    </p>
+                    <a class="btn btn-default btn-sm" target="_blank" href="http://www.laravel.com/">立即使用</a>
+                </li>
+            </ul>
+        </div>
+
+        {{--<div class="widget widget_ui_textasb"><a class="style02"--}}
+        {{--href="http://www.daqianduan.com/theme/dux"><strong>吐血推荐</strong>--}}
+
+        {{--<h2>DUX主题 新一代主题</h2>--}}
+
+        {{--<p>DUX Wordpress主题是大前端当前使用主题，是大前端积累多年Wordpress主题经验设计而成；更加扁平的风格和干净白色的架构会让网站显得内涵而出色...</p></a></div>--}}
+
+        {{--<div class="widget widget_ui_posts"><h3>置顶推荐</h3>--}}
+        {{--<ul>--}}
+        {{--<li><a href="http://demo.themebetter.com/dux/49.html"><span class="thumbnail"><img--}}
+        {{--data-src="http://demo.themebetter.com/dux/wp-content/uploads/sites/3/2015/06/16-220x105.jpg"--}}
+        {{--class="thumb"></span><span class="text">Matterport 获 3000 万美元融资</span><span--}}
+        {{--class="muted">2015-06-27</span><span class="muted">评论()</span></a></li>--}}
+        {{--</ul>--}}
+        {{--</div>--}}
+        {{--<div class="widget widget_ui_posts"><h3>热门文章</h3>--}}
+        {{--<ul>--}}
+        {{--<li><a href="http://demo.themebetter.com/dux/73.html"><span class="thumbnail"><img--}}
+        {{--data-src="http://demo.themebetter.com/dux/wp-content/uploads/sites/3/2015/06/111-220x147.jpg"--}}
+        {{--class="thumb"></span><span--}}
+        {{--class="text">传苹果正在开发自家的触摸显示集成技术，未来iPhone将取消Home键</span><span--}}
+        {{--class="muted">2015-09-06</span><span class="muted">评论(10)</span></a></li>--}}
+        {{--</ul>--}}
+        {{--</div>--}}
+
+        <div class="widget widget_ui_statistics"><h3>网站统计</h3>
+            <ul>
+                <li><strong>日志总数：</strong>23</li>
+                <li><strong>评论总数：</strong>48</li>
+                <li><strong>标签总数：</strong>33</li>
+                <li><strong>页面总数：</strong>8</li>
+                <li><strong>分类总数：</strong>6</li>
+                <li><strong>链接总数：</strong>13</li>
+                <li><strong>用户总数：</strong>480</li>
+                <li><strong>最后更新：</strong>2015-09-17</li>
+            </ul>
+        </div>
+    </aside>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        {{--<div class="fcode">--}}
+        {{--自定义网站底部内容--}}
+        {{--该块显示在网站底部版权上方，可已定义放一些链接或者图片之类的内容。--}}
+        {{--</div>--}}
+        <p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="梅渭甲个人博客">夜风</a> All rights
+            reserved |
+            基于<a style="color:rgb(251, 128, 105)" href='http://lumen.laravel.com' title="为速度而生的 Laravel 框架"
+                 target="_blank"> lumen</a>
+            <a target="_blank" href="/sitemap.xml"> | 网站地图</a> |
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+
+        <div class="hide">
+            <script>
+                var _hmt = _hmt || [];
+                (function () {
+                    var hm = document.createElement("script");
+                    hm.src = "//hm.baidu.com/hm.js?504bfb59133021cfc6a65c5df87d9229";
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(hm, s);
+                })();
+            </script>
+        </div>
+    </div>
+</footer>
+
+<script>
+    window.jsui = {
+        www: '',
+        uri: '',
+        ver: '5.12',
+        roll: ["1", "2"],
+        //ajaxpager: '5',
+        url_rp: 'http://demo.themebetter.com/dux/reset-password'
+    };
+</script>
+<script type='text/javascript' src='http://apps.bdimg.com/libs/bootstrap/3.2.0/js/bootstrap.min.js?ver=1.3'></script>
+<script type='text/javascript'
+        src='http://demo.themebetter.com/dux/wp-content/themes/dux/js/loader.js?ver=1.3'></script>
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name: "meiweijia"};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+</body>
+</html>

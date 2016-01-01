@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Media Query Demos【CSS3自适配手机屏幕】</title>
+<style type="text/css">
+.wrapper {
+ border: solid 1px #666; 
+ padding: 5px 10px;
+ margin: 40px;
+}
+.viewing-area span {
+ color: #666;
+ display: none;
+}
+/* max-width */
+@media screen and (max-width: 600px) {
+ .one {
+  background: #F9C;
+ }
+ span.lt600 {
+  display: inline-block;
+ }
+}
+/* min-width */
+@media screen and (min-width: 900px) {
+ .two {
+  background: #F90;
+ }
+ span.gt900 {
+  display: inline-block;
+ }
+}
+/* min-width & max-width */
+@media screen and (min-width: 600px) and (max-width: 900px) {
+ .three {
+  background: #9CF;
+ }
+ span.bt600-900 {
+  display: inline-block;
+ }
+}
+/* max device width */
+@media screen and (max-device-width: 480px) {
+ .iphone {
+  background: #ccc;
+ }
+}
+</style>
+</head>
+<body>
+ <div class="wrapper one">此框会变成粉红色，如果可视面积小于600px</div>
+ <div class="wrapper two">此框会变成橙色，如果可视面积小于900px</div>
+ <div class="wrapper three">此框会变成蓝色，如果可视面积为600px~900px</div> 
+</body>
+</html>
