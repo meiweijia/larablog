@@ -9,38 +9,80 @@
 	<h1 label="标题居左" style="font-size: 32px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 2px; border-bottom-style: solid; padding: 0px 4px 0px 0px; text-align: left; margin: 0px 0px 10px;">
 		<span style="font-size: 20px;">关于我</span>
 	</h1>
-	<ul class=" list-paddingleft-2" style="list-style-type: disc;">
-		<li>
-			<p>
-				简介
-			</p>
+	<ul class="media-list">
+		<li class="media">
+			<div class="media-left" style='float:left;width:240px;height: 180px;margin-bottom: 20px;    line-height: 180px;text-align: center;'>
+				<a href="#">
+					<img class='img-thumbnail' src="img/tx.png" alt="..." style='max-width: 100%;max-height: 100%;width: auto;height: auto;'>
+				</a>
+			</div>
+			<div class="media-body">
+				<p>
+					爱好网络安全技术，Windows玩的很溜，Linux一般般。
+				</p>
+				<p>
+					爱好骑自行车。
+				</p>
+				<h4 class="media-heading">联系</h4>
+				<ul class="list-icons">
+					<li><i class="fa fa-location-arrow fa-1x"></i> Changsha</li>
+					<li><i class="fa fa-mobile fa-2x"></i> +086 18670031244</li>
+					<li><i class="fa fa-envelope fa-1x"></i> meiweijia@gmail.com</li>
+				</ul>
+			</div>
 		</li>
 	</ul>
-	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我叫梅渭甲。
-	</p>
-	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;熟练使用<span style="color: rgb(0, 176, 80);">Extjs</span>和<span style="color: rgb(251, 128, 105);">Laravel</span>。
-	</p>
-	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;爱好网络安全技术，Windows玩的很溜，Linux一般般。
-	</p>
-	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;爱好骑自行车。
-	</p>
-	<ul class=" list-paddingleft-2" style="list-style-type: disc;">
-		<li>
-			<p>
-				联系
-			</p>
-			<p>
-				QQ：542395819
-			</p>
-			<p>
-				邮箱：meiweijia@gmail.com
-			</p>
-		</li>
-	</ul>
+	<!--技能-->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">技能</h3>
+		</div>
+		<div class="panel-body" style="margin: 5px;">
+			<div class="skillbar clearfix " data-percent="60%">
+				<div class="skillbar-title" style="background: rgb(251, 128, 105);"><span>laravel</span></div>
+				<div class="skillbar-bar" style="background: rgba(251, 128, 105, 0.66);margin-left: 99px"></div>
+				<div class="skill-bar-percent">60%</div>
+			</div> <!-- End Skill Bar -->
+
+			<div class="skillbar clearfix " data-percent="30%">
+				<div class="skillbar-title" style="background: rgb(49, 112, 143);"><span>PHP</span></div>
+				<div class="skillbar-bar" style="background: rgba(49, 112, 143, 0.66);margin-left: 99px"></div>
+				<div class="skill-bar-percent">30%</div>
+			</div> <!-- End Skill Bar -->
+
+			<div class="skillbar clearfix " data-percent="35%">
+				<div class="skillbar-title" style="background: rgb(169, 68, 66);"><span>javascript</span></div>
+				<div class="skillbar-bar" style="background: rgba(169, 68, 66, 0.66);margin-left: 99px"></div>
+				<div class="skill-bar-percent">35%</div>
+			</div> <!-- End Skill Bar -->
+
+			<div class="skillbar clearfix " data-percent="65%">
+				<div class="skillbar-title" style="background: rgb(120, 143, 55);"><span>extjs</span></div>
+				<div class="skillbar-bar" style="background: rgba(120, 143, 55 , 0.66);margin-left: 99px"></div>
+				<div class="skill-bar-percent">65%</div>
+			</div> <!-- End Skill Bar -->
+
+
+			<div class="skillbar clearfix " data-percent="15%">
+				<div class="skillbar-title" style="background: rgb(51, 122, 183);"><span>ASP.NET</span></div>
+				<div class="skillbar-bar" style="background: rgba(51, 122, 183, 0.66);margin-left: 99px"></div>
+				<div class="skill-bar-percent">15%</div>
+			</div> <!-- End Skill Bar -->
+
+			<div class="skillbar clearfix " data-percent="22%">
+				<div class="skillbar-title" style="background: rgb(76, 188, 246);"><span>jquery</span></div>
+				<div class="skillbar-bar" style="background: rgba(76, 188, 246, 0.66);margin-left: 99px"></div>
+				<div class="skill-bar-percent">22%</div>
+			</div> <!-- End Skill Bar -->
+
+			<div class="skillbar clearfix " data-percent="10%">
+				<div class="skillbar-title" style="background: rgb(138, 109, 59);"><span>css</span></div>
+				<div class="skillbar-bar" style="background: rgba(138, 109, 59, 0.66);margin-left: 99px"></div>
+				<div class="skill-bar-percent">10%</div>
+			</div> <!-- End Skill Bar -->
+
+		</div>
+	</div>
 	<p>
 		<br/>
 	</p>

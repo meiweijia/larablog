@@ -56,9 +56,9 @@ class BootstrapThreePresenter implements PresenterContract
         if ($this->hasPages()) {
             return sprintf(
                 '<ul class="pagination">%s %s %s</ul>',
-                $this->getPreviousButton(),
+                $this->getPreviousButton('<span aria-hidden="true">&larr;</span>Older</a>'),
                 $this->getLinks(),
-                $this->getNextButton()
+                $this->getNextButton('Newer<span aria-hidden="true">&rarr;</span>')
             );
         }
 

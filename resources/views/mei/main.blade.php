@@ -27,53 +27,52 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="pjax">
-        <a href="/" style="float: left;margin: 20px 10px 10px 10px;">
-            <img style="width:146px;height:40px" src="http://static.meibk.com/img/logo.png" alt="博客logo"/>
-        </a>
-    </div>
-
-    <nav class="nav navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul id="navbar-nav" class="nav navbar-nav">
-                    <li id="home"><a href="/"><i class="fa fa-home fa-sm"></i> 首页</a></li>
-                    <li id="talk"><a href="/talk"><i class="fa fa-twitter fa-sm"></i> 微语</a></li>
-                    <li id="album"><a href="/album"><i class="fa fa-picture-o fa-sm"></i> 相册</a></li>
-                    <li id="about"><a href="/about"><i class="fa fa-info fa-sm"></i> 关于</a></li>
-                    <div id="search" class="input-group" style="width: 200px; height: 34px;margin-top: 8px;">
-                        <input id="keywords" type="text" class="form-control" placeholder="输入关键字">
-                <span class="input-group-btn"><button id="searchBtn" class="btn btn-default" type="button"
-                                                      data-target="#myModal">搜索
-                    </button></span>
-
-                    </div>
-                </ul>
-                <!--<div class="navbar-form  navbar-right">
-                    <a href="#" class="navber-link">登录</a>
-                </div>-->
-            </div>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {{--<a class="navbar-brand" href="#">Brand</a>--}}
+                <a href="/">
+                    <img style="width:146px;height:40px; margin-top: 5px;" src="/img/logo.png" alt="博客logo"/>
+                </a>
         </div>
-    </nav>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul id="navbar-nav" class="nav navbar-nav">
+                <li id="home"><a href="/"><i class="fa fa-home fa-sm"></i>首页</a></li>
+                <li id="album"><a href="/album"><i class="fa fa-picture-o fa-sm"></i>相册</a></li>
+                <li id="about"><a href="/about"><i class="fa fa-info fa-sm"></i>关于</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- /input-group -->
+                <div id="search" class="navbar-left" style="padding-top: 8px;" role="search">
+                        <input id="keywords" type="text" style="" class="form-control" placeholder="输入关键字">
+                </div>
+                <li id="about"><a id="searchBtn" data-target="#myModal" href="javascript:(0);" target="_blank">搜索</a></li>
+                <li id="about"><a href="/login" target="_blank">登录</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<div class="container" style="min-height: 700px;margin: 70px auto 0 auto;">
     <div class="row">
-        <div id="pjax" class="col-lg-8">
+        <div id="pjax" class="col-lg-8 col-md-8">
             @yield('post')
         </div>
         <!--侧栏-->
-        <div class="col-lg-4 hidden-sm hidden-xs hidden-md">
+        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
             <!--联系-->
             <div class="panel panel-default" style="margin-top: 36px">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Contact</h3>
+                    <h3 class="panel-title">社交</h3>
                 </div>
                 <div class="panel-body contact">
                     {{--<span class="feed"><a href="/feed" title="订阅" target="_blank"><i class="fa fa-feed fa-3x"></i></a></span>--}}
@@ -88,57 +87,7 @@
                                     class="fa fa-github fa-3x"></i></a></span>
                 </div>
             </div>
-            <!--简介-->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">技能</h3>
-                </div>
-                <div class="panel-body" style="margin: 5px;">
-                    <div class="skillbar clearfix " data-percent="60%">
-                        <div class="skillbar-title" style="background: rgb(251, 128, 105);"><span>laravel</span></div>
-                        <div class="skillbar-bar" style="background: rgba(251, 128, 105, 0.66);margin-left: 99px"></div>
-                        <div class="skill-bar-percent">60%</div>
-                    </div> <!-- End Skill Bar -->
 
-                    <div class="skillbar clearfix " data-percent="30%">
-                        <div class="skillbar-title" style="background: rgb(49, 112, 143);"><span>PHP</span></div>
-                        <div class="skillbar-bar" style="background: rgba(49, 112, 143, 0.66);margin-left: 99px"></div>
-                        <div class="skill-bar-percent">30%</div>
-                    </div> <!-- End Skill Bar -->
-
-                    <div class="skillbar clearfix " data-percent="35%">
-                        <div class="skillbar-title" style="background: rgb(169, 68, 66);"><span>javascript</span></div>
-                        <div class="skillbar-bar" style="background: rgba(169, 68, 66, 0.66);margin-left: 99px"></div>
-                        <div class="skill-bar-percent">35%</div>
-                    </div> <!-- End Skill Bar -->
-
-                    <div class="skillbar clearfix " data-percent="65%">
-                        <div class="skillbar-title" style="background: rgb(120, 143, 55);"><span>extjs</span></div>
-                        <div class="skillbar-bar" style="background: rgba(120, 143, 55 , 0.66);margin-left: 99px"></div>
-                        <div class="skill-bar-percent">65%</div>
-                    </div> <!-- End Skill Bar -->
-
-
-                    <div class="skillbar clearfix " data-percent="15%">
-                        <div class="skillbar-title" style="background: rgb(51, 122, 183);"><span>ASP.NET</span></div>
-                        <div class="skillbar-bar" style="background: rgba(51, 122, 183, 0.66);margin-left: 99px"></div>
-                        <div class="skill-bar-percent">15%</div>
-                    </div> <!-- End Skill Bar -->
-
-                    <div class="skillbar clearfix " data-percent="22%">
-                        <div class="skillbar-title" style="background: rgb(76, 188, 246);"><span>jquery</span></div>
-                        <div class="skillbar-bar" style="background: rgba(76, 188, 246, 0.66);margin-left: 99px"></div>
-                        <div class="skill-bar-percent">22%</div>
-                    </div> <!-- End Skill Bar -->
-
-                    <div class="skillbar clearfix " data-percent="10%">
-                        <div class="skillbar-title" style="background: rgb(138, 109, 59);"><span>css</span></div>
-                        <div class="skillbar-bar" style="background: rgba(138, 109, 59, 0.66);margin-left: 99px"></div>
-                        <div class="skill-bar-percent">10%</div>
-                    </div> <!-- End Skill Bar -->
-
-                </div>
-            </div>
 
             <div class="well">更多精彩，敬请期待...</div>
 
@@ -146,15 +95,47 @@
     </div>
     <!-- 模态框（Modal） -->
 
-    <footer class="footer" style="text-align: center;    border-top: 2px solid #eee;">
-        <p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="梅渭甲个人博客">夜风</a> |
-            基于 <a style="color:rgb(251, 128, 105)" href='http://lumen.laravel.com' title="为速度而生的 Laravel 框架"
-                  target="_blank">lumen</a> |
-            <a target="_blank" href="/sitemap.xml">网站地图</a> |
-            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));</script> |
-            <a href="http://www.miitbeian.gov.cn/">湘ICP备15017914号</a> |
-            <a target="_blank" href="http://www.qiniu.com/" title="七牛"><img style="width:37px;height:27px"
-                                                                            src="/img/qiniu-55x41.png" alt="七牛"></a>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs footer-left">
+            <div class="footer-content">
+                <h4>微语</h4>
+                <a href="#" style="float: left">
+                    <img style="width:64px;height: 64px; margin-bottom: 10px;" src="/img/tx.png" alt="..." class="img-thumbnail">
+                </a>
+                <dl style="float: left;margin-top: 21px;margin-bottom: 0px;">
+                    <dd>夜风</dd>
+                    <dd>2015-12-31</dd>
+                </dl>
+                <div style="margin-left: 150px">
+                    人生最大的悲哀不是失去太多，而是计较太多，这也是导致一个人不快乐的重要原因。
+                </div>
+                <!--hr>
+                <a href="javascript:(0)"><i class="fa fa-thumbs-o-up fa-1x">赞</i></a>
+                <a href="javascript:(0)"><i id="comment_a" class="fa fa-comments-o fa-1x no_hide">评论</i></a-->
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7">
+            <div class="footer-content">
+                <h4>友情链接</h4>
+                <div class="f-links">
+                    <a>暂无</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <footer class="footer" style="text-align: center; /*border-top: 2px solid #eee;*/">
+        <p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="梅渭甲个人博客">夜风</a>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cspan class='tongji' id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));</script>
+            <a href="http://www.miitbeian.gov.cn/">湘ICP备15017914号</a>
+            <a target="_blank" href="http://www.qiniu.com/" title="七牛云存储"><img style="width:37px;height:27px"
+                                                                               src="/img/qiniu-55x41.png"
+                                                                               alt="七牛云存储"></a>
         </p>
     </footer>
 </div>

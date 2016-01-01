@@ -2,7 +2,6 @@
 @section('title')
     <?php echo '夜风 - 梅渭甲的个人博客'; ?>
 @stop
-
 @section('post')
     <?php
     $page = isset($_GET['page']) ? $_GET['page'] : 0;
@@ -26,39 +25,29 @@
             $content = strlen($content) > 100 ? mb_substr($content, 0, 100, 'UTF-8') . '...' : $content;
             $post_date = substr($post->created_at, 0, 10);
             $img_url = '//nzsnlf38y.qnssl.com' . $img_url;
-            echo "<li class='post' style='position:relative;'>
-                         <div class='short excerpt oh'>
-                            <div class='ohs'>
-
-                            <div class='hidden-xs  he_border2'  style='float:left;width:240px;height: 180px;margin-bottom: 20px;    line-height: 180px;text-align: center;'>
-                                <img src='{$img_url}' alt='缩略图' style='max-width: 100%;max-height: 100%;width: auto;height: auto;' />
-                                <div class='he_border2_caption'>
-                                    <!--p class='he_border2_caption_p'>{$post->post_title}</p-->
-                                    <a class='he_border2_caption_a' href='/post/{$post->id}.html'></a>
-                                </div>
-                            </div>
-                        <header>
-                        <a class='label label-important' href='javascript:(0)'>{$post->sort}<i class='label-arrow'></i></a>
-                            <h2 class='title'><a href='/post/{$post->id}.html' title='{$post->post_title}'>{$post->post_title}</a></h2>
-                        </header>
-                        <div class='posted'>
+            echo "<ul class='media-list'>
+                    <li class='media'>
+                        <div class='hidden-xs' style='float:left;width:240px;height: 180px;margin-bottom: 20px;    line-height: 180px;text-align: center;'>
+                            <a class='he_border2_caption_a' href='/post/{$post->id}.html'>
+                                <img class='img-thumbnail' src='{$img_url}' alt='缩略图' style='max-width: 100%;max-height: 100%;width: auto;height: auto;' />
+                            </a>
+                        </div>
+                        <div class='media-body'>
+                            <h3 class='media-heading'><span class='label label-primary'>{$post->sort}</span><a href='/post/{$post->id}.html' title='{$post->post_title}'>{$post->post_title}</a></h3>
+                            <p>
                             <span class='date_time'><i class='fa fa-clock-o fa-1'></i> {$post_date}</span>
 										<span>
-											<a href='about' target='_blank'><i class='fa fa-user fa-1'></i> admin</a>
+										<i class='fa fa-user fa-1'></i> 夜风
 										</span>
 										<!--<span>
 											<a href='/post/{$post->id}.html#comments' class='comment-link' title='{$post->post_title}'><i class='fa fa-comment-o fa-1'></i><span class='ds-thread-count' data-thread-key='$post->id' data-count-type='comments'></span></a>
 										</span>-->
+							</p>
+                            <p>{$content}</p>
                         </div>
-
-                        <p class='fl'>
-                        {$content}
-                        </p>
-                        </div>
-                </div>
-                <a class='read-more label label-important' href='/post/{$post->id}.html'>阅读全文</a>
-
-            </li>";sadf
+                    </li>
+                    <a class='read-more label label-important' href='/post/{$post->id}.html'>更多..</a>
+                  </ul>";
         }
         ?>
 
