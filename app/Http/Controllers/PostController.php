@@ -72,7 +72,7 @@ class PostController extends Controller
 		$post_data['post_title'] = $input['post_title'];
 		$post_data['post_content'] = $input['post_content'];
 		$post_data['post_author'] = $input['post_author'];
-		$post_data['sort_id'] = $input['sort_id'];
+		$post_data['sort'] = $input['sort'];
 		$post_data['post_keywords'] = $input['post_keywords'];
 		$post_data['post_description'] = $input['post_description'];
 //		$post_data['comment_status'] = $input['can_comment'];

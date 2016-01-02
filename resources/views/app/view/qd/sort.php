@@ -15,7 +15,7 @@
 Ext.create('Ext.data.Store',
     {
         storeId: 'sortStore',
-        fields: ['id', 'name','post_count'],
+        fields: ['id', 'name','alias','post_count'],
         proxy: {
             url: 'admin/sort-list',
             type: 'ajax',
@@ -118,7 +118,6 @@ Ext.define('MyApp.view.qd.sort',
                 reference:'gridpanel',
                 bodyStyle: 'background-color:#F5F5F5',
                 enableColumnHide: false,
-                forceFit: false,
                 sortableColumns: true,
                 store: Ext.data.StoreManager.lookup('sortStore'),
                 region: 'center',
@@ -142,21 +141,28 @@ Ext.define('MyApp.view.qd.sort',
                     {
                         xtype: 'gridcolumn',
                         flex: 2,
-                        minWidth: 200,
+                        minWidth: 100,
                         dataIndex: 'name',
                         text: '栏目名称'
                     },
                     {
                         xtype: 'gridcolumn',
+                        flex: 2,
+                        minWidth: 100,
+                        dataIndex: 'alias',
+                        text: '栏目别名'
+                    },
+                    {
+                        xtype: 'gridcolumn',
                         flex: 1,
-                        minWidth: 200,
+                        minWidth: 100,
                         dataIndex: 'post_count',
                         text: '文章数'
                     },
                     {
                         xtype: 'gridcolumn',
                         flex: 1,
-                        minWidth: 200,
+                        minWidth: 100,
                         dataIndex: 'password',
                         text: '栏目密码'
                     },
@@ -274,6 +280,14 @@ Ext.define('MyApp.view.qd.sort_edit',
                         name: 'name',
                         width: '99%',
                         fieldLabel: '栏目名称',
+                        colspan: 3
+                    },
+                    {
+                        xtype: 'textfield',
+                        reference:'alias',
+                        name: 'alias',
+                        width: '99%',
+                        fieldLabel: '栏目别名',
                         colspan: 3
                     },
                     {

@@ -14,7 +14,7 @@
     </div>
     <ul class="posts singlepost">
         <?php
-        foreach ($posts as $post) {
+        foreach ($data['posts'] as $post) {
             $img_url = getImgs($post->post_content, 0);
             $web_url = getcwd();
             $img_def_url = '/img/thumbnail/' . rand(1, 5) . '.png';
@@ -39,9 +39,6 @@
 										<span>
 										<i class='fa fa-user fa-1'></i> 夜风
 										</span>
-										<!--<span>
-											<a href='/post/{$post->id}.html#comments' class='comment-link' title='{$post->post_title}'><i class='fa fa-comment-o fa-1'></i><span class='ds-thread-count' data-thread-key='$post->id' data-count-type='comments'></span></a>
-										</span>-->
 							</p>
                             <p>{$content}</p>
                         </div>
@@ -53,7 +50,44 @@
 
     </ul>
     <nav class="pjax" style="text-align: center">
-        <?php echo $posts->render();  ?>
+        <?php echo $data['posts']->render();  ?>
     </nav>
     <script>setNavActive('home');</script>
+@stop
+@section('sort')
+    @foreach ($data['sorts'] as $sort)
+        <div class="category">
+            <a href="/category/{{$sort['alias']}}">{{$sort['name']}}</a>
+        </div>
+    @endforeach
+@stop
+
+@section('footer')
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs footer-left">
+                <div class="footer-content">
+                    <h4>微语</h4>
+                    <a href="#" style="float: left">
+                        <img style="width:64px;height: 64px; margin-bottom: 10px;" src="/img/tx.png" alt="..." class="img-thumbnail">
+                    </a>
+                    <dl style="float: left;margin-top: 21px;margin-bottom: 0px;">
+                        <dd>夜风</dd>
+                        <dd>2015-12-31</dd>
+                    </dl>
+                    <div style="margin-left: 150px">
+                        人生最大的悲哀不是失去太多，而是计较太多，这也是导致一个人不快乐的重要原因。
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <div class="footer-content">
+                    <h4>友情链接</h4>
+                    <div class="f-links">
+                        <a>暂无</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop

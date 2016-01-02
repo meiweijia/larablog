@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="/css/nprogress.css">
     <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
-    <!--<link rel="stylesheet" href="css/style.css" />-->
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script>
@@ -55,7 +54,6 @@
                         <input id="keywords" type="text" style="" class="form-control" placeholder="输入关键字">
                 </div>
                 <li id="about"><a id="searchBtn" data-target="#myModal" href="javascript:(0);" target="_blank">搜索</a></li>
-                <li id="about"><a href="/login" target="_blank">登录</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -88,60 +86,39 @@
                 </div>
             </div>
 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">分类</h3>
+                </div>
+                <div class="panel-body contact">
+                    @include('component.sort')
+                </div>
+            </div>
 
             <div class="well">更多精彩，敬请期待...</div>
 
         </div>
     </div>
     <!-- 模态框（Modal） -->
-
-
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-5 hidden-xs footer-left">
-            <div class="footer-content">
-                <h4>微语</h4>
-                <a href="#" style="float: left">
-                    <img style="width:64px;height: 64px; margin-bottom: 10px;" src="/img/tx.png" alt="..." class="img-thumbnail">
-                </a>
-                <dl style="float: left;margin-top: 21px;margin-bottom: 0px;">
-                    <dd>夜风</dd>
-                    <dd>2015-12-31</dd>
-                </dl>
-                <div style="margin-left: 150px">
-                    人生最大的悲哀不是失去太多，而是计较太多，这也是导致一个人不快乐的重要原因。
-                </div>
-                <!--hr>
-                <a href="javascript:(0)"><i class="fa fa-thumbs-o-up fa-1x">赞</i></a>
-                <a href="javascript:(0)"><i id="comment_a" class="fa fa-comments-o fa-1x no_hide">评论</i></a-->
-            </div>
-        </div>
-        <div class="col-lg-7 col-md-7 col-sm-7">
-            <div class="footer-content">
-                <h4>友情链接</h4>
-                <div class="f-links">
-                    <a>暂无</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
+
+@yield('footer')
+
+{{--<div class="container">--}}
     <footer class="footer" style="text-align: center; /*border-top: 2px solid #eee;*/">
-        <p>&copy; 2014-<?php echo date('Y');?> <a style="color:#45BCF9" href='/' title="梅渭甲个人博客">夜风</a>
+        <p>
+            &copy; 2014-<?php echo date('Y');?> <a href='/' title="梅渭甲个人博客">夜风</a>
             <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
                 document.write(unescape("%3Cspan class='tongji' id='cnzz_stat_icon_1254960549'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254960549' type='text/javascript'%3E%3C/script%3E"));</script>
-            <a href="http://www.miitbeian.gov.cn/">湘ICP备15017914号</a>
+            湘ICP备15017914号
             <a target="_blank" href="http://www.qiniu.com/" title="七牛云存储"><img style="width:37px;height:27px"
                                                                                src="/img/qiniu-55x41.png"
                                                                                alt="七牛云存储"></a>
         </p>
     </footer>
-</div>
+{{--</div>--}}
 <button id="alert" style="display: none" class="btn btn-primary btn-lg" data-toggle="modal"
         data-target="#myModal">
-    开始演示模态框
 </button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -173,35 +150,5 @@
 <script type="text/javascript" src="/js/qqFace.js"></script>
 <script type='text/javascript' src='/js/pjax.js'></script>
 <script type='text/javascript' src='/js/mei.js'></script>
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    $("#searchBtn").click(function () {
-        var keywords = $("#keywords").val();
-        if (keywords == '') {
-            $("#alert").trigger("click")
-        } else {
-            window.location.href = '/s=' + keywords;
-        }
-    });
-    $(function () {
-        $('#search').keydown(function (event) {
-            if (event.keyCode == 13) {
-                $("#searchBtn").trigger("click")
-            }
-        });
-    });
-    var duoshuoQuery = {short_name: "meiweijia"};
-    (function () {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';
-        ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
-
 </body>
 </html>

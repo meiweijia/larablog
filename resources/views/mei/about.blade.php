@@ -102,7 +102,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;待添加功能：更新文章、删除文章、文章分类、菜单动态生成、图片展示功能等。。
 	</p>
 	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:#45B6F7" href="https://github.com/kubill/lumen" target="_blank" title="源码在这">源码在这</a> 欢迎指正错误和贡献代码。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:#45B6F7" href="http://git.oschina.net/kubill/lumen" target="_blank" title="源码在这">源码在这</a> 欢迎指正错误和贡献代码。<br/>
 	</p>
 	<br>
 	<br>

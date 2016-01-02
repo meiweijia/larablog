@@ -276,10 +276,10 @@ Ext.define('MyApp.view.qd.edit',
                     {
                         xtype: 'combobox',
                         displayField:'name',
-                        valueField:'id',
+                        valueField:'alias',
                         itemId: 'sort_id',
                         reference:'sort_id',
-                        name: 'sort_id',
+                        name: 'sort',
                         fieldLabel: '栏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目'
                     },
                     {

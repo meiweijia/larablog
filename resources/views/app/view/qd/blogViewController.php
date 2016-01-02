@@ -24,6 +24,7 @@ Ext.define('MyApp.view.qd.blogViewController', {
                     {name: 'id', type: 'string'},
                     {name: 'post_title', type: 'string'},
                     {name: 'created_at', type: 'string'},
+                    {name: 'sort_name', type: 'string'},
                     {name: 'post_content', type: 'string'},
                     {name: 'post_author', type: 'string'},
                     {name: 'post_column', type: 'string'},

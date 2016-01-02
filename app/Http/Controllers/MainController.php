@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Sort;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cache;
@@ -44,14 +45,16 @@ class MainController extends Controller
 
     public function GetIndex(Request $request)
     {
-        $post_obj = new Post();
-        $post = $post_obj->GetListPost();
-        $postArr = $post->toArray();
+        $postSrv = new Post();
+        $sortSrv = new Sort();
+        $data['posts'] = $postSrv->GetListPost();
+        $data['sorts'] = $sortSrv->get_sort();
+        $postArr = $data['posts']->toArray();
         if(count($postArr['data'])== 0)
         {
             abort(404);
         }
-        return view('mei.index')->with('posts', $post);
+        return view('mei.index')->with('data', $data);
     }
 
     public function GetListPost()

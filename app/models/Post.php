@@ -20,12 +20,12 @@ class Post extends Model
     {
         $sortSrv = new Sort();
         $post = $this
-            ->select('post_title', 'id', 'post_content','sort_id', 'created_at', 'post_keywords', 'post_description')
+            ->select('post_title', 'id', 'post_content','sort', 'created_at', 'post_keywords', 'post_description')
             ->find($id);
         if (!$post) {
             return null;
         }
-        $post->sort = $sortSrv->get_sort_name($post->sort_id);
+        $post->sort = $sortSrv->get_sort_name($post->sort);
         $post->post_keywords = $post->post_keywords == '' ? $post->post_title : $post->post_keywords;
         $content = mb_ereg_replace(' ', "\n", (strip_tags($post->post_content)));
         $content = strlen($content) > 30 ? mb_substr($content, 0, 30, 'UTF-8') . '...' : $content;
@@ -35,6 +35,25 @@ class Post extends Model
         }
         Cache::put('post' . $id, $post, 30);
         return $post;
+    }
+
+    function getPostBySort($input)
+    {
+        $sortSrv = new Sort();
+        $agent = new Agent();
+        $sort = $sortSrv->where('alias',$input)->get()->toArray();
+        if(!isset($sort[0])){return null;}
+        $res = $this->whereRaw('post_status = 1 AND post_type = "post"')
+            ->where('sort',$input)
+            ->select('id', 'post_title', 'post_content','sort', 'created_at')
+            ->orderBy('created_at', 'desc');
+        $res = $agent->isPhone() ? $res->simplePaginate(5) : $res->paginate(5);
+        foreach($res as $k=>$v)
+        {
+            $sortName=$sortSrv->get_sort_name($v->sort);
+            $res[$k]->sort = $sortName==''?'默认分类':$sortName;
+        }
+        return $res;
     }
 
     function GetListPost($input = '')
@@ -47,12 +66,12 @@ class Post extends Model
                 ->orWhere('post_content', 'like', '%' . $input . '%');
         }
         $res = $res->whereRaw('post_status = 1 AND post_type = "post"')
-            ->select('id', 'post_title', 'post_content','sort_id', 'created_at')
+            ->select('id', 'post_title', 'post_content','sort', 'created_at')
             ->orderBy('created_at', 'desc');
         $res = $agent->isPhone() ? $res->simplePaginate(5) : $res->paginate(5);
         foreach($res as $k=>$v)
         {
-            $sortName=$sortSrv->get_sort_name($v->sort_id);
+            $sortName=$sortSrv->get_sort_name($v->sort);
             $res[$k]->sort = $sortName==''?'默认分类':$sortName;
         }
         $res->words = $input;

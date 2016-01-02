@@ -72,9 +72,16 @@ class Sort extends Model
         return $result;
     }
 
-    function get_sort_name($id)
+    function get_sort_name($alias)
     {
-        $res = $this->where('id',$id)->get()->toArray();
+        $res = $this->where('alias',$alias)->get()->toArray();
         return isset($res[0])?$res[0]['name']:'';
+    }
+
+    function get_sort()
+    {
+        $res = $this->select('id','name','alias')
+            ->get()->toArray();
+        return $res;
     }
 }

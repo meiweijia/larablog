@@ -19,6 +19,7 @@ $app->get("/talk",'MainController@GetTalk');
 $app->get("/sitemap.xml",'MainController@GetSiteMap');
 
 $app->get("/post/{id}.html",'PostController@getpost');
+$app->get("/category/{alias}",'SortController@getPostBySort');
 $app->get("/comment/{pid}",'CommentController@getComment');
 
 
