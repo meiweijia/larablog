@@ -2,6 +2,12 @@
 @section('title')
 <?php echo '关于 - 梅渭甲的个人博客'; ?>
 @stop
+@section('keywords')
+<meta name="keywords" content="梅渭甲,关于,夜风">
+@stop
+@section('description')
+<meta name="description" content="一个关于梅渭甲的博客，主要内容包括：梅氏相关信息，日常记录，开发笔记，以及本博客开发过程。">
+@stop
 @section('post')
 	<?php echo "<script>document.title= '关于 - 梅渭甲的个人博客';</script>";?>
 	<br>

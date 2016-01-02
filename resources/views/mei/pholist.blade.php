@@ -1,5 +1,4 @@
 @extends('mei.main')
-
 @section('post')
     <?php $album_name = ($result['album']->name);?>
     <?php echo "<script>document.title= '{$album_name} - 梅渭甲的个人博客';</script>";?>

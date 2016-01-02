@@ -16,18 +16,15 @@ class PostController extends Controller
     */
 	public function getpost($id)
 	{
-//		if (Cache::has('post' . $id)) {
-//			$post = Cache::get('post' . $id);
-//		} else {
-//			$post_obj = new Post();
-//			$post = $post_obj->getpost($id);
-//		}
-		$post_obj = new Post();
-		$post = $post_obj->getpost($id);
+		if (Cache::has('post' . $id)) {
+			$post = Cache::get('post' . $id);
+		} else {
+			$post_obj = new Post();
+			$post = $post_obj->getpost($id);
+		}
 		if($post)
 		{
-			$commentSrv = new Comment();
-			$post->comment = $this->getComment(0);
+			//$post->comment = $this->getComment(0);
 			return view('mei.post')->with('post', $post);
 		}else{
 			return  abort(404);

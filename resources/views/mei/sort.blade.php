@@ -2,6 +2,12 @@
 @section('title')
         <?php echo '夜风 - 梅渭甲的个人博客'; ?>
 @stop
+@section('keywords')
+    <meta name="keywords" content="{{$data['alias']}}">
+@stop
+@section('description')
+    <meta name="description" content="一个关于梅渭甲的博客，内容包含：laravel、extjs使用心得、问题，日常记录，开发笔记，以及本博客开发过程。">
+@stop
 @section('post')
         <?php
         $page = isset($_GET['page']) ? $_GET['page'] : 0;

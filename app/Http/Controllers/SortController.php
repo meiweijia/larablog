@@ -15,6 +15,7 @@ class SortController extends Controller
         $input = $request->all();
         $sort_data['id'] = $input['id'];
         $sort_data['name'] = $input['name'];
+        $sort_data['alias'] = $input['alias'];
         $sort_data['password'] = $input['password'];
         $sortSrv = new Sort();
         $res['success'] = $sortSrv->update_sort($sort_data);

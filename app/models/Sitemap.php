@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use App\Models\Album;
+use App\Models\Sort;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
@@ -54,6 +55,16 @@ class SiteMap
             $xml[] = '    <priority>1</priority>';
             $xml[] = '  </url>';
         }
+        //分类
+        $sortSrv = new Sort();
+        $sorts = $sortSrv->get_sort();
+        foreach ($sorts as $k => $v) {
+            $xml[] = '  <url>';
+            $xml[] = "    <loc>{$url}category/{$sorts[$k]['alias']}</loc>";
+            $xml[] = "    <lastmod>$lastmod</lastmod>";
+            $xml[] = '    <priority>0.8</priority>';
+            $xml[] = "  </url>";
+        }
         //相册
         $xml[] = '  <url>';
         $xml[] = "    <loc>{$url}album</loc>";
@@ -69,18 +80,18 @@ class SiteMap
         $xml[] = '    <priority>0.8</priority>';
         $xml[] = '  </url>';
         //文章
-        foreach ($postsInfo as $slug => $lastmod) {
+        foreach ($postsInfo as $k => $v) {
             $xml[] = '  <url>';
-            $xml[] = "    <loc>{$url}post/$slug.html</loc>";
+            $xml[] = "    <loc>{$url}post/$k.html</loc>";
             $xml[] = "    <lastmod>$lastmod</lastmod>";
-            $xml[] = '    <priority>0.6</priority>';
+            $xml[] = '    <priority>0.9</priority>';
             $xml[] = "  </url>";
         }
         //相册列表
         $albumsInfo = $this->getAlbumsInfo();
-        foreach ($albumsInfo as $slug => $lastmod) {
+        foreach ($albumsInfo as $k => $v) {
             $xml[] = '  <url>';
-            $xml[] = "    <loc>{$url}album/$slug</loc>";
+            $xml[] = "    <loc>{$url}album/$k</loc>";
             $xml[] = "    <lastmod>$lastmod</lastmod>";
             $xml[] = '    <priority>0.6</priority>';
             $xml[] = "  </url>";

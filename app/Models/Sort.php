@@ -31,7 +31,7 @@ class Sort extends Model
 
     function get_sort_combobox($input = array()){
         $res['data'] = $this
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'acs')
             ->get()->toArray();
         return $res;
     }

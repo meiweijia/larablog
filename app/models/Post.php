@@ -25,7 +25,7 @@ class Post extends Model
         if (!$post) {
             return null;
         }
-        $post->sort = $sortSrv->get_sort_name($post->sort);
+        $post->sort_name = $sortSrv->get_sort_name($post->sort);
         $post->post_keywords = $post->post_keywords == '' ? $post->post_title : $post->post_keywords;
         $content = mb_ereg_replace(' ', "\n", (strip_tags($post->post_content)));
         $content = strlen($content) > 30 ? mb_substr($content, 0, 30, 'UTF-8') . '...' : $content;
