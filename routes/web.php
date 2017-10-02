@@ -14,9 +14,25 @@
 /*
  * 主页
  */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','MainController@index');
+
+Route::get('/page/{page?}','MainController@index');
+/*
+ * 关于
+ */
+Route::get('/about.html','MainController@about');
+
+/*
+ * 工作
+ */
+Route::get('/work.html','MainController@work');
+
+/*
+ * 联系
+ */
+Route::get('/contact.html','MainController@contact');
+
+Route::get('qianyi','MainController@qianyi');
 
 /*
  * 后台
@@ -30,6 +46,7 @@ Route::middleware(['auth',])->prefix('admin')->group(function () {
         // 使用 first 和 second 中间件
     });
 });
+
 /*
  * 文章
  */

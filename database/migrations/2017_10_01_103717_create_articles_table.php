@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->string('keywords')->nullable();//关键词seo
             $table->string('description')->nullable();//描述seo
             $table->text('content');//内容
-            $table->text('content_nohtml');//内容（不包含HTML）
+            $table->text('content_nohtml')->nullable();//内容（不包含HTML）
             $table->integer('status')->default(1);//状态
             $table->integer('comment_status')->default(1);//评论状态
             $table->integer('comment_count')->default(0);//评论数
