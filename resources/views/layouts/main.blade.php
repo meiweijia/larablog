@@ -9,14 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- SEO -->
-    <meta name="description" content="150 words">
+    <meta name="description" content="梅渭甲的个人博客">
     <meta name="author" content="uipasta">
-    <meta name="url" content="http://www.yourdomainname.com">
-    <meta name="copyright" content="company name">
+    <meta name="url" content="http://www.meibk.com">
+    <meta name="copyright" content="riyi">
     <meta name="robots" content="index,follow">
 
 
-    <title>DevBlog - Personal Blog Template</title>
+    <title>梅渭甲的博客</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/images/favicon/favicon.ico">
