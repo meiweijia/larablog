@@ -6,7 +6,7 @@
     @foreach($articles as $article)
         <article class="am-g blog-entry-article">
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="assets/i/f10.jpg" alt="" class="am-u-sm-12">
+                <img src="/assets/i/f10.jpg" alt="" class="am-u-sm-12">
             </div>
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span><a href="" class="blog-color">分类 &nbsp;</a></span>
@@ -17,10 +17,5 @@
             </div>
         </article>
     @endforeach
-    {{--{!! preg_replace("~(/page/\d+)?\?page=~", '/page/', $articles->links()) !!}--}}
-
-    <ul class="am-pagination">
-        <li class="am-pagination-prev"><a href="">&laquo; Prev</a></li>
-        <li class="am-pagination-next"><a href="">Next &raquo;</a></li>
-    </ul>
+    {!! preg_replace("~(/page/\d+)?\?page=~", '/page/', $articles->links()) !!}
 @endsection
