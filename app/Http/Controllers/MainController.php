@@ -12,22 +12,22 @@ class MainController extends Controller
         $request->merge(['page' => $page]);
         $articles = $articles->select('id','title', 'author','keywords','description','content_nohtml','categories','created_at')
             ->orderBy('created_at','desc')
-            ->simplePaginate(4);
+            ->simplePaginate(5);
         if(count($articles)<1)
             abort(404);
-        return view('layouts.index',compact('articles'));
+        return view('am.index',compact('articles'));
     }
 
     public function about(){
-        return view('layouts.about');
+        return view('am.about');
     }
 
     public function work(){
-        return view('layouts.work');
+        return view('am.work');
     }
 
     public function contact(){
-        return view('layouts.contact');
+        return view('am.contact');
     }
 
     public function qianyi(){
