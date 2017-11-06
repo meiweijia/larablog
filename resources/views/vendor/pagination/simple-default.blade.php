@@ -3,9 +3,10 @@
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="am-pagination-prev am-disabled"><span>@lang('pagination.previous')</span></li>
+        @elseif($paginator->currentPage()==2)
+            <li class="am-pagination-prev"><a href="/" rel="prev">@lang('pagination.previous')</a></li>
         @else
-            <li class="am-pagination-prev"><a href="{{ $paginator->previousPageUrl() }}"
-                   rel="prev">@lang('pagination.previous')</a></li>
+            <li class="am-pagination-prev"><a href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a></li>
         @endif
 
         {{-- Next Page Link --}}
