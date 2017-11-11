@@ -98,7 +98,7 @@
                 <a href="tencent://message/?Menu=yes&uin=542395819" target="_blank"><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
                 <a href="http://github.com/kubill" target="_blank"><span class="am-icon-github am-icon-fw blog-icon"></span></a>
                 <a href="http://weibo.com/mayh12" target="_blank"><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
-                <a class="weixin" href="javascript:;"><span class="am-icon-weixin am-icon-fw blog-icon"></span><img class="qrcode" src="/images/mmqrcode1510376596087.png" alt="微信二维码"></a>
+                <a class="weixin" href="javascript:;"><span class="am-icon-weixin am-icon-fw blog-icon"></span><img class="qrcode" src="{{env('CDN_URL')}}/images/mmqrcode1510376596087.png" alt="微信二维码"></a>
             </p>
         </div>
         <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">

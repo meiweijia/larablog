@@ -31,7 +31,7 @@
     <hr>
     <div class="am-g blog-author blog-article-margin">
         <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
-            <img src="assets/i/f15.jpg" alt="" class="blog-author-img am-circle">
+            <img src="{{env('CDN_URL')}}/assets/i/f15.jpg" alt="" class="blog-author-img am-circle">
         </div>
         <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
             <h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">路人甲</span></h3>
