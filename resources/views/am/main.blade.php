@@ -66,7 +66,7 @@
 
     <div class="am-collapse am-topbar-collapse" id="blog-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav">
-            <li class="am-active"><a href="/">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li><a href="/img.html">图片库</a></li>
             <li><a href="/about.html">关于</a></li>
         </ul>
