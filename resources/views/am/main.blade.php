@@ -21,6 +21,33 @@
     <link rel="stylesheet" href="/assets/css/amazeui.min.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     @yield('style')
+    <style>
+        a.weixin {
+            position: relative;
+        }
+        .weixin img {
+            position: absolute;
+            z-index: 99;
+            top: 2.6rem;
+            right: -3rem;
+            width: 10rem;
+            max-width: none;
+            height: 10rem;
+            transform: scale(0);
+            transform-origin: top right;
+            opacity: 0;
+            border: .125rem solid #0085ba;
+            border-radius: .25rem;
+            -webkit-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+
+        }
+        .weixin:hover img {
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body id="blog">
@@ -68,11 +95,10 @@
         <div class="blog-sidebar-widget blog-bor">
             <h2 class="blog-text-center blog-title"><span>Contact ME</span></h2>
             <p>
-                <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
-                <a href=""><span class="am-icon-github am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-reddit am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-weixin am-icon-fw blog-icon"></span></a>
+                <a href="tencent://message/?Menu=yes&uin=542395819" target="_blank"><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
+                <a href="http://github.com/kubill" target="_blank"><span class="am-icon-github am-icon-fw blog-icon"></span></a>
+                <a href="http://weibo.com/mayh12" target="_blank"><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
+                <a class="weixin" href="javascript:;"><span class="am-icon-weixin am-icon-fw blog-icon"></span><img class="qrcode" src="/images/mmqrcode1510376596087.png" alt="微信二维码"></a>
             </p>
         </div>
         <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
@@ -101,18 +127,20 @@
 <footer class="blog-footer">
     <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-footer-padding">
         <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
-            <h3>模板简介</h3>
+            <h3>本站简介</h3>
             <p class="am-text-sm">使用laravel构建后台，amazeUI构建前端。</p>
+            <p class="am-text-sm">技术记录</p>
+            <p class="am-text-sm">备忘</p>
         </div>
         <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
-            <h3>社交账号</h3>
-            <p>
-                <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon blog-icon"></span></a>
-                <a href=""><span class="am-icon-github am-icon-fw blog-icon blog-icon"></span></a>
-                <a href=""><span class="am-icon-weibo am-icon-fw blog-icon blog-icon"></span></a>
-                <a href=""><span class="am-icon-reddit am-icon-fw blog-icon blog-icon"></span></a>
-                <a href=""><span class="am-icon-weixin am-icon-fw blog-icon blog-icon"></span></a>
-            </p>
+            {{--<h3>社交账号</h3>--}}
+            {{--<p>--}}
+                {{--<a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-github am-icon-fw blog-icon blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-weibo am-icon-fw blog-icon blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-reddit am-icon-fw blog-icon blog-icon"></span></a>--}}
+                {{--<a href=""><span class="am-icon-weixin am-icon-fw blog-icon blog-icon"></span></a>--}}
+            {{--</p>--}}
             <h3>Credits</h3>
             <p>Anyone who has never made a mistake has never tried anything new.</p>
         </div>
