@@ -34,18 +34,18 @@ Route::get('/contact.html','MainController@contact');
 
 Route::get('qianyi','MainController@qianyi');
 
-/*
- * 后台
- */
-Route::middleware(['auth',])->prefix('admin')->group(function () {
-    Route::get('/', function () {
-        // 使用 first 和 second 中间件
-    });
-
-    Route::get('user/profile', function () {
-        // 使用 first 和 second 中间件
-    });
-});
+///*
+// * 后台
+// */
+//Route::middleware(['auth',])->prefix('admin')->group(function () {
+//    Route::get('/', function () {
+//        // 使用 first 和 second 中间件
+//    });
+//
+//    Route::get('user/profile', function () {
+//        // 使用 first 和 second 中间件
+//    });
+//});
 
 /*
  * 文章
