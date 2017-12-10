@@ -6,7 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
-class ArticlesController extends Controller
+class ArticleController extends Controller
 {
     function __construct(){
         $this->middleware('auth')

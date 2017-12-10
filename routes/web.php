@@ -50,7 +50,7 @@ Route::get('qianyi','MainController@qianyi');
 /*
  * 文章
  */
-Route::resource('article', 'ArticlesController');
+Route::resource('article', 'ArticleController',['only'=>['index','show']]);
 
 Auth::routes();
 
