@@ -98,6 +98,15 @@ class ArticleController extends Controller
 
             $form->markdown('content','内容');
 
+//            $form->select('categories','分类')->options(function ($id) {
+//                $user = Article::find($id);
+//
+//                if ($user) {
+//                    return [$user->id => $user->title];
+//                }
+//            })->ajax('/admin/api/users');//todo 获取分类
+
+
             $form->switch('status', '发布?');
             $form->display('updated_at', '最后更新');
         });
