@@ -14,7 +14,7 @@
         </div>
         <div class="am-article-bd">
             @php
-                echo $article->content;
+                echo Parsedown::instance()->text($article->content);
             @endphp
         </div>
     </article>

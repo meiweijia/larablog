@@ -18,4 +18,9 @@
  *
  */
 
-Encore\Admin\Form::forget(['map', 'editor']);
+use App\Admin\Extensions\Form\MarkdownEditor;
+use Encore\Admin\Form;
+
+Encore\Admin\Form::forget(['map','editor']);
+
+Form::extend('markdown', MarkdownEditor::class);

@@ -9,6 +9,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
+use App\Admin\Extensions\Form\MarkdownEditor;
 
 class ArticleController extends Controller
 {
@@ -22,8 +23,8 @@ class ArticleController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('文章');
+            $content->description('列表');
 
             $content->body($this->grid());
         });
@@ -39,8 +40,8 @@ class ArticleController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('文章');
+            $content->description('编辑');
 
             $content->body($this->form()->edit($id));
         });
@@ -55,8 +56,8 @@ class ArticleController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('文章');
+            $content->description('创建');
 
             $content->body($this->form());
         });
@@ -71,10 +72,11 @@ class ArticleController extends Controller
     {
         return Admin::grid(Article::class, function (Grid $grid) {
 
+            $grid->model()->orderBy('id', 'desc');
             $grid->id('ID')->sortable();
-
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->title('标题');
+            $grid->author('作者');
+            $grid->created_at('发布时间');
         });
     }
 
@@ -88,9 +90,16 @@ class ArticleController extends Controller
         return Admin::form(Article::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('title','标题');
+            $form->text('author','作者')->default('admin');
+            $form->text('excerpt','摘要');
+            $form->text('keywords','关键字');//seo
+            $form->text('description','描述');//seo
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->markdown('content','内容');
+
+            $form->switch('status', '发布?');
+            $form->display('updated_at', '最后更新');
         });
     }
 }
