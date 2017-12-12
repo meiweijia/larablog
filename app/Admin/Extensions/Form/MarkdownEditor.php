@@ -12,12 +12,12 @@ use Encore\Admin\Form\Field;
 
 class MarkdownEditor extends Field
 {
-    protected $view = 'admin::form.editor';
+    protected $view = 'admin.form.markdown';
     protected static $css = [
         '/css/bootstrap-markdown.min.css',
     ];
     protected static $js = [
-        '//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js',
+//        '//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js',
         '//cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js',
         '/js/bootstrap-markdown.js',
         '/js/bootstrap-markdown.zh.js',

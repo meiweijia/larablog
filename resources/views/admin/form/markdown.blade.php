@@ -6,7 +6,7 @@
 
         @include('admin::form.error')
 
-        <textarea id="{{$id}}" name="{{$name}}"  rows="{{ $rows }}" placeholder="{{ $placeholder }}" {!! $attributes !!} >{{ old($column, $value) }} </textarea>
+        <textarea id="{{$id}}" name="{{$name}}" data-provide="markdown" placeholder="{{ $placeholder }}" rows="{{ $rows }}" {!! $attributes !!} >{{ old($column, $value) }} </textarea>
 
         @include('admin::form.help-block')
 
