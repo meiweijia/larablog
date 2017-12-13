@@ -3,13 +3,14 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\Tag;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
-use App\Admin\Extensions\Form\MarkdownEditor;
 
 class ArticleController extends Controller
 {
@@ -96,21 +97,12 @@ class ArticleController extends Controller
             $form->display('id', 'ID');
             $form->text('title', '标题');
             $form->text('author', '作者')->default('admin');
+            $form->select('category', '分类')->options(Category::where('parent_id', '>', 0)->pluck('title', 'id'));
+            $form->multipleSelect('tags', '标签')->options(Tag::all()->pluck('title', 'id'));
             $form->text('excerpt', '摘要');
-            $form->text('keywords', '关键字');//seo
-            $form->text('description', '描述');//seo
-
+//            $form->text('keywords', '关键字');//seo
+//            $form->text('description', '描述');//seo
             $form->markdown('content', '内容')->rows(30);
-
-//            $form->select('categories','分类')->options(function ($id) {
-//                $user = Article::find($id);
-//
-//                if ($user) {
-//                    return [$user->id => $user->title];
-//                }
-//            })->ajax('/admin/api/users');//todo 获取分类
-
-
             $form->switch('status', '发布?')->default(1);
             $form->display('updated_at', '最后更新');
         });
