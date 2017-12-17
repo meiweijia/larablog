@@ -1,29 +1,26 @@
 @extends('layouts.main')
 
-@section('title')
-    最新发布
-@endsection
-
 @section('content')
     @foreach($articles as $article)
-        <!-- Blog Post Start -->
-        <div class="col-md-12 blog-post">
-            <div class="post-title">
-                <a href="/article/{{$article['id']}}"><h1>{{$article['title']}}</h1></a>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3><a href="{{route('article.show',$article->id)}}">{{$article->title}}</a></h3>
+                <span>
+                    <i class="fa fa-user"></i> <a href="#">{{$article['author']}}</a>
+                    | <i class="fa fa-clock-o"></i> {{$article->created_at}}
+                </span>
             </div>
-            <div class="post-info">
-                <span>{{substr($article['created_at'],0,10)}} / by <a href="javascrip:(0)">路人甲</a></span>
+            <div class="panel-body">
+                    <div class="blog-post">
+                        <p class="blog-post-content">
+                            {{ $article->excerpt }}
+                        </p>
+                        <div class="text-right"><a class="btn btn-default" href="{{route('article.show',$article->id)}}">阅读全文>></a></div>
+                    </div>
             </div>
-            <p class="index_post">{{$article['content_nohtml']}}</p>
-            <a href="/article/{{$article['id']}}"
-               class="button button-style button-anim fa fa-long-arrow-right"><span>更多</span></a>
         </div>
-        <!-- Blog Post End -->
     @endforeach
-    {{--{{$articles->links()}}--}}
-    {!! preg_replace("~(/page/\d+)?\?page=~", '/page/', $articles->links()) !!}
-    {{--<div class="col-md-12 text-center">--}}
-        {{--<a href="javascript:void(0)" id="load-more-post" class="load-more-button">更多</a>--}}
-        {{--<div id="post-end-message"></div>--}}
-    {{--</div>--}}
+    <nav aria-label="Page navigation" class="text-right">
+        {!! preg_replace("~(/page/\d+)?\?page=~", '/page/', $articles->links()) !!}
+    </nav>
 @endsection

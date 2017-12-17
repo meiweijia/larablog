@@ -1,182 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ app()->getLocale() }}">
-
 <head>
-
-    <!-- Meta Tag -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- SEO -->
-    <meta name="description" content="梅渭甲的个人博客">
-    <meta name="author" content="uipasta">
-    <meta name="url" content="http://www.meibk.com">
-    <meta name="copyright" content="riyi">
-    <meta name="robots" content="index,follow">
-
-
-    <title>梅渭甲的博客</title>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="/images/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="/images/favicon/apple-touch-icon.png">
-
-    <!-- All CSS Plugins -->
-    <link rel="stylesheet" type="text/css" href="/css/plugin.css">
-
-    <!-- Main CSS Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-    <!-- Google Web Fonts  -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
-
-
-    <!-- HTML5 shiv and Respond.js support IE8 or Older for HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Meiweijia's Blog</title>
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body background="{{asset('images/wood.jpg')}}">
 
-
-<!-- Preloader Start -->
-<div class="preloader">
-    <div class="rounder"></div>
-</div>
-<!-- Preloader End -->
-
-
-<div id="main">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
-        <div class="row">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{route('root')}}">Meiweijia's blog</a>
+        </div>
+        @include('layouts.partials.nav')
+    </div>
+</nav>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            @yield('content')
+        </div>
 
-            <!-- About Me (Left Sidebar) Start -->
-            <div class="col-md-3">
-                <div class="about-fixed">
-
-                    <div class="my-pic">
-                        <img src="/images/pic/cat.jpg" alt="">
-                        {{--<a href="javascript:void(0)" class="collapsed" data-target="#menu" data-toggle="collapse"><i--}}
-                                    {{--class="icon-menu menu"></i></a>--}}
-                        {{--<div id="menu" class="collapse">--}}
-                            {{--<ul class="menu-link">--}}
-                                {{--<li><a href="about.html">About</a></li>--}}
-                                {{--<li><a href="work.html">Work</a></li>--}}
-                                {{--<li><a href="contact.html">Contact</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="text-center">
+                        <img style="width: 100px;" src="{{asset('images/avatar.jpg')}}"
+                             alt="Karan Singh Sisodia"
+                             title="Karan Singh Sisodia" class="img-circle img-thumbnail">
                     </div>
-
-
-                    <div class="my-detail">
-
-                        <div class="white-spacing">
-                            <h1>路人甲</h1>
-                            <span>a PHP Artisan.</span>
+                    <div class="user-info-block text-center">
+                        <div class="user-heading">
+                            <h3>梅渭甲</h3>
+                            <span class="help-block"><i class="fa fa-location-arrow"></i> ShenZhen</span>
                         </div>
-
-                        <ul class="social-icon">
-                            <li><a href="mailto:meiweijia@gmail.com" class="github"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
-                            <li><a href="https://tiwtter.com/meiweijia" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="http://weibo.com/mayh12" target="_blank" class="weibo"><i class="fa fa-weibo"></i></a></li>
-                            <li><a href="https://github.com/kubill" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
+                        <ul class="navigation">
+                            <li class="active">
+                                <a data-toggle="tab" href="#information">
+                                    <i class="fa fa-id-card-o"></i>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#settings">
+                                    <i class="fa fa-weixin" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#email">
+                                    <i class="fa fa-envelope-o"></i>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#events">
+                                    <i class="fa fa-git" aria-hidden="true"></i>
+                                </a>
+                            </li>
                         </ul>
-
+                        <div class="user-body">
+                            <div class="tab-content">
+                                <div id="information" class="tab-pane active">
+                                    <h4>To be a Full Stack</h4>
+                                </div>
+                                <div id="settings" class="tab-pane text-center">
+                                    <img width="150" height="150" src="{{asset('images/wx.png')}}">
+                                </div>
+                                <div id="email" class="tab-pane">
+                                    <h4><a href="mailto:meiweijia@gmail.com">meiweijia@gmail.com</a></h4>
+                                </div>
+                                <div id="events" class="tab-pane">
+                                    <h4>
+                                        <a href="https://github.com/kubill" target="_blank" title="GitHub"><i
+                                                    class="fa fa-github fa-3x"></i></a>
+                                        <a href="https://gitee.com/kubill" target="_blank" title="码云"><i
+                                                    class="fa fa-github-alt fa-3x"></i></a>
+                                    </h4>
+                                    <h4></h4>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- About Me (Left Sidebar) End -->
-
-
-            <!-- Blog Post (Right Sidebar) Start -->
-            <div class="col-md-9">
-                <div class="col-md-12 page-body">
-                    <div class="row">
-
-
-                        <div class="sub-title">
-                            <h2>@yield('title')</h2>
-                            {{--<a href="/contact.html"><i class="icon-envelope"></i></a>--}}
-                            @yield('back')
-                        </div>
-
-
-                        <div class="col-md-12 content-page">
-
-                        @yield('content')
-
-
-                        </div>
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    分类
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">Dapibus ac facilisis in（1）</a>
+                        <a href="#" class="list-group-item">Cras sit amet nibh libero（1）</a>
+                        <a href="#" class="list-group-item">Porta ac consectetur ac（1）</a>
+                        <a href="#" class="list-group-item">Vestibulum at eros（1）</a>
                     </div>
-
-
-                    <!-- Subscribe Form Start -->
-                    {{--<div class="col-md-8 col-md-offset-2">--}}
-                        {{--<form id="mc-form" method="post"--}}
-                              {{--action="http://uipasta.us14.list-manage.com/subscribe/post?u=854825d502cdc101233c08a21&amp;id=86e84d44b7">--}}
-
-                            {{--<div class="subscribe-form margin-top-20">--}}
-                                {{--<input id="mc-email" type="email" placeholder="Email Address" class="text-input">--}}
-                                {{--<button class="submit-btn" type="submit">Submit</button>--}}
-                            {{--</div>--}}
-                            {{--<p>Subscribe to my weekly newsletter</p>--}}
-                            {{--<label for="mc-email" class="mc-label"></label>--}}
-                        {{--</form>--}}
-
-                    {{--</div>--}}
-                    <!-- Subscribe Form End -->
-
                 </div>
-
-
-                <!-- Footer Start -->
-                <div class="col-md-12 page-body margin-top-50 footer">
-                    <footer>
-                        {{--<ul class="menu-link">--}}
-                            {{--<li><a href="/">首页</a></li>--}}
-                            {{--<li><a href="/about.html">关于</a></li>--}}
-                            {{--<li><a href="/work.html">工作</a></li>--}}
-                            {{--<li><a href="/contact.html">联系</a></li>--}}
-                        {{--</ul>--}}
-
-                        <!-- UiPasta Credit Start -->
-                        <div class="uipasta-credit">
-                            © 2014-{{date('Y')}} <a href="/" title="梅渭甲的博客">路人甲</a> | <a href="http://www.miibeian.gov.cn/" target="_blank"> 湘ICP备15017914号</a>
-                        </div>
-                        <!-- UiPasta Credit End -->
-                        <p><a></a></p>
-
-                    </footer>
-                </div>
-                <!-- Footer End -->
-
             </div>
-            <!-- Blog Post (Right Sidebar) End -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    标签
+                </div>
+                <div class="panel-body">
+                    <div class="content sidebar">
+                        <a href="/tag/ke-hu-duan/">客户端</a>
+                        <a href="/tag/android/">Android</a>
+                        <a href="/tag/jquery/">jQuery</a>
+                        <a href="/tag/ghost-0-7-ban-ben/">Ghost 0.7 版本</a>
+                        <a href="/tag/opensource/">开源</a>
+                        <a href="/tag/zhu-shou-han-shu/">助手函数</a>
+                        <a href="/tag/tag-cloud/">标签云</a>
+                        <a href="/tag/navigation/">导航</a>
+                        <a href="/tag/customize-page/">自定义页面</a>
+                        <a href="/tag/static-page/">静态页面</a>
+                        <a href="/tag/roon-io/">Roon.io</a>
+                        <a href="/tag/configuration/">配置文件</a>
+                        <a href="/tag/upyun/">又拍云存储</a>
+                        <a href="/tag/upload/">上传</a>
+                        <a href="/tag/handlebars/">Handlebars</a>
+                        <a href="/tag/email/">邮件</a>
+                        <a href="/tag/shortcut/">快捷键</a>
+                        <a href="/tag/yong-hu-zhi-nan/">用户指南</a>
 
+
+                        <a href="/tag-cloud/">...</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
-<!-- Back to Top Start -->
-<a href="javascrip:(0)" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
-<!-- Back to Top End -->
-
-
-<!-- All Javascript Plugins  -->
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugin.js"></script>
-
-<!-- Main Javascript File  -->
-<script type="text/javascript" src="/js/scripts.js"></script>
-
-
+<footer class="blog-footer">
+    © 2014-2017 <a href="/" title="梅渭甲的博客">路人甲</a> | <a href="http://www.miibeian.gov.cn/" target="_blank"> 湘ICP备15017914号</a>
+</footer>
+<script src="{{asset('js/app.js')}}"></script>
+@yield('script')
 </body>
 </html>

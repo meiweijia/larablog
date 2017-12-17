@@ -53,9 +53,9 @@ class ArticleController extends Controller
      */
     public function show(Article $articles,$id)
     {
-        $article = $articles->select('id','title', 'author','keywords','description','content','categories','created_at')
+        $article = $articles->select('id','title', 'author','keywords','description','content','category','created_at')
             ->findOrFail($id);
-        return view('articles.show',compact('article'));
+        return view('layouts.article',compact('article'));
     }
 
     /**

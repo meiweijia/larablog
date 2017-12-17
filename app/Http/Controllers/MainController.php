@@ -8,31 +8,36 @@ use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
-    public function index(Request $request,Article $articles,$page=1){
+    public function index(Request $request, Article $articles, $page = 1)
+    {
         $request->merge(['page' => $page]);
-        $articles = $articles->select('id','title', 'author','keywords','description','content_nohtml','categories','created_at')
-            ->orderBy('created_at','desc')
-            ->simplePaginate(5);
-        if(count($articles)<1)
+        $articles = $articles->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+        if (count($articles) < 1)
             abort(404);
-        return view('am.index',compact('articles'));
+        return view('layouts.index', compact('articles'));
     }
 
-    public function about(){
-        return view('am.about');
+    public function about()
+    {
+        return view('layouts.about');
     }
 
-    public function work(){
+    public function work()
+    {
         return view('am.work');
     }
 
-    public function contact(){
+    public function contact()
+    {
         return view('am.contact');
     }
 
-    public function qianyi(){
+    public function qianyi()
+    {
         $users = DB::table('m_posts')->get();
-        foreach ($users as $post){
+        foreach ($users as $post) {
             $articles = new Article();
             $articles->title = $post->post_title;
             $articles->author = $post->post_author;

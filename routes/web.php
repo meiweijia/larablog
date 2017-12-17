@@ -14,23 +14,23 @@
 /*
  * 主页
  */
-Route::get('/','MainController@index');
+Route::get('/','MainController@index')->name('root');
 
-Route::get('/page/{page?}','MainController@index');
+Route::get('/page/{page?}','MainController@index')->name('page');
 /*
  * 关于
  */
-Route::get('/about.html','MainController@about');
+Route::get('/about','MainController@about')->name('about');
 
 /*
  * 工作
  */
-Route::get('/work.html','MainController@work');
+Route::get('/work','MainController@work')->name('work');
 
 /*
  * 联系
  */
-Route::get('/contact.html','MainController@contact');
+Route::get('/contact','MainController@contact');
 
 Route::get('qianyi','MainController@qianyi');
 
