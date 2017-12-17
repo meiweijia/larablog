@@ -24,7 +24,7 @@
         </div>
         <div class="panel-body text-center">
             <ul>
-                <li>123</li>
+                <li>待完善</li>
             </ul>
         </div>
     </div>
@@ -45,9 +45,7 @@
                 <li class="list-group-item media">
                     <div class="media-left">
                         <a href="javascript:void(0)">
-                            <img class="media-object img-circle img-thumbnail"
-                                 src="https://dn-phphub.qbox.me/uploads/avatars/5951_1474424339.jpeg?imageView2/1/w/100/h/100"
-                                 style="width:55px;height:55px;">
+                            <img class="media-object img-circle img-thumbnail" src="{{asset('images/avatar.jpg')}}" style="width:55px;height:55px;">
                         </a>
                     </div>
                     <div class="media-body">
@@ -59,10 +57,7 @@
                             </span>
                         </h5>
                         <p>
-                            .test 不是标准的通用顶级域名，当你直接输入 site.test 你会发现默认情况下浏览器会带你去搜索结果而不是直接打开网址，除非自己加上http前缀。
-                        </p>
-                        <p>
-                            注册个比较简单的域名的好处就是在windows下使用homestead开发可以避免每次修改hosts文件，主要是widnows缺少类似dnsmasq这样的方便工具，在mac下使用valet已经很方便了，找一个罕见的通用顶级域名代替.dev/.app是非常简单的做法。
+                            测试评论
                         </p>
                     </div>
                 </li>
