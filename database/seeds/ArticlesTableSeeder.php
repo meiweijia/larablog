@@ -15,7 +15,6 @@ class ArticlesTableSeeder extends Seeder
             'title' => 'Hello World',
             'author' => 'admin',
             'content' => '<p>Hello World</p>',
-            'content_nohtml'=>'Hello World',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
         ]);
