@@ -25,7 +25,6 @@ class CreateArticlesTable extends Migration
             $table->integer('comment_status')->default(1);//评论状态
             $table->integer('comment_count')->default(0);//评论数
             $table->integer('category')->default(0);//分类
-            $table->integer('tags')->default(0);//标签
             $table->timestamps();
             $table->softDeletes();//软删除
         });
