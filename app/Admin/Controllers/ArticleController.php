@@ -11,6 +11,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
+use Illuminate\Support\Facades\Redis;
 
 class ArticleController extends Controller
 {
@@ -97,7 +98,9 @@ class ArticleController extends Controller
             $form->display('id', 'ID');
             $form->text('title', '标题');
             $form->text('author', '作者')->default('admin');
+
             $form->select('category', '分类')->options(Category::where('parent_id', '>', 0)->pluck('title', 'id'));
+
             $form->multipleSelect('tags', '标签')->options(Tag::all()->pluck('title', 'id'));
             $form->text('excerpt', '摘要');
 //            $form->text('keywords', '关键字');//seo

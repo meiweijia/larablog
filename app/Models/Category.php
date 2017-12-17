@@ -10,4 +10,7 @@ class Category extends Model
 {
     use ModelTree,AdminBuilder;
     //
+    public function articles(){
+         return $this->belongsTo(Article::class,'id','category');
+    }
 }

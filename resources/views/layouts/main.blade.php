@@ -27,7 +27,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="min-height: 900px">
     <div class="row">
         <div class="col-sm-9">
             @yield('content')
@@ -93,54 +93,54 @@
                     </div>
                 </div>
             </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     分类
                 </div>
                 <div class="panel-body">
                     <div class="list-group">
-                        <a href="#" class="list-group-item">Dapibus ac facilisis in（1）</a>
-                        <a href="#" class="list-group-item">Cras sit amet nibh libero（1）</a>
-                        <a href="#" class="list-group-item">Porta ac consectetur ac（1）</a>
-                        <a href="#" class="list-group-item">Vestibulum at eros（1）</a>
+                        @foreach($categories as $category)
+                            <a href="/categories/{{$category->uri}}" class="list-group-item">{{$category->title}}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    标签
-                </div>
-                <div class="panel-body">
-                    <div class="content sidebar">
-                        <a href="/tag/ke-hu-duan/">客户端</a>
-                        <a href="/tag/android/">Android</a>
-                        <a href="/tag/jquery/">jQuery</a>
-                        <a href="/tag/ghost-0-7-ban-ben/">Ghost 0.7 版本</a>
-                        <a href="/tag/opensource/">开源</a>
-                        <a href="/tag/zhu-shou-han-shu/">助手函数</a>
-                        <a href="/tag/tag-cloud/">标签云</a>
-                        <a href="/tag/navigation/">导航</a>
-                        <a href="/tag/customize-page/">自定义页面</a>
-                        <a href="/tag/static-page/">静态页面</a>
-                        <a href="/tag/roon-io/">Roon.io</a>
-                        <a href="/tag/configuration/">配置文件</a>
-                        <a href="/tag/upyun/">又拍云存储</a>
-                        <a href="/tag/upload/">上传</a>
-                        <a href="/tag/handlebars/">Handlebars</a>
-                        <a href="/tag/email/">邮件</a>
-                        <a href="/tag/shortcut/">快捷键</a>
-                        <a href="/tag/yong-hu-zhi-nan/">用户指南</a>
 
-
-                        <a href="/tag-cloud/">...</a>
-                    </div>
-                </div>
-            </div>
+            {{--<div class="panel panel-default">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--标签--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<div class="content sidebar">--}}
+                        {{--<a href="/tag/ke-hu-duan/">客户端</a>--}}
+                        {{--<a href="/tag/android/">Android</a>--}}
+                        {{--<a href="/tag/jquery/">jQuery</a>--}}
+                        {{--<a href="/tag/ghost-0-7-ban-ben/">Ghost 0.7 版本</a>--}}
+                        {{--<a href="/tag/opensource/">开源</a>--}}
+                        {{--<a href="/tag/zhu-shou-han-shu/">助手函数</a>--}}
+                        {{--<a href="/tag/tag-cloud/">标签云</a>--}}
+                        {{--<a href="/tag/navigation/">导航</a>--}}
+                        {{--<a href="/tag/customize-page/">自定义页面</a>--}}
+                        {{--<a href="/tag/static-page/">静态页面</a>--}}
+                        {{--<a href="/tag/roon-io/">Roon.io</a>--}}
+                        {{--<a href="/tag/configuration/">配置文件</a>--}}
+                        {{--<a href="/tag/upyun/">又拍云存储</a>--}}
+                        {{--<a href="/tag/upload/">上传</a>--}}
+                        {{--<a href="/tag/handlebars/">Handlebars</a>--}}
+                        {{--<a href="/tag/email/">邮件</a>--}}
+                        {{--<a href="/tag/shortcut/">快捷键</a>--}}
+                        {{--<a href="/tag/yong-hu-zhi-nan/">用户指南</a>--}}
+                        {{--<a href="/tag-cloud/">...</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
 </div>
 <footer class="blog-footer">
-    © 2014-2017 <a href="/" title="梅渭甲的博客">路人甲</a> | <a href="http://www.miibeian.gov.cn/" target="_blank"> 湘ICP备15017914号</a>
+    © 2014-2017 <a href="/" title="梅渭甲的博客">路人甲</a> | <a href="http://www.miibeian.gov.cn/" target="_blank">
+        湘ICP备15017914号</a>
 </footer>
 <script src="{{asset('js/app.js')}}"></script>
 @yield('script')

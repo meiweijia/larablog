@@ -14,25 +14,29 @@
 /*
  * 主页
  */
-Route::get('/','MainController@index')->name('root');
+Route::get('/', 'MainController@index')->name('root');
 
-Route::get('/page/{page?}','MainController@index')->name('page');
+Route::get('/categories/{name}', 'MainController@getArticleByCategory');
+
+Route::get('/page/{page?}', 'MainController@index')->name('page');
+
+Route::get('/resume', 'MainController@resume')->name('resume');
 /*
  * 关于
  */
-Route::get('/about','MainController@about')->name('about');
+Route::get('/about', 'MainController@about')->name('about');
 
 /*
  * 工作
  */
-Route::get('/work','MainController@work')->name('work');
+Route::get('/work', 'MainController@work')->name('work');
 
 /*
  * 联系
  */
-Route::get('/contact','MainController@contact');
+Route::get('/contact', 'MainController@contact');
 
-Route::get('qianyi','MainController@qianyi');
+Route::get('qianyi', 'MainController@qianyi');
 
 ///*
 // * 后台
@@ -50,7 +54,7 @@ Route::get('qianyi','MainController@qianyi');
 /*
  * 文章
  */
-Route::resource('article', 'ArticleController',['only'=>['index','show']]);
+Route::resource('article', 'ArticleController', ['only' => ['index', 'show']]);
 
 Auth::routes();
 

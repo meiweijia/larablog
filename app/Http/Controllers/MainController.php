@@ -2,20 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
-    public function index(Request $request, Article $articles, $page = 1)
+    public function __construct()
+    {
+    }
+
+    public function index(Request $request, $page = 1)
     {
         $request->merge(['page' => $page]);
-        $articles = $articles->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
+        $articles = Article::where('status', 1)
+            ->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
             ->orderBy('created_at', 'desc')
             ->paginate(5);
         if (count($articles) < 1)
             abort(404);
+        return view('layouts.index', compact('articles'));
+    }
+
+    public function getArticleByCategory($name)
+    {
+        $category = Category::where('uri', $name)
+            ->first();
+        if (count($category) < 1)
+            abort(404);
+        $articles = $category->articles()
+            ->where('status',1)
+            ->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
+            ->paginate(5);
         return view('layouts.index', compact('articles'));
     }
 

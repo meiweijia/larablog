@@ -3,9 +3,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>{{$article->title}}</h3>
-                <span>
-                    <i class="fa fa-user"></i> <a href="javascript:void(0)">{{$article['author']}}</a>
+            <span>
+                    <i class="fa fa-user"></i> <a href="javascript:void(0)">{{$article->author}}</a>
                     | <i class="fa fa-clock-o"></i> {{$article->created_at}}
+                    | <i class="fa fa-folder-open-o"></i> {{$article->category}}
                 </span>
         </div>
         <div class="panel-body">
