@@ -4,7 +4,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <h3>About me <a class="pull-right" href="{{route('resume')}}">简历</a></h3>
-            <p>你好，我叫梅渭甲，今年@php echo date('Y')-1990;@endphp岁，毕业于湖南信息职业技术学院。我是奋斗在深圳一线的PHP后端工程师，正在在努力成为一个全栈工程师。人生最大的遗憾：教我成长的人没有陪我走到最后。</p>
+            <p>你好，我叫梅渭甲，今年@php echo date('Y')-1990;@endphp岁，毕业于湖南信息职业技术学院。我是奋斗在深圳一线的PHP后端工程师，正在在努力成为一个全栈工程师。</p>
             <ul>
                 <li>现在主攻PHP，熟悉并熟练使用laravel框架，理解laravel框架的核心技术，包括但不限于IOC，Facade，服务容器、服务提供者，并在项目中有实际使用经验；理解OOP，因为是学C#出身。
                 </li>
