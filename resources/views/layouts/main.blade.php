@@ -101,7 +101,7 @@
                 <div class="panel-body">
                     <div class="list-group">
                         @foreach($categories as $category)
-                            <a href="/categories/{{$category->uri}}" class="list-group-item">{{$category->title}}</a>
+                            <a href="/categories/{{$category['uri']}}" class="list-group-item">{{$category['title']}}</a>
                         @endforeach
                     </div>
                 </div>

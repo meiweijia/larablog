@@ -13,28 +13,28 @@ use Illuminate\Support\Facades\Redis;
 
 class CategoryService
 {
-    private $key;
+    private $nameKey;
 
     public function __construct()
     {
-        $this->key = 'blog.categories';
+        $this->nameKey = 'blog:categories:name';
     }
 
     public function getList()
     {
-        if (!Redis::exists($this->key)) {
+        if (!Redis::exists($this->nameKey)) {
             $categories = Category::where('parent_id', '>', '0')
                 ->select('id', 'title')
                 ->get();
             foreach ($categories as $k => $v) {
-                Redis::hmset($this->key, $v->id, $v->title);
+                Redis::hset($this->nameKey, $v->id, $v->title);
             }
         }
-        return Redis::hgetall($this->key);
+        return Redis::hgetall($this->nameKey);
     }
 
     public function getName($id)
     {
-        return Redis::hget($this->key, $id);
+        return Redis::hget($this->nameKey, $id);
     }
 }

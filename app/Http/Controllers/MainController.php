@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class MainController extends Controller
 {
@@ -20,8 +21,6 @@ class MainController extends Controller
             ->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
             ->orderBy('created_at', 'desc')
             ->paginate(5);
-        if (count($articles) < 1)
-            abort(404);
         return view('layouts.index', compact('articles'));
     }
 
@@ -53,22 +52,9 @@ class MainController extends Controller
         return view('am.contact');
     }
 
-    public function qianyi()
+    public function test()
     {
-        $users = DB::table('m_posts')->get();
-        foreach ($users as $post) {
-            $articles = new Article();
-            $articles->title = $post->post_title;
-            $articles->author = $post->post_author;
-            $articles->excerpt = $post->post_excerpt;
-            $articles->keywords = $post->post_keywords;
-            $articles->description = $post->post_description;
-            $articles->content = $post->post_content;
-            $articles->content_nohtml = strip_tags($post->post_content);
-            $articles->created_at = $post->created_at;
-            $articles->updated_at = $post->updated_at;
-            $articles->save();
-        }
+        return Redis::hmset('test.key','field1','value1','field2','value2');
         return 'ok';
     }
 }
