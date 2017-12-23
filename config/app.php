@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
         \App\Providers\ComposerServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -227,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Active' => HieuLe\Active\Facades\Active::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
