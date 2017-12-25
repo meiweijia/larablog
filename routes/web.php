@@ -56,6 +56,8 @@ Route::get('qianyi', 'MainController@qianyi');
  */
 Route::resource('article', 'ArticleController', ['only' => ['index', 'show']]);
 
+Route::resource('comment', 'CommentController', ['only' => ['store']]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

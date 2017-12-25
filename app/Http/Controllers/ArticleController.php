@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Redis;
 
 class ArticleController extends Controller
 {
-    function __construct(){
+    function __construct()
+    {
         $this->middleware('auth')
-        ->except('index','show','store');
+            ->except('index', 'show', 'store');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +38,7 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,21 +49,22 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article  $articles
+     * @param  \App\Models\Article $articles
      * @param  id
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $articles,$id)
+    public function show(Article $articles, $id)
     {
-        $article = $articles->select('id','title', 'author','keywords','description','content','category','created_at')
+        $article = $articles->select('id', 'title', 'author', 'keywords', 'description', 'content', 'category', 'created_at')
             ->findOrFail($id);
-        return view('layouts.article',compact('article'));
+        $comments = $article->comments()->get();
+        return view('layouts.article', compact('article', 'comments'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Article  $articles
+     * @param  \App\Models\Article $articles
      * @return \Illuminate\Http\Response
      */
     public function edit(Article $articles)
@@ -72,8 +75,8 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $articles
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Article $articles
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Article $articles)
@@ -84,12 +87,17 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Article  $articles
+     * @param  \App\Models\Article $articles
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $articles,$id)
+    public function destroy(Article $articles, $id)
     {
-        return $articles->where('id',$id)
+        return $articles->where('id', $id)
             ->delete();
+    }
+
+    public function addComment()
+    {
+
     }
 }
