@@ -140,7 +140,7 @@
 </div>
 <footer class="blog-footer">
     © {{date('Y')}} <a href="/" title="梅渭甲的博客">路人甲</a> | <a href="http://www.miibeian.gov.cn/" target="_blank">
-        湘ICP备15017914号</a>
+        湘ICP备15017914号-1</a>
 </footer>
 <script src="{{asset('js/app.js')}}"></script>
 @yield('script')
