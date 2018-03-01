@@ -21,7 +21,7 @@ class Article extends Model
      * @param  string $value
      * @return string
      */
-    public function getCategoryAttribute($value)
+    public function getCategoryNameAttribute($value)
     {
         $categoryService = new CategoryService();
         $value = $categoryService->getName($value);

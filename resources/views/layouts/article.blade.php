@@ -6,7 +6,7 @@
             <span>
                     <i class="fa fa-user"></i> <a href="javascript:void(0)">{{$article->author}}</a>
                     | <i class="fa fa-clock-o"></i> {{$article->created_at}}
-                | <i class="fa fa-folder-open-o"></i> {{$article->category}}
+                | <i class="fa fa-folder-open-o"></i> {{$article->category_name}}
                 </span>
         </div>
         <div class="panel-body">

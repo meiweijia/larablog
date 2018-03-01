@@ -18,7 +18,7 @@ class MainController extends Controller
     {
         $request->merge(['page' => $page]);
         $articles = Article::where('status', 1)
-            ->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
+            ->select('id', 'title', 'author', 'excerpt', DB::raw('category as category_name'), 'created_at')
             ->orderBy('created_at', 'desc')
             ->paginate(5);
         return view('layouts.index', compact('articles'));

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 
 class ArticleController extends Controller
@@ -55,7 +56,7 @@ class ArticleController extends Controller
      */
     public function show(Article $articles, $id)
     {
-        $article = $articles->select('id', 'title', 'author', 'keywords', 'description', 'content', 'category', 'created_at')
+        $article = $articles->select('id', 'title', 'author', 'keywords', 'description', 'content', DB::raw('category as category_name'), 'created_at')
             ->findOrFail($id);
         $comments = $article->comments()->get();
         return view('layouts.article', compact('article', 'comments'));
