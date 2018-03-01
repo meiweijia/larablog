@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('uid');
             $table->string('name')->default('匿名');
-            $table->string('avatar')->default('uploads/images/avatar.png');
+            $table->string('avatar')->default('uploads/images/avatar.gif');
             $table->integer('parent_id')->default(0);
             $table->integer('article_id');
             $table->text('content');
