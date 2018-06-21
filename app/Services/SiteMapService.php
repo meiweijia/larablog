@@ -43,7 +43,7 @@ class SiteMapService
         $categories = Category::select('title')->get();
         foreach ($categories as $k => $v) {
             $xml[] = '<url>';
-            $xml[] = '<loc>' . route('Category', $v->title) . '</loc>';
+            $xml[] = '<loc>' . route('Category', $v->uri) . '</loc>';
             $xml[] = "<lastmod>$lastModify</lastmod>";
             $xml[] = '<changefreq>weekly</changefreq>';
             $xml[] = '<priority>0.8</priority>';
