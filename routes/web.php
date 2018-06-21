@@ -16,11 +16,13 @@
  */
 Route::get('/', 'MainController@index')->name('root');
 
-Route::get('/categories/{name}', 'MainController@getArticleByCategory');
+Route::get('/categories/{name}', 'MainController@getArticleByCategory')->name('Category');
 
 Route::get('/page/{page?}', 'MainController@index')->name('page');
 
 Route::get('/resume', 'MainController@resume')->name('resume');
+
+Route::get('sitemap.xml','MainController@siteMap')->name('sitemap');
 /*
  * 关于
  */

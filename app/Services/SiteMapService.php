@@ -1,0 +1,72 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: mei
+ * Date: 18-6-21
+ * Time: 上午11:31
+ */
+
+namespace App\Services;
+
+
+use App\Models\Article;
+use App\Models\Category;
+
+class SiteMapService
+{
+    public function buildMap()
+    {
+        $articleService = new ArticleService();
+        $lastModify = Article::orderByDesc('updated_at')->pluck('updated_at')->first();
+
+        $xml = [];
+        $xml[] = '<?xml version="1.0" encoding="UTF-8"?' . '>';
+        $xml[] = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        //首页
+        $xml[] = '<url>';
+        $xml[] = '<loc>' . route('root') . '</loc>';
+        $xml[] = "<lastmod>$lastModify</lastmod>";
+        $xml[] = '<changefreq>Daily</changefreq>';
+        $xml[] = '<priority>1</priority>';
+        $xml[] = '</url>';
+        //分页
+        $count = ceil($articleService->getCount() / 5);
+        for ($i = 2; $i <= $count; $i++) {
+            $xml[] = '<url>';
+            $xml[] = '<loc>' . route('page', $i) . '</loc>';
+            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = '<changefreq>weekly</changefreq>';
+            $xml[] = '<priority>1</priority>';
+            $xml[] = '</url>';
+        }
+        //分类
+        $categories = Category::select('title')->get();
+        foreach ($categories as $k => $v) {
+            $xml[] = '<url>';
+            $xml[] = '<loc>' . route('Category', $v->title) . '</loc>';
+            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = '<changefreq>weekly</changefreq>';
+            $xml[] = '<priority>0.8</priority>';
+            $xml[] = '</url>';
+        }
+        //标签
+        //关于
+        $xml[] = '<url>';
+        $xml[] = '<loc>' . route('about') . '</loc>';
+        $xml[] = "<lastmod>$lastModify</lastmod>";
+        $xml[] = '<changefreq>weekly</changefreq>';
+        $xml[] = '<priority>0.8</priority>';
+        $xml[] = '</url>';
+        //文章
+        $articles = $articleService->get();
+        foreach ($articles as $k => $v) {
+            $xml[] = '<url>';
+            $xml[] = '<loc>' . route('article.show', $v->id) . '</loc>';
+            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = '<priority>0.9</priority>';
+            $xml[] = "</url>";
+        }
+        $xml[] = '</urlset>';
+        return join("\n", $xml);
+    }
+}

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Services\ArticleService;
+use App\Services\SiteMapService;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use Illuminate\Support\Facades\DB;
@@ -14,13 +16,10 @@ class MainController extends Controller
     {
     }
 
-    public function index(Request $request, $page = 1)
+    public function index(Request $request, ArticleService $articleService, $page = 1)
     {
         $request->merge(['page' => $page]);
-        $articles = Article::where('status', 1)
-            ->select('id', 'title', 'author', 'excerpt', DB::raw('category as category_name'), 'created_at')
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
+        $articles = $articleService->get();
         return view('layouts.index', compact('articles'));
     }
 
@@ -31,7 +30,7 @@ class MainController extends Controller
         if (count($category) < 1)
             abort(404);
         $articles = $category->articles()
-            ->where('status',1)
+            ->where('status', 1)
             ->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
             ->paginate(5);
         return view('layouts.index', compact('articles'));
@@ -47,6 +46,12 @@ class MainController extends Controller
         return view('am.work');
     }
 
+    public function siteMap(SiteMapService $mapService)
+    {
+        return response($mapService->buildMap())
+            ->header('Content-type', 'text/xml');
+    }
+
     public function contact()
     {
         return view('am.contact');
@@ -54,7 +59,7 @@ class MainController extends Controller
 
     public function test()
     {
-        return Redis::hmset('test.key','field1','value1','field2','value2');
+        return Redis::hmset('test.key', 'field1', 'value1', 'field2', 'value2');
         return 'ok';
     }
 }
