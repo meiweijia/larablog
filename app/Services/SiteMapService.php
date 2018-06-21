@@ -17,7 +17,8 @@ class SiteMapService
     public function buildMap()
     {
         $articleService = new ArticleService();
-        $lastModify = Article::orderByDesc('updated_at')->select('updated_at')->first();
+        $lastModify = Article::orderByDesc('updated_at')->pluck('updated_at')->first();
+        $lastModify = date('Y-m-d', strtotime($lastModify));
 
         $xml = [];
         $xml[] = '<?xml version="1.0" encoding="UTF-8"?' . '>';
@@ -25,7 +26,7 @@ class SiteMapService
         //首页
         $xml[] = '<url>';
         $xml[] = '<loc>' . route('root') . '</loc>';
-        $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
+        $xml[] = "<lastmod>$lastModify</lastmod>";
         $xml[] = '<changefreq>weekly</changefreq>';
         $xml[] = '<priority>1</priority>';
         $xml[] = '</url>';
@@ -34,7 +35,7 @@ class SiteMapService
         for ($i = 2; $i <= $count; $i++) {
             $xml[] = '<url>';
             $xml[] = '<loc>' . route('page', $i) . '</loc>';
-            $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
+            $xml[] = "<lastmod>$lastModify</lastmod>";
             $xml[] = '<changefreq>weekly</changefreq>';
             $xml[] = '<priority>1</priority>';
             $xml[] = '</url>';
@@ -44,7 +45,7 @@ class SiteMapService
         foreach ($categories as $k => $v) {
             $xml[] = '<url>';
             $xml[] = '<loc>' . route('Category', $v->uri) . '</loc>';
-            $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
+            $xml[] = "<lastmod>$lastModify</lastmod>";
             $xml[] = '<changefreq>weekly</changefreq>';
             $xml[] = '<priority>0.8</priority>';
             $xml[] = '</url>';
@@ -53,7 +54,7 @@ class SiteMapService
         //关于
         $xml[] = '<url>';
         $xml[] = '<loc>' . route('about') . '</loc>';
-        $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
+        $xml[] = "<lastmod>$lastModify</lastmod>";
         $xml[] = '<changefreq>weekly</changefreq>';
         $xml[] = '<priority>0.8</priority>';
         $xml[] = '</url>';
@@ -65,7 +66,7 @@ class SiteMapService
         foreach ($articles as $k => $v) {
             $xml[] = '<url>';
             $xml[] = '<loc>' . route('article.show', $v->id) . '</loc>';
-            $xml[] = '<lastmod>' . $v->updated_at . '</lastmod>';
+            $xml[] = '<lastmod>' . date('Y-m-d', strtotime($v->updated_at)) . '</lastmod>';
             $xml[] = '<priority>0.9</priority>';
             $xml[] = "</url>";
         }
