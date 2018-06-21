@@ -17,7 +17,7 @@ class SiteMapService
     public function buildMap()
     {
         $articleService = new ArticleService();
-        $lastModify = Article::orderByDesc('updated_at')->pluck('updated_at')->first();
+        $lastModify = Article::orderByDesc('updated_at')->select('updated_at')->first();
 
         $xml = [];
         $xml[] = '<?xml version="1.0" encoding="UTF-8"?' . '>';
@@ -25,8 +25,8 @@ class SiteMapService
         //首页
         $xml[] = '<url>';
         $xml[] = '<loc>' . route('root') . '</loc>';
-        $xml[] = "<lastmod>$lastModify</lastmod>";
-        $xml[] = '<changefreq>Daily</changefreq>';
+        $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
+        $xml[] = '<changefreq>weekly</changefreq>';
         $xml[] = '<priority>1</priority>';
         $xml[] = '</url>';
         //分页
@@ -34,7 +34,7 @@ class SiteMapService
         for ($i = 2; $i <= $count; $i++) {
             $xml[] = '<url>';
             $xml[] = '<loc>' . route('page', $i) . '</loc>';
-            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
             $xml[] = '<changefreq>weekly</changefreq>';
             $xml[] = '<priority>1</priority>';
             $xml[] = '</url>';
@@ -44,7 +44,7 @@ class SiteMapService
         foreach ($categories as $k => $v) {
             $xml[] = '<url>';
             $xml[] = '<loc>' . route('Category', $v->uri) . '</loc>';
-            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
             $xml[] = '<changefreq>weekly</changefreq>';
             $xml[] = '<priority>0.8</priority>';
             $xml[] = '</url>';
@@ -53,7 +53,7 @@ class SiteMapService
         //关于
         $xml[] = '<url>';
         $xml[] = '<loc>' . route('about') . '</loc>';
-        $xml[] = "<lastmod>$lastModify</lastmod>";
+        $xml[] = "<lastmod>$lastModify->updated_at</lastmod>";
         $xml[] = '<changefreq>weekly</changefreq>';
         $xml[] = '<priority>0.8</priority>';
         $xml[] = '</url>';
