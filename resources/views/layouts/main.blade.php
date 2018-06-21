@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Meiweijia's Blog</title>
+    <meta name="keywords" content="梅渭甲,laravel,PHP,后端开发">
+    <meta name="description" content="梅渭甲的个人博客，记录我的coding之路.">
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 </head>
 
