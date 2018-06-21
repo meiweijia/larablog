@@ -8,6 +8,7 @@
     <title>Meiweijia's Blog</title>
     <meta name="keywords" content="梅渭甲,laravel,PHP,后端开发">
     <meta name="description" content="梅渭甲的个人博客，记录我的coding之路.">
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 </head>
 
