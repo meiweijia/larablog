@@ -60,11 +60,6 @@ Route::resource('article', 'ArticleController', ['only' => ['index', 'show']]);
 
 Route::resource('comment', 'CommentController', ['only' => ['store']]);
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::get('auth/github', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/github/callback', 'Auth\AuthController@handleProviderCallback');
 
