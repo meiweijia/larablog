@@ -40,7 +40,7 @@ class SiteMapService
             $xml[] = '</url>';
         }
         //分类
-        $categories = Category::select('title')->get();
+        $categories = Category::select('uri')->get();
         foreach ($categories as $k => $v) {
             $xml[] = '<url>';
             $xml[] = '<loc>' . route('Category', $v->uri) . '</loc>';
@@ -58,11 +58,14 @@ class SiteMapService
         $xml[] = '<priority>0.8</priority>';
         $xml[] = '</url>';
         //文章
-        $articles = $articleService->get();
+        $articles = Article::where('status', 1)
+            ->select('id', 'updated_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
         foreach ($articles as $k => $v) {
             $xml[] = '<url>';
             $xml[] = '<loc>' . route('article.show', $v->id) . '</loc>';
-            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = '<lastmod>' . $v->updated_at . '</lastmod>';
             $xml[] = '<priority>0.9</priority>';
             $xml[] = "</url>";
         }
