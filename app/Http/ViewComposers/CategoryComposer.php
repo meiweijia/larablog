@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mei
- * Date: 2017/12/18
- * Time: 22:20
- */
 
 namespace App\Http\ViewComposers;
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mei
- * Date: 2017/12/10
- * Time: 21:59
- */
 
 namespace App\Admin\Extensions\Form;
 

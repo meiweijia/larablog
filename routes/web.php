@@ -18,6 +18,8 @@ Route::get('/', 'MainController@index')->name('root');
 
 Route::get('/categories/{name}', 'MainController@getArticleByCategory')->name('Category');
 
+Route::get('/tags/{name}', 'MainController@getArticleByTag')->name('getArticleByTag');
+
 Route::get('/page/{page?}', 'MainController@index')->name('page');
 
 Route::get('/resume', 'MainController@resume')->name('resume');

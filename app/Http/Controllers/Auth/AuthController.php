@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mei
- * Date: 2017/12/20
- * Time: 21:58
- */
 
 namespace App\Http\Controllers\Auth;
 
