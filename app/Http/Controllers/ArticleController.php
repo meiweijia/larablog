@@ -40,6 +40,7 @@ class ArticleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -51,13 +52,15 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $article = Article::query()
-            ->select('articles.id', 'articles.title', 'articles.author', 'articles.keywords', 'articles.description', 'articles.content', 'categories.title as category_name','categories.uri as category', 'articles.created_at')
+            ->select('articles.id', 'articles.title', 'articles.author', 'articles.keywords', 'articles.description', 'articles.content', 'categories.title as category_name', 'categories.uri as category', 'articles.created_at')
             ->leftJoin('categories', 'articles.category', '=', 'categories.id')
+            ->where('status', 1)
             ->findOrFail($id);
         $comments = $article->comments()->get();
         return view('layouts.article', compact('article', 'comments'));
@@ -67,6 +70,7 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Article $articles
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Article $articles)
@@ -79,6 +83,7 @@ class ArticleController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Models\Article $articles
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Article $articles)
@@ -90,6 +95,7 @@ class ArticleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Article $articles
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Article $articles, $id)
