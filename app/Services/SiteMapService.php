@@ -65,7 +65,7 @@ class SiteMapService
             ->get();
         foreach ($articles as $k => $v) {
             $xml[] = '<url>';
-            $xml[] = '<loc>' . route('article.show', $v->id) . '</loc>';
+            $xml[] = '<loc>' . route('articles.show', $v->id) . '</loc>';
             $xml[] = '<lastmod>' . date('Y-m-d', strtotime($v->updated_at)) . '</lastmod>';
             $xml[] = '<priority>0.9</priority>';
             $xml[] = "</url>";

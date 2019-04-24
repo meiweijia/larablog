@@ -27,11 +27,12 @@ class MainController extends Controller
     {
         $category = Category::where('uri', $name)
             ->first();
-        if (count($category) < 1)
+        if (!$category)
             abort(404);
         $articles = $category->articles()
             ->where('status', 1)
             ->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
+            ->orderByDesc('created_at')
             ->paginate(5);
         return view('layouts.index', compact('articles'));
     }

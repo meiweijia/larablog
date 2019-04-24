@@ -56,7 +56,7 @@ Route::get('qianyi', 'MainController@qianyi');
 /*
  * 文章
  */
-Route::resource('article', 'ArticleController', ['only' => ['index', 'show']]);
+Route::resource('articles', 'ArticleController', ['only' => ['index', 'show']]);
 
 Route::resource('comment', 'CommentController', ['only' => ['store']]);
 
