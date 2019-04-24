@@ -3,7 +3,6 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Layout\Column;
@@ -15,7 +14,6 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    use ModelForm;
 
     /**
      * Index interface.

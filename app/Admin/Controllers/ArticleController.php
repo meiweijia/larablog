@@ -10,12 +10,9 @@ use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
-use Illuminate\Support\Facades\Redis;
 
 class ArticleController extends Controller
 {
-    use ModelForm;
 
     /**
      * Index interface.

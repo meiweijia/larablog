@@ -9,11 +9,9 @@ use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
 
 class TagController extends Controller
 {
-    use ModelForm;
 
     /**
      * Index interface.
@@ -41,8 +39,8 @@ class TagController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('标签');
+            $content->description('编辑');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +55,8 @@ class TagController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('标签');
+            $content->description('新增');
 
             $content->body($this->form());
         });
@@ -92,6 +90,8 @@ class TagController extends Controller
         return Admin::form(Tag::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('title', '名称');
+            $form->text('uri', '别名');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

@@ -7,11 +7,9 @@ use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
 
 class ExampleController extends Controller
 {
-    use ModelForm;
 
     /**
      * Index interface.
