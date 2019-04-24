@@ -24,8 +24,8 @@ class TagController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('标签');
+            $content->description('列表');
 
             $content->body($this->grid());
         });
@@ -74,6 +74,8 @@ class TagController extends Controller
         return Admin::grid(Tag::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->title('名称')->sortable();
+            $grid->uri('别名')->sortable();
 
             $grid->created_at();
             $grid->updated_at();
