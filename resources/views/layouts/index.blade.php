@@ -6,9 +6,9 @@
             <div class="panel-heading">
                 <h4><a href="{{route('articles.show',$article->id)}}">{{$article->title}}</a></h4>
                 <span>
-                    <i class="fa fa-user"></i> <a href="#">{{$article['author']}}</a>
+                    <i class="fa fa-user"></i> <a href="javascript:void(0)">{{$article['author']}}</a>
                     | <i class="fa fa-clock-o"></i> {{$article->created_at}}
-                    | <i class="fa fa-folder-open-o"></i> {{$article->category_name}}
+                    | <i class="fa fa-folder-open-o"></i> <a href="{{route('Category', $article->category)}}"> {{$article->category_name}}</a>
                 </span>
             </div>
             <div class="panel-body">

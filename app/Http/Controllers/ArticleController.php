@@ -50,13 +50,14 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article $articles
-     * @param  id
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $articles, $id)
+    public function show($id)
     {
-        $article = $articles->select('id', 'title', 'author', 'keywords', 'description', 'content', DB::raw('category as category_name'), 'created_at')
+        $article = Article::query()
+            ->select('articles.id', 'articles.title', 'articles.author', 'articles.keywords', 'articles.description', 'articles.content', 'categories.title as category_name','categories.uri as category', 'articles.created_at')
+            ->leftJoin('categories', 'articles.category', '=', 'categories.id')
             ->findOrFail($id);
         $comments = $article->comments()->get();
         return view('layouts.article', compact('article', 'comments'));

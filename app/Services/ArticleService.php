@@ -14,15 +14,19 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleService
 {
-    public function get(){
-        $articles = Article::where('status', 1)
-            ->select('id', 'title', 'author', 'excerpt', DB::raw('category as category_name'), 'created_at')
+    public function get()
+    {
+        $articles = Article::query()
+            ->select('articles.id', 'articles.title', 'articles.author', 'articles.excerpt','categories.title as category_name','categories.uri as category', 'articles.created_at')
+            ->leftJoin('categories', 'articles.category', '=', 'categories.id')
+            ->where('status', 1)
             ->orderBy('created_at', 'desc')
             ->paginate(5);
         return $articles;
     }
 
-    public function getCount(){
+    public function getCount()
+    {
         $count = Article::where('status', 1)
             ->count();
         return $count;

@@ -2,11 +2,11 @@
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>{{$article->title}}</h3>
+            <h4>{{$article->title}}</h4>
             <span>
                     <i class="fa fa-user"></i> <a href="javascript:void(0)">{{$article->author}}</a>
                     | <i class="fa fa-clock-o"></i> {{$article->created_at}}
-                | <i class="fa fa-folder-open-o"></i> {{$article->category_name}}
+                | <i class="fa fa-folder-open-o"></i> <a href="{{route('Category', $article->category)}}"> {{$article->category_name}}</a>
                 </span>
         </div>
         <div class="panel-body">
@@ -18,16 +18,16 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <strong>标签</strong>
-        </div>
-        <div class="panel-body text-center">
-            <ul>
-                <li>待完善</li>
-            </ul>
-        </div>
-    </div>
+    {{--<div class="panel panel-default">--}}
+        {{--<div class="panel-heading">--}}
+            {{--<strong>标签</strong>--}}
+        {{--</div>--}}
+        {{--<div class="panel-body text-center">--}}
+            {{--<ul>--}}
+                {{--<li>待完善</li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <div class="panel panel-default">
         <div class="alert alert-warning" role="alert" style="margin-bottom: 0;">
@@ -65,7 +65,6 @@
                                 @php
                                     echo Parsedown::instance()->text($comment->content);
                                 @endphp
-
                             </p>
                         </div>
                     </li>

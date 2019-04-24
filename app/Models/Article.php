@@ -15,19 +15,6 @@ class Article extends Model
         return date('Y-m-d H:i', strtotime($value));
     }
 
-    /**
-     * 获取分类的名字。
-     *
-     * @param  string $value
-     * @return string
-     */
-    public function getCategoryNameAttribute($value)
-    {
-        $categoryService = new CategoryService();
-        $value = $categoryService->getName($value);
-        return $value;
-    }
-
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

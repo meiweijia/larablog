@@ -30,9 +30,10 @@ class MainController extends Controller
         if (!$category)
             abort(404);
         $articles = $category->articles()
+            ->select('articles.id', 'articles.title', 'articles.author', 'articles.excerpt','categories.title as category_name','categories.uri as category', 'articles.created_at')
+            ->leftJoin('categories', 'articles.category', '=', 'categories.id')
             ->where('status', 1)
-            ->select('id', 'title', 'author', 'excerpt', 'category', 'created_at')
-            ->orderByDesc('created_at')
+            ->orderBy('created_at', 'desc')
             ->paginate(5);
         return view('layouts.index', compact('articles'));
     }
