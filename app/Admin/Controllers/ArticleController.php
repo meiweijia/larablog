@@ -4,6 +4,8 @@ namespace App\Admin\Controllers;
 
 use App\Models\Article;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Tag;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -18,13 +20,14 @@ class ArticleController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('文章')
+            ->description('列表')
             ->body($this->grid());
     }
 
@@ -33,13 +36,14 @@ class ArticleController extends Controller
      *
      * @param mixed $id
      * @param Content $content
+     *
      * @return Content
      */
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('文章')
+            ->description('详情')
             ->body($this->detail($id));
     }
 
@@ -48,13 +52,14 @@ class ArticleController extends Controller
      *
      * @param mixed $id
      * @param Content $content
+     *
      * @return Content
      */
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('文章')
+            ->description('编辑')
             ->body($this->form()->edit($id));
     }
 
@@ -62,13 +67,14 @@ class ArticleController extends Controller
      * Create interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('文章')
+            ->description('创建')
             ->body($this->form());
     }
 
@@ -81,20 +87,14 @@ class ArticleController extends Controller
     {
         $grid = new Grid(new Article);
 
-        $grid->id('Id');
-        $grid->title('Title');
-        $grid->author('Author');
-        $grid->excerpt('Excerpt');
-        $grid->keywords('Keywords');
-        $grid->description('Description');
-        $grid->content('Content');
-        $grid->status('Status');
-        $grid->comment_status('Comment status');
-        $grid->comment_count('Comment count');
-        $grid->category('Category');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
-        $grid->deleted_at('Deleted at');
+        $grid->model()->orderBy('id', 'desc');
+        $grid->id('ID')->sortable();
+        $grid->title('标题');
+        $grid->author('作者');
+        $grid->created_at('发布时间');
+        $grid->status('状态')->display(function ($status) {
+            return $status ? '发布' : '草稿';
+        });
 
         return $grid;
     }
@@ -103,6 +103,7 @@ class ArticleController extends Controller
      * Make a show builder.
      *
      * @param mixed $id
+     *
      * @return Show
      */
     protected function detail($id)
@@ -110,19 +111,19 @@ class ArticleController extends Controller
         $show = new Show(Article::findOrFail($id));
 
         $show->id('Id');
-        $show->title('Title');
-        $show->author('Author');
-        $show->excerpt('Excerpt');
-        $show->keywords('Keywords');
-        $show->description('Description');
-        $show->content('Content');
-        $show->status('Status');
-        $show->comment_status('Comment status');
-        $show->comment_count('Comment count');
-        $show->category('Category');
+        $show->title('标题');
+        $show->author('作者');
+        //$show->excerpt('Excerpt');
+        //$show->keywords('Keywords');
+        //$show->description('Description');
+        $show->content('内容');
+        //$show->status('Status');
+        //$show->comment_status('Comment status');
+        //$show->comment_count('Comment count');
+        //$show->category('Category');
         $show->created_at('Created at');
-        $show->updated_at('Updated at');
-        $show->deleted_at('Deleted at');
+        //$show->updated_at('Updated at');
+        //$show->deleted_at('Deleted at');
 
         return $show;
     }
@@ -136,16 +137,19 @@ class ArticleController extends Controller
     {
         $form = new Form(new Article);
 
-        $form->text('title', 'Title');
-        $form->text('author', 'Author');
-        $form->text('excerpt', 'Excerpt');
-        $form->text('keywords', 'Keywords');
-        $form->text('description', 'Description');
-        $form->textarea('content', 'Content');
-        $form->number('status', 'Status')->default(1);
-        $form->number('comment_status', 'Comment status')->default(1);
-        $form->number('comment_count', 'Comment count');
-        $form->number('category', 'Category');
+        $form->display('id', 'ID');
+        $form->text('title', '标题');
+        $form->text('author', '作者')->default('admin');
+
+        $form->select('category', '分类')->options(Category::where('parent_id', '>', 0)->pluck('title', 'id'));
+
+        $form->multipleSelect('tags', '标签')->options(Tag::all()->pluck('title', 'id'));
+        $form->text('excerpt', '摘要');
+//            $form->text('keywords', '关键字');//seo
+//            $form->text('description', '描述');//seo
+        $form->markdown('content', '内容')->rows(30);
+        $form->switch('status', '发布?')->default(1);
+        $form->display('updated_at', '最后更新');
 
         return $form;
     }

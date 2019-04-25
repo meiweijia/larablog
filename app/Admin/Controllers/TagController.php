@@ -2,64 +2,78 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Tag;
-
+use App\Http\Controllers\Controller;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
-use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use App\Http\Controllers\Controller;
+use App\Models\Tag;
+
 
 class TagController extends Controller
 {
+    use HasResourceActions;
 
     /**
      * Index interface.
      *
+     * @param Content $content
+     *
      * @return Content
      */
-    public function index()
+    public function index(Content $content)
     {
-        return Admin::content(function (Content $content) {
+        return $content
+            ->header('标签')
+            ->description('列表')
+            ->body($this->grid());
+    }
 
-            $content->header('标签');
-            $content->description('列表');
-
-            $content->body($this->grid());
-        });
+    /**
+     * Show interface.
+     *
+     * @param mixed $id
+     * @param Content $content
+     *
+     * @return Content
+     */
+    public function show($id, Content $content)
+    {
+        return $content
+            ->header('标签')
+            ->description('详情')
+            ->body($this->detail($id));
     }
 
     /**
      * Edit interface.
      *
-     * @param $id
+     * @param mixed $id
+     * @param Content $content
+     *
      * @return Content
      */
-    public function edit($id)
+    public function edit($id, Content $content)
     {
-        return Admin::content(function (Content $content) use ($id) {
-
-            $content->header('标签');
-            $content->description('编辑');
-
-            $content->body($this->form()->edit($id));
-        });
+        return $content
+            ->header('标签')
+            ->description('编辑')
+            ->body($this->form()->edit($id));
     }
 
     /**
      * Create interface.
      *
+     * @param Content $content
+     *
      * @return Content
      */
-    public function create()
+    public function create(Content $content)
     {
-        return Admin::content(function (Content $content) {
-
-            $content->header('标签');
-            $content->description('新增');
-
-            $content->body($this->form());
-        });
+        return $content
+            ->header('标签')
+            ->description('创建')
+            ->body($this->form());
     }
 
     /**
@@ -69,15 +83,15 @@ class TagController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Tag::class, function (Grid $grid) {
+        $grid = new Grid(new Tag);
 
-            $grid->id('ID')->sortable();
-            $grid->title('名称')->sortable();
-            $grid->uri('别名')->sortable();
+        $grid->id('ID')->sortable();
+        $grid->title('名称')->sortable();
+        $grid->uri('别名')->sortable();
+        $grid->created_at();
+        $grid->updated_at();
 
-            $grid->created_at();
-            $grid->updated_at();
-        });
+        return $grid;
     }
 
     /**
@@ -87,14 +101,14 @@ class TagController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Tag::class, function (Form $form) {
+        $form = new Form(new Tag());
 
-            $form->display('id', 'ID');
-            $form->text('title', '名称');
-            $form->text('uri', '别名');
+        $form->display('id', 'ID');
+        $form->text('title', '名称');
+        $form->text('uri', '别名');
+        $form->display('created_at', 'Created At');
+        $form->display('updated_at', 'Updated At');
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
-        });
+        return $form;
     }
 }

@@ -2,31 +2,33 @@
 
 namespace App\Admin\Controllers;
 
-use App\Http\Controllers\Controller;
-use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 use Encore\Admin\Tree;
 use Encore\Admin\Widgets\Box;
+use Illuminate\Routing\Controller;
 use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    use HasResourceActions;
 
     /**
      * Index interface.
      *
+     * @param Content $content
+     *
      * @return Content
      */
-    public function index()
+    public function index(Content $content)
     {
-        return Admin::content(function (Content $content) {
-            $content->header('分类');
-            $content->description('列表');
-
-            $content->row(function (Row $row) {
+        return $content
+            ->header('分类')
+            ->description('列表')
+            ->row(function (Row $row) {
                 $row->column(6, $this->treeView()->render());
 
                 $row->column(6, function (Column $column) {
@@ -40,7 +42,6 @@ class CategoryController extends Controller
                     $column->append((new Box('分类', $form))->style('success'));
                 });
             });
-        });
     }
 
     /**
