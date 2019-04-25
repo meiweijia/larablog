@@ -2,7 +2,6 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Article;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +9,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class ArticleController extends Controller
+class ExampleController extends Controller
 {
     use HasResourceActions;
 
@@ -31,7 +30,7 @@ class ArticleController extends Controller
     /**
      * Show interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
      * @return Content
      */
@@ -46,7 +45,7 @@ class ArticleController extends Controller
     /**
      * Edit interface.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @param Content $content
      * @return Content
      */
@@ -79,22 +78,11 @@ class ArticleController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Article);
+        $grid = new Grid(new YourModel);
 
-        $grid->id('Id');
-        $grid->title('Title');
-        $grid->author('Author');
-        $grid->excerpt('Excerpt');
-        $grid->keywords('Keywords');
-        $grid->description('Description');
-        $grid->content('Content');
-        $grid->status('Status');
-        $grid->comment_status('Comment status');
-        $grid->comment_count('Comment count');
-        $grid->category('Category');
+        $grid->id('ID')->sortable();
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
-        $grid->deleted_at('Deleted at');
 
         return $grid;
     }
@@ -102,27 +90,16 @@ class ArticleController extends Controller
     /**
      * Make a show builder.
      *
-     * @param mixed $id
+     * @param mixed   $id
      * @return Show
      */
     protected function detail($id)
     {
-        $show = new Show(Article::findOrFail($id));
+        $show = new Show(YourModel::findOrFail($id));
 
-        $show->id('Id');
-        $show->title('Title');
-        $show->author('Author');
-        $show->excerpt('Excerpt');
-        $show->keywords('Keywords');
-        $show->description('Description');
-        $show->content('Content');
-        $show->status('Status');
-        $show->comment_status('Comment status');
-        $show->comment_count('Comment count');
-        $show->category('Category');
+        $show->id('ID');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
-        $show->deleted_at('Deleted at');
 
         return $show;
     }
@@ -134,18 +111,11 @@ class ArticleController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Article);
+        $form = new Form(new YourModel);
 
-        $form->text('title', 'Title');
-        $form->text('author', 'Author');
-        $form->text('excerpt', 'Excerpt');
-        $form->text('keywords', 'Keywords');
-        $form->text('description', 'Description');
-        $form->textarea('content', 'Content');
-        $form->number('status', 'Status')->default(1);
-        $form->number('comment_status', 'Comment status')->default(1);
-        $form->number('comment_count', 'Comment count');
-        $form->number('category', 'Category');
+        $form->display('id', 'ID');
+        $form->display('created_at', 'Created At');
+        $form->display('updated_at', 'Updated At');
 
         return $form;
     }
