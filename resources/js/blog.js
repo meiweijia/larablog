@@ -3,7 +3,7 @@ $(function () {
         trigger: "manual",
         placement: "bottom", //placement of the popover. also can use top, bottom, left or right
         html: true, //needed to show html of course
-        content: '<img src="/images/wx.png" width="200" height="200" />', //this is the content of the html box. add the image here or anything you want really.
+        content: '<img src="../images/wx.jpg" width="200" height="200" />', //this is the content of the html box. add the image here or anything you want really.
         animation: true
     }).on("mouseenter", function () {
         var _this = this;
