@@ -21,11 +21,13 @@
 
 `php artisan migrate`
 
-## 安装 laravel-admin
+## 安装 laravel-admin 及 extension
 
 `php artisan admin:install`
 
 `php artisan vendor:publish --tag=laravel-admin-simplemde`
+
+`php artisan admin:import media-manager`
 
 ## 安装前端package
 
