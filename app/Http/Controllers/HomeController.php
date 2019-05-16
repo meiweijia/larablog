@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\ArticleTag;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +26,9 @@ class HomeController extends Controller
         $articles = Article::query()
             ->with(['category:id,title,uri', 'tags:id,title,uri'])
             ->where('status', 1)
+            ->when($request->has('q'),function (Builder $query) use ($request){
+                $query->where('content', 'like', '%' . $request->input('q') . '%');
+            })
             ->orderByDesc('created_at')
             ->paginate(5);
         return view('home', compact('articles'));
@@ -76,17 +80,6 @@ class HomeController extends Controller
             ->with(['category:id,title,uri', 'tags:id,title,uri'])
             ->where('status', 1)
             ->whereIn('articles.id', $article_ids)
-            ->orderByDesc('created_at')
-            ->paginate(5);
-        return view('home', compact('articles'));
-    }
-
-    public function search(Request $request)
-    {
-        $articles = Article::query()
-            ->with(['category:id,title,uri', 'tags:id,title,uri'])
-            ->where('status', 1)
-            ->where('content', 'like', '%' . $request->input('q') . '%')
             ->orderByDesc('created_at')
             ->paginate(5);
         return view('home', compact('articles'));

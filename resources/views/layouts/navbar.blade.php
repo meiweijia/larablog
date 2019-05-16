@@ -19,7 +19,7 @@
                     <a class="nav-link {{ active_class(if_route('about')) }}" href="{{ route('about') }}">关于</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('search') }}">
+            <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('index') }}">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">
             </form>
         </div>

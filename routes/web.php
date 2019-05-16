@@ -26,7 +26,7 @@ Route::get('/tags/{name}', 'HomeController@getArticleByTag')->name('getArticleBy
 /**
  * 搜索
  */
-Route::get('/search/{q?}', 'HomeController@search')->name('search');
+Route::get('/search', 'HomeController@search')->name('search');
 /**
  * 关于
  */
