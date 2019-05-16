@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-block card mb-4 shadow">
-        <div class="card-body">
+        <div class="card-body article">
             <h2 class="text-center">{{ $article->title }}</h2>
             <p>
                 <i class="far fa-folder-open pr-1"></i><a
