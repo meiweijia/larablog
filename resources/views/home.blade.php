@@ -3,21 +3,18 @@
 @section('content')
     @if($articles->count())
         @foreach($articles as $article)
-            <article class="d-block card mb-4 shadow">
-                <div class="card-body p-0">
+            <article class="card mb-4 shadow">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-sm-5">
-                            <div class="p-2">
                                 <a href="{{ route('articles.show',$article->id) }}">
                                     <img class="img-thumbnail w-100"
                                          src="{{ asset('images/article-default.jpg') }}">
                                 </a>
-                            </div>
                         </div>
 
                         <div class="col-sm-7">
-                            <div class="px-2 px-xs-0 px-sm-0">
-                                <h4 class="h4 pt-2">
+                                <h4 class="h4 pt-2 pt-md-0 pt-sm-0">
                                     <a href="{{ route('articles.show',$article->id) }}"
                                        class="text-dark">{{$article->title}}</a>
                                 </h4>
@@ -38,10 +35,7 @@
                                         @endforeach
                                     </p>
                                 @endif
-                                <div class="mb-7">
                                     <p>{{ $article->excerpt }}</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
