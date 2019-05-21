@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-block card mb-4">
-        <div class="card-body shadow-lg">
+        <div class="card-body shadow">
             <h3>About me</h3>
             <p>你好，我叫梅渭甲，今年{{ date('Y')-1990 }}岁，毕业于湖南信息职业技术学院。我是奋斗在深圳一线的PHP后端工程师，正在在努力成为一个全栈工程师。</p>
             <ul>
