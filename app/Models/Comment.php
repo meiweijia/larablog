@@ -31,7 +31,11 @@ class Comment extends Model
         });
 
         static::created(function ($model) {
-            Article::query()->where('id',$model->article_id)->increment('comment_count');
+            Article::query()->where('id', $model->article_id)->increment('comment_count');
+        });
+
+        static::deleted(function ($model) {
+            Article::query()->where('id', $model->article_id)->decrement('comment_count');
         });
     }
 
