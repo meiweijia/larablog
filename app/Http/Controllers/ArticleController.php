@@ -26,30 +26,25 @@ class ArticleController extends Controller
 
     /**
      * @param Request $request
+     * @param Article $article
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function comment(Request $request)
+    public function comment(Request $request,Article $article)
     {
         $this->validate($request, [
-            'article_id' => 'required|integer|min:1',
             'comment' => 'required|string',
-            'comment_name' => 'required|string'
+            'name' => 'required|string'
         ]);
 
-        $comment = new Comment();
-        $comment->article_id = $request->article_id;
-        $comment->comment = $request->comment;
-        $comment->name = $request->comment_name;
+        $article->comments()->create($request->only([
+            'comment',
+            'name',
+            'parent_id'
+        ]));
 
-        if ($request->parent_id) {
-            $comment->parent_id = $request->parent_id;
-        }
-
-        $comment->save();
-
-        return redirect()->to(route('articles.show', $request->article_id) . '#reply-form');
+        return redirect()->to(route('articles.show', $article) . '#reply-form');
 
     }
 }

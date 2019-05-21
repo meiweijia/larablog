@@ -32,6 +32,6 @@ Route::get('/search', 'HomeController@search')->name('search');
  */
 Route::get('/about', 'HomeController@about')->name('about');
 
-Route::resource('articles', 'ArticleController', ['only' => ['show']]);
+Route::get('/articles/{article}', 'ArticleController@show')->name('articles.show');
 
-Route::post('/articles/comment','ArticleController@comment')->name('articles.comment');
+Route::post('/articles/{article}/comment','ArticleController@comment')->name('articles.comment');

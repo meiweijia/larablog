@@ -1,8 +1,7 @@
-<form action="{{route('articles.comment')}}" method="post" accept-charset="UTF-8" id="comment-form" onsubmit="return comment_form_submit()">
+<form action="{{route('articles.comment',$article_id)}}" method="post" accept-charset="UTF-8" id="comment-form" onsubmit="return comment_form_submit()">
     @csrf
-    <input type="hidden" name="article_id" value="{{ $article_id }}"/>
     <input type="hidden" name="parent_id" id="comment-parent-id" />
-    <input type="hidden" name="comment_name" id="comment-name" />
+    <input type="hidden" name="name" id="comment-name" />
     <div class="form-group">
         <textarea id="reply-comment" name="comment" title="" class="form-control" style="resize: none" rows="5" required></textarea>
     </div>
