@@ -15,6 +15,8 @@ try {
 
     require('bootstrap');
 
+    require('sweetalert');
+
 } catch (e) {}
 
 /**
