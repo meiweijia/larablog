@@ -9,7 +9,7 @@
                     <div class="info mb-2">
                         <img class="avatar" src="{{ asset('images/avatar.jpg') }}">
                         <div class="user-info ml-2">
-                            <div class="comment-name">{{ $comment->name }}</div>
+                            <div class="comment-name pointer">{{ $comment->name }}</div>
                             <span class="reply-time">{{ $comment->created_at }}</span>
                         </div>
                     </div>
@@ -17,12 +17,15 @@
                         {!! $comment->comment !!}
                     </div>
                     <div class="control mb-3">
-                            <span class="d-inline">
-                                <i class="far fa-comment-alt reply-btn" data-reply-status="0"
-                                   data-comment-name="{{ $comment->name }}"
-                                   data-comment-root-id="{{ $comment->id }}"
-                                   data-comment-id="{{ $comment->id }}"> 回复</i>
-                            </span>
+                        <span class="mr-3 pointer thumbs-up">
+                            <i class="far fa-thumbs-up"> 1人赞</i>
+                        </span>
+                        <span class="d-inline pointer">
+                            <i class="far fa-comment-alt reply-btn" data-reply-status="0"
+                               data-comment-name="{{ $comment->name }}"
+                               data-comment-root-id="{{ $comment->id }}"
+                               data-comment-id="{{ $comment->id }}"> 回复</i>
+                        </span>
                     </div>
                     <div id="comment-reply-box-{{ $comment->id }}">
                     </div>
@@ -30,22 +33,20 @@
                         @foreach($comment->children as $reply)
                             <div class="ml-3 mb-2 reply @if($loop->last)last @endif">
                                 <div class="user-info mb-2">
-                                    @if($reply->parent_id == $reply->root_id)
-                                        <span class="reply-name">{{ $reply->name }}</span>
-                                    @else
-                                        <span class="reply-name">{{ $reply->name }}</span>：
-                                        <span class="reply-name"><span>@</span>{{ $reply->parent->name }}</span>
+                                    <span class="reply-name pointer">{{ $reply->name }}</span>：
+                                    @if($reply->parent_id != $reply->root_id)
+                                        <span class="reply-name pointer"><span>@</span>{{ $reply->parent->name }}</span>
                                     @endif
+                                    {!! strip_tags($reply->comment) !!}
                                 </div>
                                 <div class="mb-2">
-                                    {!! $reply->comment !!}
                                 </div>
                                 <div class="control mb-2">
                                     <span class="reply-time">
                                         {{ $reply->created_at }}
                                     </span>
                                     <span class="mx-1"></span>
-                                    <span>
+                                    <span class="pointer">
                                         <i class="far fa-comment-alt reply-btn" data-reply-status="0"
                                            data-comment-name="{{ $reply->name }}"
                                            data-comment-root-id="{{ $comment->id }}"
@@ -60,7 +61,8 @@
                 </div>
             @endforeach
             <div class="reply-box" id="reply-box">
-                <form class="mb-2" action="{{route('articles.comment',$article_id)}}" method="post" accept-charset="UTF-8"
+                <form class="mb-2" action="{{route('articles.comment',$article_id)}}" method="post"
+                      accept-charset="UTF-8"
                       id="comment-form" onsubmit="return comment_form_submit()">
                     @csrf
                     <input type="hidden" name="parent_id" id="comment-parent-id"/>

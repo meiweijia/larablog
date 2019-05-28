@@ -117,10 +117,6 @@ blockquote {
         align-items: center;
     }
 
-    .comment-name {
-        cursor: pointer;
-    }
-
     .control {
         display: flex;
         align-items: center;
@@ -138,24 +134,31 @@ blockquote {
 
     .reply-name {
         color: $primary;
-        cursor: pointer;
     }
 
     .last {
         border-bottom: none !important;
     }
 
-    .reply-btn {
-        cursor: pointer;
-    }
-
-    .reply-btn:hover {
+    .reply-btn:hover{
         color: $black;
     }
 
     .reply-time {
         font-size: smaller;
         color: $gray-600;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .liked {
+        color: $red !important;
+    }
+
+    .thumbs-up:hover {
+        color: $red !important;
     }
 
     p {
