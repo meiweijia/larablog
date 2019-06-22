@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>window.Laravel = {csrfToken: '{{ csrf_token() }}'}</script>
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -27,25 +28,26 @@
 <div id="app">
     @component('layouts.navbar')
     @endcomponent
-    <main class="content">
+    <main class="content pt-4">
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 mb-9 mb-lg-0" id="content">
                     @yield('content')
                 </div>
                 <div class="col-md-3">
-                    @component('layouts.profile')
-                    @endcomponent
-                    @component('layouts.category')
-                    @endcomponent
-                    @component('layouts.tag')
-                    @endcomponent
+                    <div class="sticky-top">
+                        @component('layouts.profile')
+                        @endcomponent
+                        @component('layouts.category')
+                        @endcomponent
+                        @component('layouts.tag')
+                        @endcomponent
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <footer class="main-footer bg-dark">
+    <footer class="main-footer fixed-bottom bg-dark position-absolute w-100">
         <div class="container text-center">
             <span class="text-muted">© {{date('Y')}} <a href="/" title="梅渭甲的博客">meiwj.dev</a></span>
         </div>

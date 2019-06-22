@@ -1,4 +1,4 @@
-<div class="card border-0 mb-4 shadow">
+<div class="card border-0 shadow">
     <div class="card-header">标签</div>
     <div class="card-body">
         @foreach($tags as $tag)

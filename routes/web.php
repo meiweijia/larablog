@@ -34,4 +34,6 @@ Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/articles/{article}', 'ArticleController@show')->name('articles.show');
 
-Route::post('/articles/{article}/comment','ArticleController@comment')->name('articles.comment');
+Route::get('/articles/{article}/comment','ArticleController@commentShow')->name('articles.comment.show');
+Route::get('/comments/more_children/{id}','ArticleController@getChildrenComments')->name('articles.comment.show.more_children');
+Route::post('/articles/{article}/comment','ArticleController@commentStore')->name('articles.comment.store');

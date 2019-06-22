@@ -31,8 +31,37 @@ class ArticleController extends Controller
             ])
             ->where('status', 1)
             ->findOrFail($id);
-        //dd($article->toArray());
         return view('article', compact('article'));
+    }
+
+    public function commentShow(Request $request, Article $article)
+    {
+        $comments = $article->comments()
+            ->whereNull('root_id')
+            ->simplePaginate(10)
+            ->toArray();
+        foreach ($comments['data'] as $index => $comment) {
+            $comments['data'][$index]['children'] = Comment::query()
+                ->with([
+                    'parent:id,name',
+                    'user:id,name'
+                ])
+                ->where('parent_id', $comment['id'])
+                ->paginate(3)
+                ->toArray();
+        }
+        return $comments;
+    }
+
+    public function getChildrenComments($id)
+    {
+        $comment = Comment::query()->with([
+            'parent:id,name',
+            'user:id,name'
+        ])
+            ->where('parent_id', $id)
+            ->paginate(10);
+        return $comment;
     }
 
     /**
@@ -42,7 +71,7 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function comment(Request $request, Article $article)
+    public function commentStore(Request $request, Article $article)
     {
         $this->validate($request, [
             'comment' => 'required|string',
