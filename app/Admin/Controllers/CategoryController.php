@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
+use Encore\Admin\Form;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Row;
@@ -19,6 +20,7 @@ class CategoryController extends Controller
      * Index interface.
      *
      * @param Content $content
+     *
      * @return Content
      */
     public function index(Content $content)
@@ -66,5 +68,37 @@ class CategoryController extends Controller
                 return $payload;
             });
         });
+    }
+
+    /**
+     * Edit interface.
+     *
+     * @param string $id
+     * @param Content $content
+     *
+     * @return Content
+     */
+    public function edit($id, Content $content)
+    {
+        return $content
+            ->header('分类')
+            ->description('编辑')
+            ->row($this->form()->edit($id));
+    }
+
+    /**
+     * Make a form builder.
+     *
+     * @return Form
+     */
+    public function form()
+    {
+        $form = new Form(new Category());
+
+        $form->display('id', 'ID');
+        $form->text('title', '标题')->rules('required');
+        $form->text('uri', trans('admin.uri'))->rules('required');
+
+        return $form;
     }
 }
