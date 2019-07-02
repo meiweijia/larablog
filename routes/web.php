@@ -34,6 +34,12 @@ Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/articles/{article}', 'ArticleController@show')->name('articles.show');
 
-Route::get('/articles/{article}/comment','ArticleController@commentShow')->name('articles.comment.show');
-Route::get('/comments/more_children/{id}','ArticleController@getChildrenComments')->name('articles.comment.show.more_children');
-Route::post('/articles/{article}/comment','ArticleController@commentStore')->name('articles.comment.store');
+Route::get('/login/wechat/callback', 'Auth\LoginController@wechatCallBack')->name('login.wechat.callback');//扫码登录
+Route::get('/login/github/callback', 'Auth\LoginController@githubCallBack')->name('login.github.callback');//github 登录
+
+Route::get('test', function () {
+    $encryptedString = "eyJpdiI6IlwvR1hjUjRIMDNpRTNmSDBEZHRzTmtnPT0iLCJ2YWx1ZSI6IlFBMVc0SjVWUHZuSFFzVnRZMVY2Tzl0cTBlQVZ1MDRoVzYyYUpjeGJRUmZcLytpTStXK3l0VUN2U0gyeStBMGtcL0NUTUcxcmVvZ3hqODhoc2w0NmNoZDBIVHpjQkpFUjVCVkE2QkU4eUpQb1dhZUsrUjRnOXlPVXNTdHZJR3F4RjciLCJtYWMiOiIyMTg0MTM4YmRhYjEzOGFhNTY5NTczOWRhM2E4YzFmZTJmYjMwMjNhYzliNGEwZDE4OGEzMDQzMmFkNTE2NTQ4In0=";
+
+    $decryptedString = \Crypt::decryptString($encryptedString);
+    dd($decryptedString);
+});

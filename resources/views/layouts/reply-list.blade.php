@@ -3,6 +3,6 @@
         {{--@if(!$comments->count())--}}
         {{--<p>暂时没评论，快成为第一个评论的人吧。</p>--}}
         {{--@endif--}}
-        <comment-component submit-uri="{{route('articles.comment.store',$article_id)}}"></comment-component>
+        <comment-component submit-uri="{{route('api.articles.comment.store',$article_id)}}"></comment-component>
     </div>
 </div>

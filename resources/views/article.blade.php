@@ -10,7 +10,7 @@
                 <span class="mx-1">|</span><i class="far fa-calendar-alt pr-1"></i><a href="javascript:void(0)"
                                                                                       class="text-dark"
                                                                                       title="{{ $article->created_at }}">{{ $article->created_at->diffForHumans() }}</a>
-                <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a href="#reply-form"
+                <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a href="#comment-box-root"
                                                                                      class="text-dark">{{ $article->comment_count }}</a>
             </p>
             @if($article->tags->count())

@@ -53,5 +53,6 @@
         </div>
     </footer>
 </div>
+<script src="https://cdn.authing.cn/sdk/javascript/authing-login-form-1.7.1.js"></script>
 </body>
 </html>

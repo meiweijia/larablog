@@ -25,7 +25,7 @@
                                         href="javascript:void(0)" class="text-dark"
                                         title="{{ $article->created_at }}">{{ $article->created_at->diffForHumans() }}</a>
                                     <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a
-                                        href="{{ route('articles.show',$article->id) }}#reply-form">{{ $article->comment_count }}</a>
+                                        href="{{ route('articles.show',$article->id) }}#comment-box-root">{{ $article->comment_count }}</a>
                                 </p>
                                 @if($article->tags->count())
                                     <p><i class="fas fa-tags"></i>

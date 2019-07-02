@@ -98,14 +98,14 @@ blockquote {
     border-left: 0.2em solid lighten($black, 40%);
 }
 
-.reply-box{
-    textarea{
-        background-color: hsla(0,0%,71%,.1);
+.reply-box {
+    textarea {
+        background-color: hsla(0, 0%, 71%, .1);
     }
 }
 
-.comment-header{
-    .active{
+.comment-header {
+    .active {
         color: $black;
     }
 }
@@ -148,7 +148,7 @@ blockquote {
         border-bottom: none !important;
     }
 
-    .reply-btn:hover{
+    .reply-btn:hover {
         color: $black;
     }
 
@@ -165,6 +165,16 @@ blockquote {
     }
 }
 
+.comment-reply-cancel {
+    margin-top: 0.25rem;
+    margin-right: 0.5rem;
+    color: $gray-600;
+}
+
+.comment-reply-cancel:hover {
+    color: $black;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -174,20 +184,130 @@ blockquote {
     color: $gray-600;
 }
 
-.emoji-btn{
+.emoji-btn {
     color: $gray-600;
     font-size: 1.2rem;
 }
 
-.emoji-btn:hover{
+.emoji-btn:hover {
     color: $black;
 }
 
-textarea{
+textarea {
     resize: none;
 }
 
-.comment-box{
-    width:100%;
-    overflow-y:visible
+.comment-box {
+    width: 100%;
+    overflow-y: visible
+}
+
+.v--modal-overlay {
+    z-index: 9999 !important;
+}
+
+//.v--modal-box {
+//    width: 410px !important;
+//}
+
+/* sign in FORM */
+#logreg-forms {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+#logreg-forms form {
+    width: 100%;
+    max-width: 410px;
+    padding: 15px;
+    margin: auto;
+}
+
+#logreg-forms .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#logreg-forms .form-control:focus {
+    z-index: 2;
+}
+
+#logreg-forms .social-login {
+    width: 390px;
+    margin: 0 auto;
+    margin-bottom: 14px;
+}
+
+.social-btn {
+    font-weight: 100;
+    color: white;
+    width: 190px;
+    font-size: 0.9rem;
+}
+
+#logreg-forms a {
+    display: block;
+    padding-top: 10px;
+    color: lightseagreen;
+}
+
+#logreg-form .lines {
+    width: 200px;
+    border: 1px solid red;
+}
+
+#logreg-forms button[type="submit"] {
+    margin-top: 10px;
+}
+
+#logreg-forms .wechat-btn {
+    background-color: #62b900;
+}
+
+#logreg-forms .github-btn {
+    background-color: #DF4B3B;
+}
+
+.login-qrcode{
+    width: 340px;
+    height:340px;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 500px) {
+    #logreg-forms .social-login {
+        width: 200px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    #logreg-forms .social-btn {
+        font-size: 1.3rem;
+        font-weight: 100;
+        color: white;
+        height: 44px;
+
+    }
+    #logreg-forms .social-btn:nth-child(1) {
+        margin-bottom: 5px;
+    }
+    #logreg-forms .social-btn span {
+        display: none;
+    }
+    #logreg-forms .wechat-btn:after {
+        content: '微信';
+    }
+
+    #logreg-forms .github-btn:after {
+        content: 'Github';
+    }
+
+    .login-qrcode{
+        width: 290px;
+        height:290px;
+
+    }
 }

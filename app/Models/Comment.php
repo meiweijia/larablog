@@ -10,7 +10,8 @@ class Comment extends Model
         'comment',
         'name',
         'parent_id',
-        'root_id'
+        'root_id',
+        'user_id'
     ];
 
     protected static function boot()
