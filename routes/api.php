@@ -15,4 +15,5 @@ Route::get('/articles/{article}/comment', 'ArticleController@commentShow')->name
 Route::get('/comments/more_children/{id}', 'ArticleController@getChildrenComments')->name('api.articles.comment.show.more_children');
 Route::post('/articles/{article}/comment', 'ArticleController@commentStore')->name('api.articles.comment.store');
 
-\Illuminate\Support\Facades\Route::resource('user', 'Api\UserController')->only('store')->names('api.user');
+Route::resource('user', 'Api\UserController')->only('store')->names('api.user');
+Route::post('login','Api\UserController@login')->name('api.login');

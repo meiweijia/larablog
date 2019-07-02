@@ -78,7 +78,7 @@
                         <div class="col-12">
                             <div class="d-flex justify-content-end">
                                 <span class="pointer comment-reply-cancel" @click="hideCommentInput()">取消</span>
-                                <button @click="addComment(comment.id,children.id)"
+                                <button @click="addComment(comment.id, children.id)"
                                         class="btn btn-sm btn-outline-primary"
                                         type="button"
                                         id="button-comment">回覆
@@ -115,7 +115,7 @@
                             <div class="col-12">
                                 <div class="d-flex justify-content-end">
                                     <span class="pointer comment-reply-cancel" @click="hideCommentInput()">取消</span>
-                                    <button @click="addComment(comment.id,children.id)"
+                                    <button @click="addComment(comment.id, comment.id)"
                                             class="btn btn-sm btn-outline-primary"
                                             type="button" id="button-reply">發布
                                     </button>
@@ -155,7 +155,7 @@
         </nav>
         <modal name="login-box" @closed="clearInterval" :width="modal_width" height="auto">
             <div id="logreg-forms">
-                <form class="form-signin" v-if="login_action ==='login'">
+                <form class="form-signin" v-if="login_action ==='login'" onsubmit="return false">
                     <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> 登入</h1>
                     <div class="social-login">
                         <button class="btn wechat-btn social-btn" type="button" @click="loginWithQrcode"><span><i
@@ -164,12 +164,10 @@
                         <button class="btn github-btn social-btn" type="button"><span><i class="fab fa-github"></i> 使用 Github 登入</span>
                         </button>
                     </div>
-                    <p style="text-align:center"> OR </p>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email 地址" required=""
-                           autofocus="">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="密碼" required="">
-
-                    <button class="btn btn-outline-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>
+                    <p class="text-center">OR</p>
+                    <input type="email" v-model="sign_info.email" class="form-control" placeholder="Email 地址" required autofocus>
+                    <input type="password" v-model="sign_info.password" class="form-control" placeholder="密碼" required autofocus>
+                    <button class="btn btn-outline-success btn-block" type="submit" @click="login"><i class="fas fa-sign-in-alt"></i>
                         登入
                     </button>
                     <a href="javascript:void(0)" id="forgot_pswd" @click="changeLoginAction('reset')">忘記密碼?</a>
@@ -181,7 +179,7 @@
                     </button>
                 </form>
 
-                <form class="form-reset" v-if="login_action === 'reset'">
+                <form class="form-reset" v-if="login_action === 'reset'" onsubmit="return false">
                     忘記密碼了嗎？請在下方輸入您的電子郵件地址以開始重設密碼。
                     <hr>
                     <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required=""
@@ -192,7 +190,7 @@
                         返回</a>
                 </form>
 
-                <form class="form-signup" v-if="login_action === 'register'">
+                <form class="form-signup" v-if="login_action === 'register'" onsubmit="return false">
                     <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> 註冊</h1>
                     <div class="social-login">
                         <button class="btn wechat-btn social-btn" type="button" @click="loginWithQrcode"><span><i
@@ -202,24 +200,22 @@
                         </button>
                     </div>
 
-                    <p style="text-align:center">OR</p>
+                    <p class="text-center">OR</p>
 
-                    <input type="text" id="user-name" class="form-control" placeholder="Full name" required=""
-                           autofocus="">
-                    <input type="email" id="user-email" class="form-control" placeholder="Email address" required
-                           autofocus="">
-                    <input type="password" id="user-pass" class="form-control" placeholder="Password" required
-                           autofocus="">
-                    <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password"
-                           required autofocus="">
-
-                    <button class="btn btn-outline-success btn-block" type="submit"><i class="fas fa-user-plus"></i> 註冊
+                    <input type="text" v-model="sign_info.name" class="form-control" placeholder="昵稱" required autofocus>
+                    <input type="email" v-model="sign_info.email" class="form-control" placeholder="Email 地址" required autofocus>
+                    <input type="password" v-model="sign_info.password" class="form-control" placeholder="密碼" required autofocus>
+                    <input type="password" v-model="sign_info.repeatpass" class="form-control" placeholder="確認密碼" required autofocus>
+                    <div class="alert alert-danger" role="alert" v-if="sign_up_error === 1">
+                        {{sign_up_error_msg}}
+                    </div>
+                    <button class="btn btn-outline-success btn-block" type="submit" @click="signUp"><i class="fas fa-user-plus"></i> 註冊
                     </button>
                     <a href="javascript:void(0)" @click="changeLoginAction('login')"><i class="fas fa-angle-left"></i>
                         返回</a>
                 </form>
 
-                <form class="form-signin" v-if="login_action ==='wechat'">
+                <form class="form-signin" v-if="login_action ==='wechat'" onsubmit="return false">
                     <div class="d-flex justify-content-center" id="qrcode-node">
                         <img class="login-qrcode" :src="login_qrcode">
                     </div>
@@ -268,6 +264,14 @@
                 modal_width: MODAL_WIDTH,
                 login_action: 'login',
                 login_qrcode: '/images/loading.gif',
+                sign_up_error_msg: '',
+                sign_up_error: 0,
+                sign_info:{
+                    name: '',
+                    email: '',
+                    password: '',
+                    repeatpass: '',
+                },
             }
         },
         created() {
@@ -409,8 +413,8 @@
                 this.$modal.hide('login-box');
             },
             changeLoginAction(action) {//切换登录方式
-                this.login_action = action;
                 this.clearInterval();
+                this.login_action = action;
             },
             loginWithQrcode() {//扫码登录
                 this.login_action = 'wechat';
@@ -433,24 +437,58 @@
                     if (result.data.code == 200) {
                         vc.clearInterval();
                         let user_info = result.data.data;
-                        axios.post('//' + window.location.host + '/api/user', {
+                        let sign_data = {
                             'email': user_info.email,
                             'name': user_info.nickname,
                             'avatar': user_info.photo,
                             'unionid': user_info.unionid,
-                        })
-                            .then(response => {
-                                console.log(response);
-                                $.cookie('api_token',response.data.api_token);//保持cookie
-                                vc.input_comment.api_token = response.data.api_token;//保持输入框信息
-                                vc.closeLoginModal();
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            });
+                        };
+                        vc.register(sign_data);
                     }
                 });
 
+            },
+            signUp(){
+                if(this.sign_info.password !== this.sign_info.repeatpass){
+                    this.sign_up_error = 1;
+                    this.sign_up_error_msg = '兩次密碼輸入不一致';
+                    return;
+                }
+                let data={
+                    'email': this.sign_info.email,
+                    'name': this.sign_info.name,
+                    'password': this.sign_info.password,
+                };
+                this.register(data);
+            },
+            login(){
+                let vc = this;
+                axios.post('//' + window.location.host + '/api/login', {
+                    'email': this.sign_info.email,
+                    'password': this.sign_info.password,
+                })
+                    .then(response => {
+                    console.log(response);
+                $.cookie('api_token',response.data.api_token);//保持cookie
+                vc.input_comment.api_token = response.data.api_token;//保持输入框信息
+                vc.closeLoginModal();
+                })
+                .catch(error => {
+                        console.log(error);
+                });
+            },
+            register(data){
+                let vc = this;
+                axios.post('//' + window.location.host + '/api/user', data)
+                    .then(response => {
+                    console.log(response);
+                $.cookie('api_token',response.data.api_token);//保持cookie
+                vc.input_comment.api_token = response.data.api_token;//保持输入框信息
+                vc.closeLoginModal();
+                })
+                .catch(error => {
+                        console.log(error);
+                });
             },
         }
     }

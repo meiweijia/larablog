@@ -57,13 +57,13 @@ class ArticleController extends Controller
                     'parent.user:id,name',
                     'user:id,name'
                 ])
-                ->where('parent_id', $comment['id'])
+                ->where('root_id', $comment['id'])
                 ->offset(0)
                 ->limit($limit)
                 ->get()
                 ->toArray();
             $comments['data'][$index]['children']['total'] = Comment::query()
-                    ->where('parent_id', $comment['id'])
+                    ->where('root_id', $comment['id'])
                     ->count() - $limit;
         }
         return $comments;
@@ -78,12 +78,12 @@ class ArticleController extends Controller
             'parent.user:id,name',
             'user:id,name'
         ])
-            ->where('parent_id', $id)
+            ->where('root_id', $id)
             ->offset(3 + $limit * $page)
             ->limit($limit)
             ->get();
         $total = Comment::query()
-            ->where('parent_id', $id)
+            ->where('root_id', $id)
             ->count();
         return [
             'comment' => $comment,

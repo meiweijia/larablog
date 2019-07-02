@@ -15,13 +15,21 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             // 身份验证通过...
-            return redirect()->intended('dashboard');
+            return Auth::user();
         }
+        return 0;
     }
 
     public function store(Request $request)
     {
-        $user = User::query()->where('unionid', $request->input('unionid'))->first();
+        if ($request->input('unionid')){//扫码注册，微信给的ID都是固定的，所以可以看出是同一账号
+            $user = User::query()->where('unionid', $request->input('unionid'))->first();
+        }else{//正常注册
+            $user = User::query()->where('email', $request->input('email'))->first();
+            if ($user){//todo 如果 email 已经被注册，返回错误信息
+                return 0;
+            }
+        }
         if ($user) {
             $user->update($request->only([
                 'email',
@@ -35,6 +43,7 @@ class UserController extends Controller
                 'email',
                 'name',
                 'avatar',
+                'password'
             ]));
             return $result;
         }

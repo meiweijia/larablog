@@ -42,10 +42,17 @@ class User extends Authenticatable
     {
         parent::boot();
 
+        static::creating(function ($model){
+            if(!$model->avatar){
+                $model->avatar = url('images/avatar-default.png');
+            }
+        });
+
         static::saving(function ($model) {
             if (!$model->password) {
-                $model->password = bcrypt(Str::random());
+                $model->password = Str::random();
             }
+            $model->password = bcrypt($model->password);
             $model->api_token = Str::random(80);
         });
     }
