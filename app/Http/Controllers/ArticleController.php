@@ -45,13 +45,14 @@ class ArticleController extends Controller
         $order = $request->input('order');
         $limit = 3;
         $comments = $article->comments()
-            ->with(['user:id,name,avatar'])
+            ->with('user:id,name,avatar')
             ->whereNull('root_id')
             ->orderBy('created_at', $order)
             ->paginate(10)
             ->toArray();
+        //todo 优化把 children total 放进redis
         foreach ($comments['data'] as $index => $comment) {
-            $comments['data'][$index]['children']['data'] = Comment::query()
+            $comments['data'][$index]['children'] = Comment::query()
                 ->with([
                     'parent:id,name,user_id',
                     'parent.user:id,name',
@@ -62,7 +63,7 @@ class ArticleController extends Controller
                 ->limit($limit)
                 ->get()
                 ->toArray();
-            $comments['data'][$index]['children']['total'] = Comment::query()
+            $comments['data'][$index]['children_total'] = Comment::query()
                     ->where('root_id', $comment['id'])
                     ->count() - $limit;
         }
@@ -101,6 +102,7 @@ class ArticleController extends Controller
      */
     public function commentStore(Request $request, Article $article)
     {
+        //todo 优化 新增子评论时，更新评论的子数进redis
         $this->validate($request, [
             'comment' => 'required|string',
         ]);
@@ -112,6 +114,6 @@ class ArticleController extends Controller
         $data['user_id'] = Auth::id();
         $article->comments()->create($data);
 
-        return 1;
+        return response(['message' => '评论成功']);
     }
 }

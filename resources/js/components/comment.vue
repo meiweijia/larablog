@@ -4,11 +4,23 @@
             <!--v-if="show_item_id === -1"-->
             <div class="row mb-4">
                 <div class="col-12 mb-2">
-                    <textarea id="comment-box-root" v-model="input_comment.comment"
-                              class="form-control" placeholder="留下你的評論..." rows="2"
-                              aria-describedby="button-reply"></textarea>
+                    <div class="media">
+                        <img class="avatar rounded-circle mr-2" :src="avatar" style="width: 2.5rem"/>
+                        <div class="media-body">
+                            <textarea v-show="input_comment.api_token" id="comment-box-root" class="form-control"
+                                      placeholder="留下你的評論..." rows="2"
+                                      aria-describedby="button-reply"></textarea>
+                            <div v-show="!input_comment.api_token" class="form-control comment-box-disabled"
+                                 style="height: 3.625rem">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <button class="btn btn-outline-primary" @click="showLoginModal">登入</button>
+                                    <span class="ml-2">後評論</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12" v-show="input_comment.api_token">
                     <div class="d-flex justify-content-end">
                         <span class="pointer comment-reply-cancel">取消</span>
                         <button @click="addComment()" class="btn btn-sm btn-outline-primary"
@@ -26,14 +38,14 @@
         </div>
         <hr>
         <div class="comment mb-3" v-for="(comment,index) in comments">
-            <div class="info mb-2">
-                <img class="avatar" :src="comment.user.avatar">
+            <div class="info">
+                <img class="avatar rounded-circle" :src="comment.user.avatar">
                 <div class="user-info ml-2">
                     <div class="comment-name pointer">{{ comment.user.name }}</div>
                     <span class="reply-time">{{ comment.created_at }}</span>
                 </div>
             </div>
-            <div class="mb-2" v-html="comment.comment">
+            <div class="my-3" v-html="comment.comment">
                 {{ comment.comment }}
             </div>
             <div class="control mb-3">
@@ -50,7 +62,7 @@
             </div>
             <!--children-->
             <div class="children mb-2">
-                <div class="ml-3 mb-2 reply" v-for="children in comment.children.data">
+                <div class="ml-3 mb-2 reply" v-for="children in comment.children">
                     <div class="user-info mb-2">
                         <span class="reply-name pointer">{{ children.user.name }}</span>：
                         <span class="reply-name pointer"><span>@</span>{{ children.parent.user.name }}</span>
@@ -71,14 +83,13 @@
                     </div>
                     <div class="row mb-2" v-if="show_item_id === children.id">
                         <div class="col-12 mb-2">
-                            <textarea :id="'comment-box-'+children.id" v-model="input_comment.comment"
-                                      class="form-control" :placeholder="replay_text" rows="1"
-                                      aria-describedby="button-comment"></textarea>
+                            <textarea :id="'comment-box-'+children.id" class="form-control" :placeholder="replay_text"
+                                      rows="1" aria-describedby="button-comment"></textarea>
                         </div>
                         <div class="col-12">
                             <div class="d-flex justify-content-end">
                                 <span class="pointer comment-reply-cancel" @click="hideCommentInput()">取消</span>
-                                <button @click="addComment(comment.id, children.id)"
+                                <button @click="addComment(comment.id, children.id,'comment-box-'+children.id)"
                                         class="btn btn-sm btn-outline-primary"
                                         type="button"
                                         id="button-comment">回覆
@@ -93,31 +104,34 @@
                            @click="showCommentInput(comment)"> 添加新評論</i>
                         <i class="far fa-edit reply-time pointer" v-else @click="hideCommentInput()"> 取消</i>
                     </span>
-                    <template v-if="comment.children.total > 0">
+                    <template v-if="comment.children_total > 0">
                         <span class="mx-2 reply-time">|</span>
                         <span class="line-warp reply-time">
-                            還有{{ comment.children.total }}条評論，
+                            還有{{ comment.children_total }}条評論，
                             <a class="text-primary pointer" @click="getChildrenComments(comment.id,index)">展開查看</a>
                         </span>
                     </template>
-                    <span v-else :id="'collapse-'+comment.id" class="line-warp reply-time">
+                    <template :id="'collapse-'+comment.id">
+                        <span class="mx-2 reply-time">|</span>
+                        <span class="line-warp reply-time">
                             <a class="text-primary pointer" @click="collapseChildren(index)">收起</a>
                         </span>
+                    </template>
+
                 </div>
                 <div class="ml-3">
                     <div v-if="show_item_id === comment.id">
                         <div class="row">
                             <div class="col-12 mb-2">
                             <textarea :id="'comment-box-'+comment.id" v-model="input_comment.comment"
-                                      class="form-control" :placeholder="replay_text" rows="1"
-                                      aria-describedby="button-reply"></textarea>
+                                      class="form-control" :placeholder="replay_text" rows="1"></textarea>
                             </div>
                             <div class="col-12">
                                 <div class="d-flex justify-content-end">
                                     <span class="pointer comment-reply-cancel" @click="hideCommentInput()">取消</span>
-                                    <button @click="addComment(comment.id, comment.id)"
+                                    <button @click="addComment(comment.id, comment.id,'comment-box-'+comment.id)"
                                             class="btn btn-sm btn-outline-primary"
-                                            type="button" id="button-reply">發布
+                                            type="button" id="button-reply">回覆
                                     </button>
                                 </div>
                             </div>
@@ -127,36 +141,39 @@
             </div>
             <!--children-end-->
         </div>
-        <nav aria-label="Page navigation">
+        <!--翻页-->
+        <nav aria-label="Page navigation" v-show="total_page>1">
             <ul class="pagination justify-content-end">
-                <li :class="['page-item',{disabled:current_page == 1}]">
+                <li :class="['page-item',{disabled:current_page === 1}]">
                     <a class="page-link" href="javascript:void(0)"
                        @click.prevent="changePage(current_page - 1)">&lsaquo;</a>
                 </li>
-                <li :class="['page-item',{active: current_page == 1}]" @click="changePage(1)">
+                <li :class="['page-item',{active: current_page === 1}]" @click="changePage(1)">
                     <a class="page-link" href="javascript:void(0)"
                        @click.prevent="changePage(1)">1</a>
                 </li>
                 <li class="mx-2" v-show="current_page > 3 && total_page > 5">...</li>
-                <li :class="['page-item',{active: current_page == index +offset}]" v-for="(item,index) in middlePages"
+                <li :class="['page-item',{active: current_page === index +offset}]" v-for="(item,index) in middlePages"
                     @click="changePage(index + offset)"><a class="page-link"
                                                            href="javascript:void(0)">{{index+offset}}</a>
                 </li>
                 <li class="mx-2" v-show="current_page < bigLimit-1 && total_page > 5">...</li>
-                <li :class="['page-item',{active: current_page == total_page}]" @click="changePage(total_page)"
+                <li :class="['page-item',{active: current_page === total_page}]" @click="changePage(total_page)"
                     v-if="total_page > 1"><a class="page-link" href="javascript:void(0)"
                                              @click.prevent="changePage(total_page)">{{total_page}}</a>
                 </li>
-                <li :class="['page-item',{disabled:current_page == total_page}]">
+                <li :class="['page-item',{disabled:current_page === total_page}]">
                     <a class="page-link" href="javascript:void(0)"
                        @click.prevent="changePage(current_page + 1)">&rsaquo;</a>
                 </li>
             </ul>
         </nav>
-        <modal name="login-box" @closed="clearInterval" :width="modal_width" height="auto">
+
+        <modal name="login-box" @closed="loginModalClosed" :width="modal_width" height="auto">
             <div id="logreg-forms">
-                <form class="form-signin" v-if="login_action ==='login'" onsubmit="return false">
-                    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> 登入</h1>
+                <!--登录-->
+                <form class="form-signin" v-if="login_action ==='login'" @submit.prevent="login">
+                    <h1 class="h3 mb-3 font-weight-normal text-center"> 登入</h1>
                     <div class="social-login">
                         <button class="btn wechat-btn social-btn" type="button" @click="loginWithQrcode"><span><i
                             class="fab fa-weixin"></i> 微信掃碼登入</span>
@@ -165,9 +182,15 @@
                         </button>
                     </div>
                     <p class="text-center">OR</p>
-                    <input type="email" v-model="sign_info.email" class="form-control" placeholder="Email 地址" required autofocus>
-                    <input type="password" v-model="sign_info.password" class="form-control" placeholder="密碼" required autofocus>
-                    <button class="btn btn-outline-success btn-block" type="submit" @click="login"><i class="fas fa-sign-in-alt"></i>
+                    <input type="email" v-model="sign_info.email" v-model.trim="sign_info.email" class="form-control"
+                           placeholder="Email 地址" required
+                           autofocus>
+                    <input type="password" v-model="sign_info.password" class="form-control" placeholder="密碼" required
+                           autofocus>
+                    <div class="alert alert-danger" role="alert" v-if="sign_up_error === 1">
+                        {{sign_up_error_msg}}
+                    </div>
+                    <button class="btn btn-outline-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>
                         登入
                     </button>
                     <a href="javascript:void(0)" id="forgot_pswd" @click="changeLoginAction('reset')">忘記密碼?</a>
@@ -178,20 +201,20 @@
                         class="fas fa-user-plus"></i> 註冊
                     </button>
                 </form>
-
+                <!--重置密码-->
                 <form class="form-reset" v-if="login_action === 'reset'" onsubmit="return false">
                     忘記密碼了嗎？請在下方輸入您的電子郵件地址以開始重設密碼。
                     <hr>
-                    <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required=""
+                    <input type="email" id="resetEmail" class="form-control" placeholder="Email 地址" required=""
                            autofocus="">
-                    <button class="btn btn-outline-success btn-block" type="submit"><i class="fas fa-sign-out-alt"></i>送出
+                    <button class="btn btn-outline-primary btn-block" type="submit"><i class="fas fa-sign-out-alt"></i>送出
                     </button>
                     <a href="javascript:void(0)" @click="changeLoginAction('login')"><i class="fas fa-angle-left"></i>
                         返回</a>
                 </form>
-
-                <form class="form-signup" v-if="login_action === 'register'" onsubmit="return false">
-                    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> 註冊</h1>
+                <!--注册-->
+                <form class="form-signup" v-if="login_action === 'register'" @submit.prevent="signUp">
+                    <h1 class="h3 mb-3 font-weight-normal text-center"> 註冊</h1>
                     <div class="social-login">
                         <button class="btn wechat-btn social-btn" type="button" @click="loginWithQrcode"><span><i
                             class="fab fa-weixin"></i> 微信掃碼登入</span>
@@ -202,14 +225,22 @@
 
                     <p class="text-center">OR</p>
 
-                    <input type="text" v-model="sign_info.name" class="form-control" placeholder="昵稱" required autofocus>
-                    <input type="email" v-model="sign_info.email" class="form-control" placeholder="Email 地址" required autofocus>
-                    <input type="password" v-model="sign_info.password" class="form-control" placeholder="密碼" required autofocus>
-                    <input type="password" v-model="sign_info.repeatpass" class="form-control" placeholder="確認密碼" required autofocus>
+                    <input type="text" v-model="sign_info.name" v-model.trim="sign_info.name" class="form-control"
+                           placeholder="昵稱"
+                           required
+                           autofocus>
+                    <input type="email" v-model="sign_info.email" v-model.trim="sign_info.email" class="form-control"
+                           placeholder="Email 地址" required
+                           autofocus>
+                    <input type="password" v-model="sign_info.password" class="form-control" placeholder="密碼" required
+                           autofocus>
+                    <input type="password" v-model="sign_info.repeatpass" class="form-control" placeholder="確認密碼"
+                           required autofocus>
                     <div class="alert alert-danger" role="alert" v-if="sign_up_error === 1">
                         {{sign_up_error_msg}}
                     </div>
-                    <button class="btn btn-outline-success btn-block" type="submit" @click="signUp"><i class="fas fa-user-plus"></i> 註冊
+                    <button class="btn btn-outline-primary btn-block" type="submit"><i
+                        class="fas fa-user-plus"></i> 註冊
                     </button>
                     <a href="javascript:void(0)" @click="changeLoginAction('login')"><i class="fas fa-angle-left"></i>
                         返回</a>
@@ -237,7 +268,6 @@
     export default {
         name: "comment",
         props: [
-            // 'comments',
             'submitUri',
         ],
         components: {
@@ -266,12 +296,13 @@
                 login_qrcode: '/images/loading.gif',
                 sign_up_error_msg: '',
                 sign_up_error: 0,
-                sign_info:{
+                sign_info: {
                     name: '',
                     email: '',
                     password: '',
                     repeatpass: '',
                 },
+                avatar: '/images/avatar-default.png'
             }
         },
         created() {
@@ -282,7 +313,9 @@
         mounted() {
             autosize($('#comment-box-root'));
             this.fetchComments(1);
-            this.input_comment.api_token = $.cookie('api_token');
+            this.input_comment.api_token = $.cookie('api_token');//页面加载时 设置token
+            let avatar_cache = window.localStorage.getItem("avatar");
+            this.avatar = avatar_cache ? avatar_cache : '/images/avatar-default.png';//设置头
         },
         filters: {
             filterHtml: function (value) {
@@ -315,6 +348,7 @@
         methods: {
             fetchComments: function (page) {//获取评论
                 this.comments = null;
+                this.show_item_id = -1;
                 let data = {
                     page: page,
                     order: this.order,
@@ -342,22 +376,36 @@
                 this.order = order;
                 this.fetchComments(1);
             },
-            addComment(root_id = '', parent_id = '') {//新增评论
+            addComment(root_id = '', parent_id = '', box = 'comment-box-root') {//新增评论
+                let vc = this;
                 if (!this.input_comment.api_token) {
                     this.showLoginModal();
                     return;
                 }
                 this.input_comment.root_id = root_id;
                 this.input_comment.parent_id = parent_id;
+                this.input_comment.comment = $('#' + box).val();
                 axios
                     .post(this.submitUri, this.input_comment)
                     .then(response => {
-                        console.log(response);
                         this.fetchComments(this.current_page);
+                        $('#' + box).val('');
+                    })
+                    .catch(error => {
+                        if (error.response.status === 401) {
+                            vc.showLoginModal();
+                            return false;
+                        }
                     });
             },
             showCommentInput(item, reply) {//显示评论框
+                //检查登录
+                if (!this.input_comment.api_token) {
+                    this.showLoginModal();
+                    return;
+                }
                 this.initInputComment();
+
                 if (reply) {
                     this.replay_text = "回覆 " + item.name;
                 } else {
@@ -375,16 +423,16 @@
                 this.initInputComment();
             },
             getChildrenComments(id, index) {//获取评论下所有的回复
-                this.comment_children_total[index] = this.comment_children_total[index] ? this.comment_children_total[index] : this.comments[index].children.total;
+                this.comment_children_total[index] = this.comment_children_total[index] ? this.comment_children_total[index] : this.comments[index].children_total;
                 this.comment_children_page[index] = this.comment_children_page[index] ? 1 : 0;
                 axios
                     .get('//' + window.location.host + '/api/comments/more_children/' + id + '?page=' + this.comment_children_page[index])
                     .then(response => {
                         for (let i = 0, len = response.data.comment.length; i < len; i++) {
-                            this.comments[index].children.data.push(response.data.comment[i]);
+                            this.comments[index].children.push(response.data.comment[i]);
                         }
                         this.more_number = 1;
-                        this.comments[index].children.total = response.data.total;
+                        this.comments[index].children_total = response.data.total;
                         this.comment_children_page[index] = parseInt(response.data.page) + 1;
                     })
                     .catch(error => {
@@ -397,24 +445,31 @@
                 this.input_comment.parent_id = null;
             },
             collapseChildren(index) {//收起评论
-                let len = this.comments[index].children.data.length;
-                this.comments[index].children.data.splice(3, len);//保留前3个，移除后面所有的
-                this.comments[index].children.total = this.comment_children_total[index];//把第一次载入的还要多少个评论赋值给收起
+                let len = this.comments[index].children.length;
+                this.comments[index].children.splice(3, len);//保留前3个，移除后面所有的
+                this.comments[index].children_total = this.comment_children_total[index];//把第一次载入的还要多少个评论赋值给收起
                 this.comment_children_page[index] = 0;//重置分页
-            },
-            clearInterval() {//停止轮询
-                this.login_action = 'login';
-                clearInterval(this.setInte);
             },
             showLoginModal() {//显示登录框框
                 this.$modal.show('login-box');
             },
-            closeLoginModal(){
+            closeLoginModal() {
                 this.$modal.hide('login-box');
+            },
+            loginModalClosed() {
+                this.login_action = 'login';
+                this.clearInterval(this.setInte);//停止轮询
+                this.clearError();//清除错误
+                this.initSignInfo();//初始化注册信息
+            },
+            clearInterval() {//停止轮询
+                clearInterval(this.setInte);
             },
             changeLoginAction(action) {//切换登录方式
                 this.clearInterval();
                 this.login_action = action;
+                this.clearError();
+                this.initSignInfo();
             },
             loginWithQrcode() {//扫码登录
                 this.login_action = 'wechat';
@@ -427,7 +482,6 @@
                     vc.setInte = setInterval(function () {
                         vc.checkQrcodeLogin(str);
                     }, 1500);
-
                 });
             },
             checkQrcodeLogin(str) {//检查是否扫码登录
@@ -448,47 +502,61 @@
                 });
 
             },
-            signUp(){
-                if(this.sign_info.password !== this.sign_info.repeatpass){
-                    this.sign_up_error = 1;
-                    this.sign_up_error_msg = '兩次密碼輸入不一致';
-                    return;
+            signUp() {//注册
+                if (this.sign_info.password !== this.sign_info.repeatpass) {
+                    this.setError('兩次密碼輸入不一致');
+                    return false;
                 }
-                let data={
+                let data = {
                     'email': this.sign_info.email,
                     'name': this.sign_info.name,
                     'password': this.sign_info.password,
                 };
                 this.register(data);
+                return false;
             },
-            login(){
-                let vc = this;
+            login() {
                 axios.post('//' + window.location.host + '/api/login', {
                     'email': this.sign_info.email,
                     'password': this.sign_info.password,
                 })
                     .then(response => {
-                    console.log(response);
-                $.cookie('api_token',response.data.api_token);//保持cookie
-                vc.input_comment.api_token = response.data.api_token;//保持输入框信息
-                vc.closeLoginModal();
-                })
-                .catch(error => {
-                        console.log(error);
-                });
+                        this.logined(response.data);
+                    })
+                    .catch(error => {
+                        this.setError(error.response.data.message);
+                    });
+                return false;
             },
-            register(data){
-                let vc = this;
+            register(data) {
                 axios.post('//' + window.location.host + '/api/user', data)
                     .then(response => {
-                    console.log(response);
-                $.cookie('api_token',response.data.api_token);//保持cookie
-                vc.input_comment.api_token = response.data.api_token;//保持输入框信息
-                vc.closeLoginModal();
-                })
-                .catch(error => {
-                        console.log(error);
-                });
+                        this.logined(response.data);
+                    })
+                    .catch(error => {
+                        this.setError(error.response.data.message);
+                    });
+            },
+            logined(data) {//登录或者注册成功的后续操作
+                $.cookie('api_token', data.api_token);//保持cookie
+                this.input_comment.api_token = data.api_token;//保持输入框信息
+                window.localStorage.setItem('avatar', data.avatar);//保持头像
+                this.avatar = data.avatar;
+                this.closeLoginModal();
+            },
+            setError($msg) {//設置錯誤信息
+                this.sign_up_error = 1;
+                this.sign_up_error_msg = $msg;
+            },
+            clearError() {//清除錯誤信息
+                this.sign_up_error = 0;
+                this.sign_up_error_msg = '';
+            },
+            initSignInfo() {
+                this.sign_info.name = '';
+                this.sign_info.email = '';
+                this.sign_info.password = '';
+                this.sign_info.repeatpass = '';
             },
         }
     }

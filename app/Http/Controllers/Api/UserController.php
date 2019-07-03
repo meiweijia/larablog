@@ -15,19 +15,19 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             // 身份验证通过...
-            return Auth::user();
+            return response(Auth::user());
         }
-        return 0;
+        return response(['message' => '账号或者密码错误'], 400);
     }
 
     public function store(Request $request)
     {
-        if ($request->input('unionid')){//扫码注册，微信给的ID都是固定的，所以可以看出是同一账号
+        if ($request->input('unionid')) {//扫码注册，微信给的ID都是固定的，所以可以看出是同一账号
             $user = User::query()->where('unionid', $request->input('unionid'))->first();
-        }else{//正常注册
+        } else {//正常注册
             $user = User::query()->where('email', $request->input('email'))->first();
-            if ($user){//todo 如果 email 已经被注册，返回错误信息
-                return 0;
+            if ($user) {
+                return response(['message' => 'Email 已經被註冊！'], 400);
             }
         }
         if ($user) {
@@ -36,7 +36,7 @@ class UserController extends Controller
                 'name',
                 'avatar',
             ]));
-            return $user;
+            return response($user);
         } else {
             $result = User::query()->create($request->only([
                 'unionid',
@@ -45,7 +45,7 @@ class UserController extends Controller
                 'avatar',
                 'password'
             ]));
-            return $result;
+            return response($result);
         }
     }
 }

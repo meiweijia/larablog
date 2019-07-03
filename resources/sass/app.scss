@@ -39,16 +39,8 @@ body {
     line-height: 3.5rem;
 }
 
-.profile-card .img {
+.my-avatar {
     width: 10rem;
-    margin: 0 auto;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.profile-card .img img {
-    width: 100%;
-    height: 100%;
 }
 
 .profile-card h3 span {
@@ -96,12 +88,6 @@ $black: hsl(200, 40, 10);
 blockquote {
     padding-left: 1em;
     border-left: 0.2em solid lighten($black, 40%);
-}
-
-.reply-box {
-    textarea {
-        background-color: hsla(0, 0%, 71%, .1);
-    }
 }
 
 .comment-header {
@@ -202,13 +188,15 @@ textarea {
     overflow-y: visible
 }
 
+.comment-box-disabled{
+    background: #eee;
+}
+
+
 .v--modal-overlay {
     z-index: 9999 !important;
 }
 
-//.v--modal-box {
-//    width: 410px !important;
-//}
 
 /* sign in FORM */
 #logreg-forms {
