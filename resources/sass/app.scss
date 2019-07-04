@@ -13,4 +13,289 @@ $fa-font-path: "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 
 // Customization style
-@import "blog";
+html {
+    height: 100%;
+}
+
+body {
+    background: url('../images/bg.jpg');
+    height: 100%;
+}
+
+#app {
+    position: relative;
+    min-height: 100%;
+}
+
+.article img {
+    max-width: 100%;
+}
+
+.content {
+    padding-bottom: 5rem;
+}
+
+.main-footer {
+    line-height: 3.5rem;
+}
+
+.my-avatar {
+    width: 10rem;
+}
+
+.profile-card h3 span {
+    font-size: 0.875rem;
+    background: #e91e63;
+    color: #fff;
+    padding: 0.25rem 0.625rem;
+    border-radius: 1rem;
+}
+
+.profile-card p {
+    color: #262626;
+}
+
+.profile-card span {
+    display: inline-flex;
+}
+
+.profile-card ul {
+    margin: 0;
+    padding: 0;
+}
+
+.profile-card ul li {
+    list-style: none;
+    float: left;
+}
+
+.profile-card ul li a {
+    display: block;
+    color: #aaa;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: 0.5s;
+    text-align: center;
+}
+
+.profile-card ul li:hover a {
+    color: #e91e63;
+    transform: rotateY(360deg);
+}
+
+$black: hsl(200, 40, 10);
+
+blockquote {
+    padding-left: 1em;
+    border-left: 0.2em solid lighten($black, 40%);
+}
+
+.comment-header {
+    .active {
+        color: $black;
+    }
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid $gray-300;
+
+    .avatar {
+        border-radius: 50%;
+        width: 2.5rem;
+    }
+
+    .info {
+        display: flex;
+        align-items: center;
+    }
+
+    .control {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: $gray-600;
+    }
+
+    .children {
+        border-left: 2px solid $gray-300;
+
+        .reply {
+            border-bottom: 1px dashed $gray-300;
+        }
+    }
+
+    .reply-name {
+        color: $primary;
+    }
+
+    .last {
+        border-bottom: none !important;
+    }
+
+    .reply-btn:hover {
+        color: $black;
+    }
+
+    .liked {
+        color: $red !important;
+    }
+
+    .thumbs-up:hover {
+        color: $red !important;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.comment-reply-cancel {
+    margin-top: 0.25rem;
+    margin-right: 0.5rem;
+    color: $gray-600;
+}
+
+.comment-reply-cancel:hover {
+    color: $black;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.reply-time {
+    font-size: smaller;
+    color: $gray-600;
+}
+
+.emoji-btn {
+    color: $gray-600;
+    font-size: 1.2rem;
+}
+
+.emoji-btn:hover {
+    color: $black;
+}
+
+textarea {
+    resize: none;
+}
+
+.comment-box {
+    width: 100%;
+    overflow-y: visible
+}
+
+.comment-box-disabled{
+    background: #eee;
+}
+
+
+.v--modal-overlay {
+    z-index: 9999 !important;
+}
+
+
+/* sign in FORM */
+#logreg-forms {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+#logreg-forms form {
+    width: 100%;
+    max-width: 410px;
+    padding: 15px;
+    margin: auto;
+}
+
+#logreg-forms .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#logreg-forms .form-control:focus {
+    z-index: 2;
+}
+
+#logreg-forms .social-login {
+    width: 390px;
+    margin: 0 auto;
+    margin-bottom: 14px;
+}
+
+.social-btn {
+    font-weight: 100;
+    color: white;
+    width: 190px;
+    font-size: 0.9rem;
+}
+
+#logreg-forms a {
+    display: block;
+    padding-top: 10px;
+    color: lightseagreen;
+}
+
+#logreg-form .lines {
+    width: 200px;
+    border: 1px solid red;
+}
+
+#logreg-forms button[type="submit"] {
+    margin-top: 10px;
+}
+
+#logreg-forms .wechat-btn {
+    background-color: #62b900;
+}
+
+#logreg-forms .github-btn {
+    background-color: #DF4B3B;
+}
+
+.login-qrcode{
+    width: 340px;
+    height:340px;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 500px) {
+    #logreg-forms .social-login {
+        width: 200px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    #logreg-forms .social-btn {
+        font-size: 1.3rem;
+        font-weight: 100;
+        color: white;
+        height: 44px;
+
+    }
+    #logreg-forms .social-btn:nth-child(1) {
+        margin-bottom: 5px;
+    }
+    #logreg-forms .social-btn span {
+        display: none;
+    }
+    #logreg-forms .wechat-btn:after {
+        content: '微信';
+    }
+
+    #logreg-forms .github-btn:after {
+        content: 'Github';
+    }
+
+    .login-qrcode{
+        width: 290px;
+        height:290px;
+
+    }
+}

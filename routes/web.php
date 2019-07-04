@@ -34,4 +34,6 @@ Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/articles/{article}', 'ArticleController@show')->name('articles.show');
 
-Route::post('/articles/{article}/comment','ArticleController@comment')->name('articles.comment');
+Route::get('/login/wechat/callback', 'Auth\LoginController@wechatCallBack')->name('login.wechat.callback');//扫码登录回调
+Route::get('/login/github','Auth\LoginController@github')->name('login.github');
+Route::get('/login/github/callback', 'Auth\LoginController@githubCallBack')->name('login.github.callback');//github 登录回调

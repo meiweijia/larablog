@@ -11,9 +11,13 @@ try {
 
     require('jquery.cookie');
 
+    window.autosize = require('autosize');
+
     window.Popper = require('popper.js').default;
 
     require('bootstrap');
+
+    require('sweetalert');
 
 } catch (e) {}
 

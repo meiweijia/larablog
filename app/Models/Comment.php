@@ -9,7 +9,9 @@ class Comment extends Model
     protected $fillable = [
         'comment',
         'name',
-        'parent_id'
+        'parent_id',
+        'root_id',
+        'user_id'
     ];
 
     protected static function boot()
@@ -17,12 +19,12 @@ class Comment extends Model
         parent::boot();
         static::creating(function ($model) {
             //序号处理
-            if (!$model->order) {
-                $model->order = static::setOrder($model->article_id);
-                if (!$model->order) {
-                    return false;
-                }
-            }
+            //if (!$model->order) {
+            //    $model->order = static::setOrder($model->article_id);
+            //    if (!$model->order) {
+            //        return false;
+            //    }
+            //}
 
             //markdown 转 html
             $content = \Parsedown::instance()->text($model->comment);
@@ -41,7 +43,10 @@ class Comment extends Model
 
     public static function setOrder($article_id)
     {
-        $order = static::query()->where('article_id', $article_id)->max('order');
+        $order = static::query()
+            ->where('article_id', $article_id)
+            ->whereNull('root_id')
+            ->max('order');
         return $order + 1;
     }
 
@@ -51,6 +56,11 @@ class Comment extends Model
     public function parent()
     {
         return $this->belongsTo(Comment::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Comment::class, 'root_id');
     }
 
     public function user()
