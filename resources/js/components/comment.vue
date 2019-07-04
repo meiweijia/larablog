@@ -178,7 +178,8 @@
                         <button class="btn wechat-btn social-btn" type="button" @click="loginWithQrcode"><span><i
                             class="fab fa-weixin"></i> 微信掃碼登入</span>
                         </button>
-                        <button class="btn github-btn social-btn" type="button"><span><i class="fab fa-github"></i> 使用 Github 登入</span>
+                        <button class="btn github-btn social-btn" type="button" @click="loginWithGithub"><span><i
+                            class="fab fa-github"></i> 使用 Github 登入</span>
                         </button>
                     </div>
                     <p class="text-center">OR</p>
@@ -302,7 +303,7 @@
                     password: '',
                     repeatpass: '',
                 },
-                avatar: '/images/avatar-default.png'
+                avatar: null,
             }
         },
         created() {
@@ -314,7 +315,7 @@
             autosize($('#comment-box-root'));
             this.fetchComments(1);
             this.input_comment.api_token = $.cookie('api_token');//页面加载时 设置token
-            let avatar_cache = window.localStorage.getItem("avatar");
+            let avatar_cache = $.cookie('avatar');
             this.avatar = avatar_cache ? avatar_cache : '/images/avatar-default.png';//设置头
         },
         filters: {
@@ -502,6 +503,9 @@
                 });
 
             },
+            loginWithGithub() {
+                window.location.href = '//' + window.location.host + '/login/github?back_url=' + window.location.href;
+            },
             signUp() {//注册
                 if (this.sign_info.password !== this.sign_info.repeatpass) {
                     this.setError('兩次密碼輸入不一致');
@@ -540,7 +544,7 @@
             logined(data) {//登录或者注册成功的后续操作
                 $.cookie('api_token', data.api_token);//保持cookie
                 this.input_comment.api_token = data.api_token;//保持输入框信息
-                window.localStorage.setItem('avatar', data.avatar);//保持头像
+                $.cookie('avatar', data.avatar);//保持头像
                 this.avatar = data.avatar;
                 this.closeLoginModal();
             },
