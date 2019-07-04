@@ -37,10 +37,3 @@ Route::get('/articles/{article}', 'ArticleController@show')->name('articles.show
 Route::get('/login/wechat/callback', 'Auth\LoginController@wechatCallBack')->name('login.wechat.callback');//扫码登录回调
 Route::get('/login/github','Auth\LoginController@github')->name('login.github');
 Route::get('/login/github/callback', 'Auth\LoginController@githubCallBack')->name('login.github.callback');//github 登录回调
-
-Route::get('test', function () {
-    $encryptedString = "eyJpdiI6IlwvR1hjUjRIMDNpRTNmSDBEZHRzTmtnPT0iLCJ2YWx1ZSI6IlFBMVc0SjVWUHZuSFFzVnRZMVY2Tzl0cTBlQVZ1MDRoVzYyYUpjeGJRUmZcLytpTStXK3l0VUN2U0gyeStBMGtcL0NUTUcxcmVvZ3hqODhoc2w0NmNoZDBIVHpjQkpFUjVCVkE2QkU4eUpQb1dhZUsrUjRnOXlPVXNTdHZJR3F4RjciLCJtYWMiOiIyMTg0MTM4YmRhYjEzOGFhNTY5NTczOWRhM2E4YzFmZTJmYjMwMjNhYzliNGEwZDE4OGEzMDQzMmFkNTE2NTQ4In0=";
-
-    $decryptedString = \Crypt::decryptString($encryptedString);
-    dd($decryptedString);
-});
