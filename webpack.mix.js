@@ -16,4 +16,4 @@ mix.js('resources/js/app.js', 'public/js')
     .copyDirectory('resources/images', 'public/images')
     .copy('resources/css/prism.css', 'public/css/prism.css')
     .copy('resources/js/prism.js', 'public/js/prism.js')
-    .browserSync('http://127.0.0.1:8000');
+    .browserSync(process.env.APP_URL);

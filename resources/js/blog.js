@@ -25,50 +25,53 @@ $(function () {
 });
 
 $(".reply-btn").click(function () {
-    var formHtml = $("#reply-form").prop("outerHTML");
-    var commentOrder = $(this).data("comment-order");
-    var replyStatus = $(this).data("reply-status");
-    var commentId = $(this).data("comment-id");
-    $("#reply-form").remove();
+    let formHtml = $("#comment-form").prop("outerHTML");
+    let replyStatus = $(this).data("reply-status");
+    let commentId = $(this).data("comment-id");
+    let commentName = $(this).data('comment-name');
+    let commentRootId = $(this).data('comment-root-id');
+    $("#comment-form").remove();
 
     if (replyStatus == 0) {
-        $("#reply-list-" + commentOrder + " .bottom-comment").append(formHtml);
+        $("#comment-reply-box-" + commentId).append(formHtml);
         $("#comment-parent-id").val(commentId);
+        $("#comment-root-id").val(commentRootId);
         $(".reply-btn").data("reply-status", 0);
         $(".reply-btn").text(" 回复");
         $(this).data("reply-status", 1);
         $(this).text(" 取消回复");
-        $("#reply-comment").attr("placeholder", "回复 " + commentOrder + " 楼");
+        $("#reply-comment").attr("placeholder", "回复 " + commentName);
         $("#reply-comment").focus();
     }
     else {
         $(".reply-btn").text(" 回复");
         $(this).data("reply-status", 0);
         $(".reply-box").append(formHtml);
-        $("#comment-parent-id").val(0);
+        $("#comment-parent-id").val(null);
+        $("#comment-root-id").val(null);
         $("#reply-comment").attr("placeholder", "");
     }
 });
 
-comment_form_submit = function(){
-    var comment_name = $.cookie('comment-name');
+comment_form_submit = function () {
+    let comment_name = $.cookie('comment-name');
+    console.log(comment_name);
     if (!comment_name) {
-        $('#comment-info-model').modal();
+        swal("输入昵称:", {
+            content: "input",
+        }).then((value) => {
+            if (value) {
+                $.cookie('comment-name', value);
+                $("#comment-name").val(value);
+                $("#comment-form").submit();
+            }
+            else {
+                swal("请输入昵称", "", "warning");
+            }
+        });
         return false;
     }
     else {
         return true;
     }
-}
-
-$("#btn-submit-comment-model").click(function () {
-    var comment_name = $("#comment-info-model-name").val().trim();
-    if (comment_name) {
-        $.cookie('comment-name', comment_name);
-        $("#comment-name").val(comment_name);
-        $("#comment-form").submit();
-    }
-    else {
-        alert("请输入昵称！");
-    }
-});
+};

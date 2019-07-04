@@ -1,18 +1,4 @@
-<form action="{{route('articles.comment',$article_id)}}" method="post" accept-charset="UTF-8" id="comment-form" onsubmit="return comment_form_submit()">
-    @csrf
-    <input type="hidden" name="parent_id" id="comment-parent-id" />
-    <input type="hidden" name="name" id="comment-name" />
-    <div class="form-group">
-        <textarea id="reply-comment" name="comment" title="" class="form-control" style="resize: none" rows="5" required></textarea>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <button type="submit" class="btn btn-outline-primary btn-sm float-right btn-submit-comment" id="btn-submit-comment">
-                评论
-            </button>
-        </div>
-    </div>
-</form>
+
 
 <!-- Modal -->
 <div class="modal fade" id="comment-info-model" tabindex="-1" role="dialog" aria-labelledby="comment-info-model-title" aria-hidden="true">

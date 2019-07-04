@@ -10,7 +10,7 @@
                 <span class="mx-1">|</span><i class="far fa-calendar-alt pr-1"></i><a href="javascript:void(0)"
                                                                                       class="text-dark"
                                                                                       title="{{ $article->created_at }}">{{ $article->created_at->diffForHumans() }}</a>
-                <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a href="#reply-form"
+                <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a href="#comment-box-root"
                                                                                      class="text-dark">{{ $article->comment_count }}</a>
             </p>
             @if($article->tags->count())
@@ -27,16 +27,12 @@
     </div>
 
     <div class="d-block mb-4 alert alert-warning shadow" role="alert">
-        <p>本站发布的原创文章、评论、图片等内容的版权均归本站所有，允许在互联网范围内，转载该作品，并在使用时指明作者姓名、作品名称及作品来源。</p>
-        <p>本站转载、复制、截图等方式获取他人内容，如有侵权请联系 <a href="mailto:meiweijia@gmail.com">我</a> 删除。</p>
+        <p>本站發佈的原創文章、評論、圖片等內容的版權均歸本站所有，允許在網路範圍內，轉載該作品，並在使用時指明作者姓名、作品名稱及作品來源。</p>
+        <p>本站轉載、複製、截圖等方式獲取他人內容，如有侵權請聯繫 <a href="mailto:meiweijia@gmail.com">我</a> 刪除。</p>
     </div>
-    @component('layouts.reply-list',['comments' => $article->comments])
+    @component('layouts.reply-list',[
+    'comments' => $article->comments,
+    'article_id' => $article->id
+    ])
     @endcomponent
-
-    <div class="card mb-4 reply-box shadow">
-        <div class="card-body" id="reply-form">
-            @component('layouts.reply-form',['article_id'=>$article->id])
-            @endcomponent
-        </div>
-    </div>
 @endsection

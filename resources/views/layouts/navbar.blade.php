@@ -13,10 +13,10 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ active_class(if_route('index')) }}" href="{{ route('index') }}">主页</a>
+                    <a class="nav-link {{ active_class(if_route('index')) }}" href="{{ route('index') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ active_class(if_route('about')) }}" href="{{ route('about') }}">关于</a>
+                    <a class="nav-link {{ active_class(if_route('about')) }}" href="{{ route('about') }}">About</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('index') }}">
