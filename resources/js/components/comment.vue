@@ -363,6 +363,7 @@
                         this.current_page = response.data.current_page;
                         this.total_page = response.data.last_page;
                         this.total_comments = response.data.total;
+                        $.getScript("/js/prism.js");
                     })
                     .catch(error => {
                         console.log(error);
