@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="d-block card mb-4">
+    <div class="d-block card">
         <div class="card-body shadow">
             <h3>About me</h3>
             <p>Hi，我叫梅渭甲，今年{{ date('Y')-1990 }}歲，畢業於湖南信息職業技術學院。我是奮鬥在深圳壹線的PHP後端工程師，正在在努力成為壹個全棧工程師。</p>

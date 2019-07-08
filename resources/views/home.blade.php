@@ -45,7 +45,7 @@
             {{ $articles->appends(Request::all())->links('layouts.pagination') }}
         </nav>
     @else
-        <div class="d-block card mb-4">
+        <div class="d-block card shadow">
             <div class="card-body">
                 <h3>暂无内容</h3>
             </div>

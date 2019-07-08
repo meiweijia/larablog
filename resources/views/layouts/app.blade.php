@@ -30,10 +30,10 @@
     <main class="content pt-4">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 mb-9 mb-lg-0" id="content">
+                <div class="col-lg-9 mb-lg-0" id="content">
                     @yield('content')
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3 mt-4 mt-lg-0">
                     <div class="sticky-top">
                         @component('layouts.profile')
                         @endcomponent
