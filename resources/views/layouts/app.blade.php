@@ -13,7 +13,7 @@
     <meta name="description" content="梅渭甲的个人博客，记录我的coding之路.">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/prism.js') }}" defer></script>
+    {{--<script src="{{ asset('js/prism.js') }}" defer></script>--}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/prism.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/prism.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div id="app">

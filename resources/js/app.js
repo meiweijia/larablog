@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 
+import Prism from 'prismjs';
+
 window.Vue = require('vue');
 
 Vue.component('comment-component', require('./components/comment.vue').default);
@@ -35,4 +37,5 @@ $(function () {
             }
         }, 100);
     });
+    $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
 });

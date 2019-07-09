@@ -37,7 +37,7 @@
             <div class="clearfix"></div>
         </div>
         <hr>
-        <div class="comment mb-3" v-for="(comment,index) in comments">
+        <div class="comment-list mb-3" v-for="(comment,index) in comments">
             <div class="info">
                 <img class="avatar rounded-circle" :src="comment.user.avatar">
                 <div class="user-info ml-2">
@@ -363,7 +363,10 @@
                         this.current_page = response.data.current_page;
                         this.total_page = response.data.last_page;
                         this.total_comments = response.data.total;
-                        $.getScript("/js/prism.js");
+                        setTimeout(function () {
+                            $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
+                            Prism.highlightAll();
+                        },1);
                     })
                     .catch(error => {
                         console.log(error);
