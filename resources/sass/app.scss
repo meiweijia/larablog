@@ -12,6 +12,10 @@ $fa-font-path: "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 
+@import "_prism.css";
+@import "~prismjs/plugins/toolbar/prism-toolbar.css";
+@import "~prismjs/plugins/line-numbers/prism-line-numbers.css";
+
 // Customization style
 html {
     height: 100%;
@@ -19,6 +23,7 @@ html {
 
 body {
     background: url('../images/bg.jpg');
+    background-attachment:fixed;
     height: 100%;
 }
 

@@ -24,13 +24,13 @@ $(function () {
         content: '<img src="../images/wx.jpg" width="200" height="200" />', //this is the content of the html box. add the image here or anything you want really.
         animation: true
     }).on("mouseenter", function () {
-        var _this = this;
+        let _this = this;
         $(this).popover("show");
         $(this).siblings(".popover").on("mouseleave", function () {
             $(_this).popover("hide");
         });
     }).on("mouseleave", function () {
-        var _this = this;
+        let _this = this;
         setTimeout(function () {
             if (!$(".popover:hover").length) {
                 $(_this).popover("hide")

@@ -4,7 +4,7 @@
         "languages": ["javascript", "css", "markup","php","sql","bash","json","git","aspnet"],
         "plugins": ["toolbar","show-language","copy-to-clipboard","line-numbers"],
         "theme": "tomorrow",
-        "css": true
+        "css": false
     }]
   ]
 }
