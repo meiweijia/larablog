@@ -5,6 +5,7 @@
 /storage/debugbar
 /vendor
 .env
+.babelrc
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
