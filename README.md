@@ -5,6 +5,8 @@
 ## 复制配置文件
 `cp .env.example .env`
 
+`cp .babelsr.example .babelsr`
+
 ## 安装后端package
 
 `composer install`

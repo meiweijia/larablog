@@ -15,3 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .copyDirectory('resources/images', 'public/images')
     .browserSync(process.env.APP_URL);
+
+if (mix.inProduction()) {
+    mix.version();
+}
