@@ -7,35 +7,35 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-5">
-                                <a href="{{ route('articles.show',$article->id) }}">
-                                    <img class="img-thumbnail w-100"
-                                         src="{{ asset('images/article-default.jpg') }}">
-                                </a>
+                            <a href="{{ route('articles.show',$article->id) }}">
+                                <img class="img-thumbnail w-100"
+                                     src="{{ asset($article->cover) }}">
+                            </a>
                         </div>
 
                         <div class="col-sm-7">
-                                <h4 class="h4 pt-2 pt-md-0 pt-sm-0">
-                                    <a href="{{ route('articles.show',$article->id) }}"
-                                       class="text-dark">{{$article->title}}</a>
-                                </h4>
-                                <p>
-                                    <i class="far fa-folder-open pr-1"></i><a
+                            <h4 class="h4 pt-2 pt-md-0 pt-sm-0">
+                                <a href="{{ route('articles.show',$article->id) }}"
+                                   class="text-dark">{{$article->title}}</a>
+                            </h4>
+                            <p>
+                                <i class="far fa-folder-open pr-1"></i><a
                                         href="{{ route('getArticleByCategory',$article->category->uri) }}">{{ $article->category->title }}</a>
-                                    <span class="mx-1">|</span><i class="far fa-calendar-alt pr-1"></i><a
+                                <span class="mx-1">|</span><i class="far fa-calendar-alt pr-1"></i><a
                                         href="javascript:void(0)" class="text-dark"
                                         title="{{ $article->created_at }}">{{ $article->created_at->diffForHumans() }}</a>
-                                    <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a
+                                <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a
                                         href="{{ route('articles.show',$article->id) }}#comment-box-root">{{ $article->comment_count }}</a>
-                                </p>
-                                @if($article->tags->count())
-                                    <p><i class="fas fa-tags"></i>
-                                        @foreach($article->tags as $tag)
-                                            <a href="{{ route('getArticleByTag',$tag->uri) }}"><span
+                            </p>
+                            @if($article->tags->count())
+                                <p><i class="fas fa-tags"></i>
+                                    @foreach($article->tags as $tag)
+                                        <a href="{{ route('getArticleByTag',$tag->uri) }}"><span
                                                     class="label label-info">{{ $tag->title }}</span></a>
-                                        @endforeach
-                                    </p>
-                                @endif
-                                    <p>{{ $article->excerpt }}</p>
+                                    @endforeach
+                                </p>
+                            @endif
+                            <p>{{ $article->excerpt }}</p>
                         </div>
                     </div>
                 </div>

@@ -144,13 +144,14 @@ class ArticleController extends Controller
         $form = new Form(new Article);
 
         $form->text('title', '标题');
-        $form->text('author', '作者')->default('meiweijia');
+        $form->text('author', '作者')->default('meiwj');
         $form->select('category_id', '分类')->options(Category::query()->where('parent_id', '>', 0)->pluck('title', 'id'));
         $form->multipleSelect('tags', '标签')->options(Tag::all()->pluck('title', 'id'));
         $form->text('excerpt', '摘要');
         $form->text('keywords', '关键字');
         $form->text('description', '描述');
         $form->markdown('content', '内容');
+        $form->image('cover', '封面图')->uniqueName();
         $form->switch('status', '发布？')->default(1);
         $form->switch('comment_status', '评论？')->default(1);
 
