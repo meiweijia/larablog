@@ -364,7 +364,7 @@
                         this.total_page = response.data.last_page;
                         this.total_comments = response.data.total;
                         setTimeout(function () {
-                            $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
+                            $('pre').addClass("line-numbers");
                             Prism.highlightAll();
                         },1);
                     })

@@ -37,5 +37,5 @@ $(function () {
             }
         }, 100);
     });
-    $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
+    $('pre').addClass("line-numbers");
 });
