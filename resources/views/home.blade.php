@@ -9,7 +9,7 @@
                         <div class="col-sm-5">
                             <a href="{{ route('articles.show',$article->id) }}">
                                 <img class="img-thumbnail w-100"
-                                     src="{{ asset($article->cover) }}">
+                                     src="{{ asset('storage/uploads/'.$article->cover) }}">
                             </a>
                         </div>
 
