@@ -37,8 +37,8 @@
             <div class="clearfix"></div>
         </div>
         <hr>
-        <div class="comment-list mb-3" v-for="(comment,index) in comments">
-            <div class="info">
+        <div class="d-flex flex-column border-bottom border-secondary mb-3 comment-list" v-for="(comment,index) in comments">
+            <div class="d-flex align-items-center">
                 <img class="avatar rounded-circle" :src="comment.user.avatar">
                 <div class="user-info ml-2">
                     <div class="comment-name pointer">{{ comment.user.name }}</div>
