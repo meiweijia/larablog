@@ -26,7 +26,7 @@ class HomeController extends Controller
         $articles = Article::query()
             ->with(['category:id,title,uri', 'tags:id,title,uri'])
             ->where('status', 1)
-            ->when($request->has('q'),function (Builder $query) use ($request){
+            ->when($request->has('q'), function (Builder $query) use ($request) {
                 $query->where('content', 'like', '%' . $request->input('q') . '%');
             })
             ->orderByDesc('created_at')
@@ -88,5 +88,65 @@ class HomeController extends Controller
     public function about()
     {
         return view('about');
+    }
+
+    public function siteMap()
+    {
+        $lastModify = Article::query()->orderByDesc('created_at')->pluck('created_at')->first();
+        $lastModify = date('Y-m-d', strtotime($lastModify));
+
+        $xml = [];
+        $xml[] = '<?xml version="1.0" encoding="UTF-8"?' . '>';
+        $xml[] = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        //首页
+        $xml[] = '<url>';
+        $xml[] = '<loc>' . route('index') . '</loc>';
+        $xml[] = "<lastmod>$lastModify</lastmod>";
+        $xml[] = '<changefreq>weekly</changefreq>';
+        $xml[] = '<priority>1</priority>';
+        $xml[] = '</url>';
+        //分类
+        $categories = Category::query()->pluck('uri');
+        foreach ($categories as $category) {
+            $xml[] = '<url>';
+            $xml[] = '<loc>' . route('getArticleByCategory', $category) . '</loc>';
+            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = '<changefreq>weekly</changefreq>';
+            $xml[] = '<priority>0.8</priority>';
+            $xml[] = '</url>';
+        }
+        //标签
+        $tags = Tag::query()->pluck('uri');
+        foreach ($tags as $tag) {
+            $xml[] = '<url>';
+            $xml[] = '<loc>' . route('getArticleByTag', $tag) . '</loc>';
+            $xml[] = "<lastmod>$lastModify</lastmod>";
+            $xml[] = '<changefreq>weekly</changefreq>';
+            $xml[] = '<priority>0.8</priority>';
+            $xml[] = '</url>';
+        }
+        //关于
+        $xml[] = '<url>';
+        $xml[] = '<loc>' . route('about') . '</loc>';
+        $xml[] = "<lastmod>$lastModify</lastmod>";
+        $xml[] = '<changefreq>weekly</changefreq>';
+        $xml[] = '<priority>0.8</priority>';
+        $xml[] = '</url>';
+        //文章
+        $articles = Article::query()->where('status', 1)
+            ->select('id', 'updated_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        foreach ($articles as $k => $v) {
+            $xml[] = '<url>';
+            $xml[] = '<loc>' . route('articles.show', $v->id) . '</loc>';
+            $xml[] = '<lastmod>' . date('Y-m-d', strtotime($v->updated_at)) . '</lastmod>';
+            $xml[] = '<priority>0.9</priority>';
+            $xml[] = "</url>";
+        }
+        $xml[] = '</urlset>';
+        $xml = join("\n", $xml);
+        return response($xml)
+            ->header('Content-type', 'text/xml');
     }
 }

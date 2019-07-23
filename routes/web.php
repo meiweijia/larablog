@@ -31,7 +31,10 @@ Route::get('/search', 'HomeController@search')->name('search');
  * 关于
  */
 Route::get('/about', 'HomeController@about')->name('about');
-
+/**
+ * 地图
+ */
+Route::get('/sitemap.xml','HomeController@siteMap')->name('sitemap');
 Route::get('/articles/{article}', 'ArticleController@show')->name('articles.show');
 
 Route::get('/login/wechat/callback', 'Auth\LoginController@wechatCallBack')->name('login.wechat.callback');//扫码登录回调
