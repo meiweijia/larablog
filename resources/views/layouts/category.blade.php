@@ -1,10 +1,10 @@
-<div class="card mb-4 shadow">
-    <div class="card-header">分类</div>
-    <div class="filter-content">
-        <div class="list-group list-group-flush">
+<div class="card mb-4 shadow sidebar">
+    <div class="card-body">
+        <h3 class="side-title">文章分类</h3>
+        <ul class="list-unstyled">
             @foreach($categories as $category)
-                <a href="{{ route('getArticleByCategory',$category->uri )}}" class="list-group-item">{{ $category->title }}<span class="float-right badge badge-light round">{{ $category->count }}</span> </a>
+                <li><a href="{{ route('getArticleByCategory',$category->uri )}}" title="{{$category->title}}">{{$category->title}} <span class="float-right">{{ $category->count }}</span></a></li>
             @endforeach
-        </div>
+        </ul>
     </div>
 </div>

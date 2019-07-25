@@ -1,8 +1,8 @@
-<div class="card border-0 shadow">
-    <div class="card-header">标签</div>
+<div class="card border-0 shadow sidebar">
     <div class="card-body">
-        @foreach($tags as $tag)
-            <a href="{{ route('getArticleByTag',$tag->uri) }}" class="btn btn-sm btn-outline-primary mb-1">{{ $tag->title }}</a>
+        <h3 class="side-title">标签云</h3>
+    @foreach($tags as $tag)
+            <a href="{{ route('getArticleByTag',$tag->uri) }}" class="btn btn-sm btn-outline-dark btn-tag mb-1">{{ $tag->title }}</a>
         @endforeach
     </div>
 </div>

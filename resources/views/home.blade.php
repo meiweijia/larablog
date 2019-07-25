@@ -20,18 +20,18 @@
                             </h4>
                             <p>
                                 <i class="far fa-folder-open pr-1"></i><a
-                                        href="{{ route('getArticleByCategory',$article->category->uri) }}">{{ $article->category->title }}</a>
+                                    href="{{ $article->category ? route('getArticleByCategory', $article->category->uri) : '#' }}">{{ $article->category ? $article->category->title : '' }}</a>
                                 <span class="mx-1">|</span><i class="far fa-calendar-alt pr-1"></i><a
-                                        href="javascript:void(0)" class="text-dark"
-                                        title="{{ $article->created_at }}">{{ $article->created_at->diffForHumans() }}</a>
+                                    href="javascript:void(0)" class="text-dark"
+                                    title="{{ $article->created_at }}">{{ $article->created_at->diffForHumans() }}</a>
                                 <span class="mx-1">|</span><i class="far fa-comment-alt pr-1"></i><a
-                                        href="{{ route('articles.show',$article->id) }}#comment-box-root">{{ $article->comment_count }}</a>
+                                    href="{{ route('articles.show',$article->id) }}#comment-box-root">{{ $article->comment_count }}</a>
                             </p>
                             @if($article->tags->count())
                                 <p><i class="fas fa-tags"></i>
                                     @foreach($article->tags as $tag)
-                                        <a href="{{ route('getArticleByTag',$tag->uri) }}"><span
-                                                    class="label label-info">{{ $tag->title }}</span></a>
+                                        <a href="{{ $tag ? route('getArticleByTag', $tag->uri) : '#' }}"><span
+                                                class="label label-info">{{ $tag ? $tag->title : '' }}</span></a>
                                     @endforeach
                                 </p>
                             @endif
