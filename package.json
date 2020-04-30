@@ -20,7 +20,7 @@
         "browser-sync-webpack-plugin": "2.0.1",
         "cross-env": "^5.1",
         "emoji-mart": "^2.11.1",
-        "jquery": "^3.2",
+        "jquery": "^3.5",
         "jquery.cookie": "^1.4.1",
         "laravel-mix": "^4.0.15",
         "lodash": "^4.17.13",
