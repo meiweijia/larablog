@@ -13,7 +13,7 @@
         "@fortawesome/fontawesome-free": "^5.8.1",
         "authing-js-sdk": "^2.4.2",
         "autosize": "^4.0.2",
-        "axios": "^0.18",
+        "axios": "^0.21",
         "babel-plugin-prismjs": "^1.0.2",
         "bootstrap": "^4.0.0",
         "browser-sync": "^2.26.5",
